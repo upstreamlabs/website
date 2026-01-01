@@ -1,0 +1,123 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import { useTranslations } from '~/i18n';
+
+const { t } = await useTranslations('cn');
+
+const metadata = {
+  title: '关于我们',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="关于 Upstream Labs"
+    image={{
+      src: '~/assets/images/hero-image.png',
+      alt: 'Upstream Labs Team',
+    }}
+  >
+    <Fragment slot="title">
+      关于 <span class="text-accent dark:text-white">Upstream Labs</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="text-lg">
+        我们是一个独特的风险投资、Y Combinator 和孵化器的组合，致力于赋能下一代初创企业。
+      </span>
+    </Fragment>
+  </Hero>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    id="about"
+    columns={3}
+    items={[
+      {
+        icon: 'tabler:rocket',
+        callToAction: {
+          target: '_blank',
+          text: '了解更多',
+          href: '#',
+        },
+      },
+      {
+        icon: 'tabler:bulb',
+        callToAction: {
+          target: '_blank',
+          text: '查看详情',
+          href: '#',
+        },
+      },
+      {
+        icon: 'tabler:chart-line',
+        callToAction: {
+          target: '_blank',
+          text: '探索机会',
+          href: '#',
+        },
+      },
+    ]}
+    image={{
+      src: '~/assets/images/hero-image.png',
+      alt: 'Upstream Labs',
+    }}
+  >
+    <Fragment slot="content">
+      <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">我们的使命</h2>
+      <p>
+        Upstream Labs 致力于通过结合风险投资的资金实力、Y Combinator 的成功方法论和孵化器的全面支持，
+        帮助初创企业实现快速成长和长期成功。
+      </p>
+      <br />
+      <p>
+        我们相信，通过提供资金、导师指导、网络连接和战略支持的独特组合，
+        我们可以帮助创业者将他们的愿景转化为改变世界的公司。
+      </p>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="我们的价值观"
+    subtitle="Upstream Labs 的核心价值观指导着我们支持初创企业的方式"
+    tagline="价值观"
+    items={[
+      {
+        title: '创新优先',
+        description: '我们支持突破界限和挑战现状的创业者。',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: '长期合作',
+        description: '我们不仅是投资者，更是您成长路上的长期合作伙伴。',
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        title: '全球视野',
+        description: '我们帮助初创企业在全球范围内扩展和成功。',
+        icon: 'tabler:world',
+      },
+      {
+        title: '数据驱动',
+        description: '我们使用数据和分析来指导决策和战略。',
+        icon: 'tabler:chart-arrows',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+</Layout>

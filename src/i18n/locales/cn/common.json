@@ -1,0 +1,17 @@
+{
+  "site": {
+    "name": "上游实验室",
+    "tagline": "风险投资 + Y Combinator + 孵化器"
+  },
+  "language": {
+    "en": "English",
+    "zh": "中文"
+  },
+  "action": {
+    "learnMore": "了解更多",
+    "getStarted": "开始使用",
+    "contactUs": "联系我们",
+    "download": "下载",
+    "subscribe": "订阅"
+  }
+}

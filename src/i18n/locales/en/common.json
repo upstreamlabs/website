@@ -1,0 +1,17 @@
+{
+  "site": {
+    "name": "Upstream Labs",
+    "tagline": "Venture Capital + Y Combinator + Incubator"
+  },
+  "language": {
+    "en": "English",
+    "zh": "中文"
+  },
+  "action": {
+    "learnMore": "Learn more",
+    "getStarted": "Get started",
+    "contactUs": "Contact us",
+    "download": "Download",
+    "subscribe": "Subscribe"
+  }
+}

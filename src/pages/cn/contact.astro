@@ -1,0 +1,87 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import { useTranslations } from '~/i18n';
+
+const { t } = await useTranslations('cn');
+
+const metadata = {
+  title: '联系我们',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline={t('action.contactUs', { ns: 'common' })}
+    actions={[
+      { variant: 'primary', text: '发送消息', href: '#form' },
+    ]}
+  >
+    <Fragment slot="title">
+      与我们<span class="text-accent dark:text-white"> 取得联系</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="text-lg">
+        我们很乐意听取您的意见。无论您是初创企业创始人寻求支持，
+        还是投资者希望合作，或只是想了解更多关于 Upstream Labs 的信息，请随时与我们联系。
+      </span>
+    </Fragment>
+  </Hero>
+
+  <!-- Contact Widget **************** -->
+
+  <ContactUs
+    id="form"
+    title="发送消息"
+    subtitle="我们会尽快回复您的询问。"
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: '姓名',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: '电子邮件',
+      },
+    ]}
+    textarea={{
+      label: '消息',
+    }}
+    disclaimer={{
+      label:
+        '提交此表单即表示您同意我们的隐私政策。',
+    }}
+    description="我们的团队通常在1个工作日内回复。"
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="我们在这里为您服务"
+    items={[
+      {
+        title: '一般咨询',
+        description: `关于 Upstream Labs 及我们服务的问题`,
+      },
+      {
+        title: '寻求投资',
+        description: '如果您是初创企业寻求资金和支持',
+      },
+      {
+        title: '合作机会',
+        description: '希望与 Upstream Labs 合作',
+      },
+      {
+        title: '媒体询问',
+        description: '新闻和媒体相关问题',
+      },
+    ]}
+  />
+</Layout>

@@ -1,0 +1,96 @@
+---
+import merge from 'lodash.merge';
+import { AstroSeo } from '@astrolib/seo';
+
+import type { Props as AstroSeoProps } from '@astrolib/seo';
+
+import { SITE, METADATA, I18N } from 'astrowind:config';
+import type { MetaData } from '~/types';
+import { getCanonical } from '~/utils/permalinks';
+import { getLangFromUrl, getLocalizedPath, languages, stripLangFromPath } from '~/i18n';
+
+import { adaptOpenGraphImages } from '~/utils/images';
+
+export interface Props extends MetaData {
+  dontUseTitleTemplate?: boolean;
+}
+
+const {
+  title,
+  ignoreTitleTemplate = false,
+  canonical = String(getCanonical(String(Astro.url.pathname))),
+  robots = {},
+  description,
+  openGraph = {},
+  twitter = {},
+} = Astro.props;
+
+const seoProps: AstroSeoProps = merge(
+  {
+    title: '',
+    titleTemplate: '%s',
+    canonical: canonical,
+    noindex: true,
+    nofollow: true,
+    description: undefined,
+    openGraph: {
+      url: canonical,
+      site_name: SITE?.name,
+      images: [],
+      locale: I18N?.language || 'en',
+      type: 'website',
+    },
+    twitter: {
+      cardType: openGraph?.images?.length ? 'summary_large_image' : 'summary',
+    },
+  },
+  {
+    title: METADATA?.title?.default,
+    titleTemplate: METADATA?.title?.template,
+    noindex: typeof METADATA?.robots?.index !== 'undefined' ? !METADATA.robots.index : undefined,
+    nofollow: typeof METADATA?.robots?.follow !== 'undefined' ? !METADATA.robots.follow : undefined,
+    description: METADATA?.description,
+    openGraph: METADATA?.openGraph,
+    twitter: METADATA?.twitter,
+  },
+  {
+    title: title,
+    titleTemplate: ignoreTitleTemplate ? '%s' : undefined,
+    canonical: canonical,
+    noindex: typeof robots?.index !== 'undefined' ? !robots.index : undefined,
+    nofollow: typeof robots?.follow !== 'undefined' ? !robots.follow : undefined,
+    description: description,
+    openGraph: { url: canonical, ...openGraph },
+    twitter: twitter,
+  }
+);
+
+// Generate hreflang links for bilingual support
+const currentLang = getLangFromUrl(Astro.url);
+const currentPath = stripLangFromPath(Astro.url.pathname);
+const baseUrl = Astro.site?.toString().replace(/\/$/, '') || '';
+
+// Update OpenGraph locale to match current language
+seoProps.openGraph = {
+  ...seoProps.openGraph,
+  locale: currentLang,
+};
+---
+
+<AstroSeo {...{ ...seoProps, openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site) }} />
+
+<!-- Hreflang tags for bilingual SEO -->
+{
+  Object.keys(languages).map((lang) => (
+    <link
+      rel="alternate"
+      hreflang={lang}
+      href={`${baseUrl}${getLocalizedPath(currentPath, lang)}`}
+    />
+  ))
+}
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={`${baseUrl}${currentPath}`}
+/>

@@ -1,0 +1,101 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { useTranslations } from '~/i18n';
+
+const { t } = await useTranslations('cn');
+
+const metadata = {
+  title: t('site.name', { ns: 'common' }),
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: t('action.getStarted', { ns: 'common' }),
+        href: '/cn/contact',
+      },
+      { text: t('action.learnMore', { ns: 'common' }), href: '#features' },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Upstream Labs' }}
+  >
+    <Fragment slot="title">
+      {t('hero.title', { ns: 'home' })}
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="text-xl">
+        {t('hero.description', { ns: 'home' })}
+      </span>
+    </Fragment>
+  </Hero>
+
+  <!-- Features Widget (Template placeholder for Stage 1) *************** -->
+
+  <Features
+    id="features"
+    tagline="特色"
+    title="我们提供什么"
+    subtitle="风险投资专业知识、孵化器资源和创业加速器服务的独特组合。"
+    items={[
+      {
+        title: '风险投资',
+        description: '为有前途的初创企业提供资金和战略指导。',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: '孵化器计划',
+        description: '全面的支持帮助您的想法变为现实。',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'YC 方法论',
+        description: '应用成熟的 Y Combinator 原则加速成长。',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: '导师网络',
+        description: '访问经验丰富的企业家和行业专家。',
+        icon: 'tabler:users',
+      },
+      {
+        title: '全球连接',
+        description: '与投资者、合作伙伴和客户建立联系。',
+        icon: 'tabler:world',
+      },
+      {
+        title: '持续支持',
+        description: '从创意到规模化的长期合作伙伴关系。',
+        icon: 'tabler:heart-handshake',
+      },
+    ]}
+  />
+
+  <!-- Call to Action Widget ********* -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: t('action.contactUs', { ns: 'common' }),
+        href: '/cn/contact',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      准备好加速您的创业之旅了吗？
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      加入 Upstream Labs，让我们帮助您将愿景变为现实。
+    </Fragment>
+  </CallToAction>
+</Layout>
