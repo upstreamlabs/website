@@ -1,10 +1,12 @@
 {
   "home": "Home",
   "about": "About",
-  "portfolio": "Portfolio",
   "programs": "Programs",
   "blog": "Blog",
   "contact": "Contact",
   "services": "Services",
-  "pricing": "Pricing"
+  "resources": "Resources",
+  "upstreamTraining": "Upstream Training Camp",
+  "gobiConference": "GOBI Conference",
+  "ourMission": "Our Mission"
 }

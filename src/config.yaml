@@ -1,6 +1,6 @@
 site:
   name: Upstream Labs
-  site: 'https://upstreamlabs.com'
+  site: 'https://upstreamlabs.org'
   base: '/'
   trailingSlash: true
 
@@ -11,7 +11,7 @@ metadata:
   title:
     default: Upstream Labs
     template: '%s — Upstream Labs'
-  description: "Upstream Labs: Venture Capital + Y Combinator + Incubator. Empowering the next generation of startups."
+  description: "Upstream Labs: Building sustainable open-source ecosystems. We empower developers, creators, and communities to transform open collaboration into lasting public goods."
   robots:
     index: true
     follow: true

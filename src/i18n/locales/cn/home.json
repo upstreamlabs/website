@@ -1,7 +1,20 @@
 {
   "hero": {
-    "title": "上游实验室",
-    "subtitle": "赋能下一代初创企业",
-    "description": "我们结合风险投资专业知识、Y Combinator方法论和孵化器资源，加速您的成功。"
+    "title": "Upstream Labs",
+    "subtitle": "溯本铸源，万变更新",
+    "description": "我们赋能开发者、创作者和社区，将开放协作转化为可持续的公共产品，通过培训、导师指导和资金支持。"
+  },
+  "mission": {
+    "title": "我们做什么",
+    "subtitle": "我们在开源社区、行业伙伴和公共机构之间搭建桥梁，创造持久的影响力。"
+  },
+  "philosophy": {
+    "title": "我们的理念",
+    "description": "开源不仅仅是代码——它是一种协作的公民文化，培育信任、共享价值和长期可持续性。"
+  },
+  "cta": {
+    "title": "加入 Upstream",
+    "subtitle": "一切创新，皆由溯本而生；一切变革，皆因回归而新。",
+    "tagline": "溯本铸源，万变更新"
   }
 }

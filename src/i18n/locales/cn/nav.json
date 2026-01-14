@@ -1,10 +1,12 @@
 {
   "home": "首页",
   "about": "关于",
-  "portfolio": "投资组合",
   "programs": "项目",
   "blog": "博客",
   "contact": "联系我们",
   "services": "服务",
-  "pricing": "定价"
+  "resources": "资源",
+  "upstreamTraining": "源起之道训练营",
+  "gobiConference": "GOBI 大会",
+  "ourMission": "我们的使命"
 }

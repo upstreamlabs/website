@@ -1,7 +1,7 @@
 {
   "site": {
     "name": "Upstream Labs",
-    "tagline": "Venture Capital + Y Combinator + Incubator"
+    "tagline": "Building Sustainable Open-Source Ecosystems"
   },
   "language": {
     "en": "English",
@@ -11,7 +11,9 @@
     "learnMore": "Learn more",
     "getStarted": "Get started",
     "contactUs": "Contact us",
-    "download": "Download",
+    "joinUs": "Join Us",
+    "applyNow": "Apply Now",
+    "becomeMentor": "Become a Mentor",
     "subscribe": "Subscribe"
   }
 }

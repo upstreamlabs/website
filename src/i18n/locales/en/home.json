@@ -1,7 +1,20 @@
 {
   "hero": {
     "title": "Upstream Labs",
-    "subtitle": "Empowering the next generation of startups",
-    "description": "We combine venture capital expertise, Y Combinator methodology, and incubator resources to accelerate your success."
+    "subtitle": "Where Every Push Returns to the Source",
+    "description": "We empower developers, creators, and communities to transform open collaboration into sustainable public goods through training, mentorship, and funding."
+  },
+  "mission": {
+    "title": "What We Do",
+    "subtitle": "We build bridges between open-source communities, industry partners, and public institutions to create lasting impact."
+  },
+  "philosophy": {
+    "title": "Our Philosophy",
+    "description": "Open source is more than code—it's a collaborative civic culture that cultivates trust, shared value, and long-term sustainability."
+  },
+  "cta": {
+    "title": "Join Upstream",
+    "subtitle": "Where every push returns to the source, and every source renews the world.",
+    "tagline": "溯本铸源，万变更新"
   }
 }

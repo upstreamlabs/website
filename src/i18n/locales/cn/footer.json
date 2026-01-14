@@ -1,6 +1,10 @@
 {
   "copyright": "版权所有",
-  "madeBy": "由上游实验室制作",
+  "madeBy": "Upstream Labs",
   "privacyPolicy": "隐私政策",
-  "termsOfService": "服务条款"
+  "termsOfService": "服务条款",
+  "programs": "项目",
+  "community": "社区",
+  "company": "公司",
+  "legal": "法律"
 }

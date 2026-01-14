@@ -7,13 +7,12 @@ import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'Upstream Labs — Building Sustainable Open-Source Ecosystems',
   ignoreTitleTemplate: true,
 };
 ---
@@ -25,78 +24,79 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
+        text: 'Join Our Programs',
+        href: '/services/',
+        icon: 'tabler:rocket',
       },
-      { text: 'Learn more', href: '#features' },
+      { text: 'Learn more', href: '#mission' },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Upstream Labs Hero Image' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white"> Astro 5.0</span> + Tailwind CSS
+      Where Every Push Returns to the Source<br />
+      <span class="text-gradient">Upstream Labs</span>
     </Fragment>
 
     <Fragment slot="subtitle">
       <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 5.0
-        + Tailwind CSS.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages &
-      Blogs.
+        <span class="font-semibold font-heading">Upstream Labs</span> empowers developers, creators, and communities to transform open collaboration into sustainable public goods.
+      </span>
+      <span class="block mb-1 sm:hidden font-bold text-primary">Building Open-Source Ecosystems.</span>
+      We connect open-source projects with talent, resources, and sustainable business models through training programs, conferences, and mentorship.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 hero-gradient"></div>
     </Fragment>
   </Hero>
 
   <!-- Note Widget ******************* -->
 
-  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
+  <Note title="Our Philosophy:" description="Open source is more than code—it's a collaborative civic culture that cultivates trust, shared value, and long-term sustainability." />
 
   <!-- Features Widget *************** -->
 
   <Features
-    id="features"
-    tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023 and 2024."
+    id="mission"
+    tagline="Mission"
+    title="What We Do at Upstream Labs"
+    subtitle="We build bridges between open-source communities, industry partners, and public institutions to create lasting impact."
     items={[
       {
-        title: 'Astro + Tailwind CSS Integration',
+        title: 'Spread Open Culture',
         description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
-        icon: 'tabler:brand-tailwind',
+          'Build shared understanding of open-source principles, governance models, and public goods infrastructure across sectors.',
+        icon: 'tabler:source-code',
       },
       {
-        title: 'Ready-to-use Components',
+        title: 'Grow Ecosystem Talent',
         description:
-          'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        icon: 'tabler:components',
+          'Equip community organizers, developers, and storytellers with the skills to sustain and scale open ecosystems.',
+        icon: 'tabler:users-group',
       },
       {
-        title: 'Best Practices',
+        title: 'Connect Cross-Sector Partners',
         description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
+          'Bridge government, industry, academia, and community resources to support long-term public goods development.',
+        icon: 'tabler:network',
       },
       {
-        title: 'Excellent Page Speed',
+        title: 'AI-Driven Innovation',
         description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket',
+          'Harness AI to build community influence, powerful content ecosystems, and tools that democratize creation.',
+        icon: 'tabler:robot',
       },
       {
-        title: 'Search Engine Optimization (SEO)',
+        title: 'Sustainable Business Models',
         description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left',
+          'Help open-source projects develop commercial mechanisms that amplify social and economic value without compromising openness.',
+        icon: 'tabler:chart-line',
       },
       {
-        title: 'Open to new ideas and contributions',
+        title: 'Real-World Impact',
         description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        icon: 'tabler:bulb',
+          'Co-design sustainable growth strategies for active open-source projects through hands-on mentorship and funding.',
+        icon: 'tabler:target-arrow',
       },
     ]}
   />
@@ -105,33 +105,33 @@ const metadata = {
 
   <Content
     isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
+    tagline="Our Approach"
+    title="From Source to Scale: The Upstream Way"
     items={[
       {
-        title: 'Built on top of Astro 5.0',
+        title: 'Learning by Doing',
         description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+          'Our programs combine online training with immersive bootcamps where participants work on real open-source projects.',
       },
       {
-        title: 'Styled using Tailwind CSS',
+        title: 'Community-First',
         description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+          'We believe in the power of collective wisdom—learning happens best when people collaborate and contribute together.',
       },
       {
-        title: 'Cross-browser compatibility',
+        title: 'Sustainable Growth',
         description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
+          'Commercial momentum is not the destination—it is the sustaining force that preserves trust, vitality, and shared stewardship.',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
+      src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Team collaboration',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-      Gain a competitive advantage by incorporating industry leading practices
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Open Collaboration as Public Goods</h3>
+      Upstream is a learning-and-doing platform devoted to sustainable open-source ecosystems
     </Fragment>
 
     <Fragment slot="bg">
@@ -145,69 +145,31 @@ const metadata = {
     isAfterContent
     items={[
       {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
+        title: 'Breakthrough',
+        description: 'Navigate through the fog of technology cycles, find your anchor of personal value in the AI wave.',
       },
       {
-        title: 'Multiple layout possibilities',
+        title: 'Gather',
         description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
+          'Move beyond individual learning bottlenecks, dive deep into open source communities, connect with collective wisdom.',
       },
       {
-        title: 'Fully responsive design',
+        title: 'Create',
         description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
+          'Infuse AI with your own taste and feelings, unleash creativity and imagination, start your own renaissance.',
       },
       {
-        title: 'Integration of media',
+        title: 'Sustain',
         description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
+          'Master the methods of creation and collaboration in the AI era, turn passion into sustainable business.',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
+      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Workshop collaboration',
     }}
   >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
-      },
-      {
-        title: 'Continuous improvement',
-        description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
-      },
-      {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
-      },
-      {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
-    }}
-  >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
+    <Fragment slot="content">Finding certainty in the AI era through community and creation.</Fragment>
 
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
@@ -217,93 +179,73 @@ const metadata = {
   <!-- Steps Widget ****************** -->
 
   <Steps
-    title="Get your dream website up and running in no time with AstroWind."
+    title="Our Program Structure"
     items={[
       {
-        title: 'Step 1: <span class="font-medium">Download</span>',
+        title: 'Stage 1: <span class="font-medium">Base Camp</span>',
         description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
+          'Four-week online training featuring weekly live sessions, peer studios, and guided assignments in open-source principles, AI tools, and community operations.',
+        icon: 'tabler:tent',
       },
       {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
+        title: 'Stage 2: <span class="font-medium">Ascend Camp</span>',
         description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
+          'Multi-day immersive bootcamp combining project pairing, governance design sprints, storytelling labs, and final showcases with industry mentors.',
+        icon: 'tabler:mountain',
       },
       {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
+        title: 'Stage 3: <span class="font-medium">Summit Camp</span>',
         description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
+          'Top-performing teams receive funding and are paired with open-source project teams for a 6-month collaborative development program.',
+        icon: 'tabler:trophy',
       },
       {
-        title: 'Ready!',
-        icon: 'tabler:check',
+        title: 'Launch & Grow!',
+        icon: 'tabler:rocket',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
+      src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Open office collaboration',
     }}
   />
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
+    title="Our Programs"
+    subtitle="Connecting developers, businesses, and policy partners through various initiatives"
+    tagline="Events & Training"
     items={[
       {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template',
+        title: 'Upstream Training Camp',
+        description: 'Comprehensive training in open-source ecosystems, AI tools, and sustainable business models.',
+        icon: 'tabler:school',
       },
       {
-        title: 'Heros',
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery',
+        title: 'GOBI Conference',
+        description: 'Global Open Source Business Innovation Conference connecting developers, businesses, and policy partners.',
+        icon: 'tabler:speakerphone',
       },
       {
-        title: 'Features',
-        description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
+        title: 'Project Incubation',
+        description: 'Mentorship, funding, and resources for promising open-source projects focused on public goods.',
+        icon: 'tabler:bulb',
       },
       {
-        title: 'Content',
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
+        title: 'Ecosystem Grants',
+        description: 'Financial support for community programs, content creation, partnerships, and governance design.',
+        icon: 'tabler:coin',
       },
       {
-        title: 'Call-to-Action',
-        description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising',
+        title: 'Mentorship Network',
+        description: 'Access to academic, community, industry, and government mentors who guide project development.',
+        icon: 'tabler:users',
       },
       {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
-      },
-      {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation',
-      },
-      {
-        title: 'Contact',
-        description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact',
-      },
-      {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database',
+        title: 'Knowledge Network',
+        description: 'Open case studies and resources that help the broader community learn from successful projects.',
+        icon: 'tabler:books',
       },
     ]}
   >
@@ -312,53 +254,43 @@ const metadata = {
     </Fragment>
   </Features2>
 
-  <!-- HighlightedPosts Widget ******* -->
-
-  <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `}
-  />
-
   <!-- FAQs Widget ******************* -->
 
   <FAQs
     title="Frequently Asked Questions"
-    subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
+    subtitle="Learn more about Upstream Labs and how we support open-source ecosystems."
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Why AstroWind?',
+        title: 'What is Upstream Labs?',
         description:
-          "Michael Knight a young loner on a crusade to champion the cause of the innocent. The helpless. The powerless in a world of criminals who operate above the law. Here he comes Here comes Speed Racer. He's a demon on wheels.",
+          'Upstream Labs is a platform devoted to building sustainable open-source ecosystems. We empower developers, creators, and communities to transform open collaboration into lasting public goods through training, mentorship, and funding.',
       },
       {
-        title: 'What do I need to start?',
+        title: 'Who can join Upstream programs?',
         description:
-          'Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds. Many say exploration is part of our destiny, but it’s actually our duty to future generations.',
+          'We welcome anyone passionate about open source—developers, community organizers, product managers, content creators, and storytellers. Our programs are designed for people who want to build sustainable impact in open ecosystems.',
       },
       {
-        title: 'How to install the Astro + Tailwind CSS template?',
+        title: 'What kind of projects does Upstream support?',
         description:
-          "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows.",
+          'We support projects across AI, robotics, developer tools, protocols, and civic infrastructure. Our focus is on projects that serve as digital public goods and can demonstrate sustainable community and business models.',
       },
       {
-        title: "What's something that you don't understand?",
+        title: 'How does the Ecosystem Grant work?',
         description:
-          "A flower in my garden, a mystery in my panties. Heart attack never stopped old Big Bear. I didn't even know we were calling him Big Bear.",
+          'Teams that complete our innovation camp and deliver their showcase become eligible for ecosystem grants. The funding supports community programs, content creation, partnerships, events, and governance design.',
       },
       {
-        title: 'What is something that you would like to try again?',
+        title: 'What makes Upstream different from other incubators?',
         description:
-          "A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in.",
+          'Unlike traditional incubators focused solely on commercial exits, Upstream believes commercial success should sustain openness, not replace it. We help projects build business models that amplify rather than compromise their public goods mission.',
       },
       {
-        title: 'If you could only ask one question to each person you meet, what would that question be?',
+        title: 'How can I get involved?',
         description:
-          "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
+          'You can apply to join our next training cohort, attend our conferences like GOBI, become a mentor, or partner with us as an organization. Reach out via our contact page to learn about current opportunities.',
       },
     ]}
   />
@@ -367,10 +299,10 @@ const metadata = {
 
   <Stats
     stats={[
-      { title: 'Downloads', amount: '132K' },
-      { title: 'Stars', amount: '24.8K' },
-      { title: 'Forks', amount: '10.3K' },
-      { title: 'Users', amount: '48.4K' },
+      { title: 'Weeks of Training', amount: '4' },
+      { title: 'Grant (RMB)', amount: '100K' },
+      { title: 'Days Immersive', amount: '5' },
+      { title: 'Months Mentorship', amount: '6' },
     ]}
   />
 
@@ -380,20 +312,23 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/arthelokyo/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
+        text: 'Join Upstream',
+        href: '/contact/',
+        icon: 'tabler:arrow-right',
       },
     ]}
   >
     <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
+      <span class="font-display">溯本铸源，万变更新</span><br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Upstream to Origin</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
+      Where every push returns to the source, and every source renews the world.<br class="hidden md:inline" />
+      Join us in building sustainable open-source ecosystems.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
     </Fragment>
   </CallToAction>
 </Layout>

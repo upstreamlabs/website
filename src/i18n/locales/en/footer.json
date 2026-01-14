@@ -1,6 +1,10 @@
 {
   "copyright": "All rights reserved.",
-  "madeBy": "Made by Upstream Labs",
+  "madeBy": "Upstream Labs",
   "privacyPolicy": "Privacy Policy",
-  "termsOfService": "Terms of Service"
+  "termsOfService": "Terms of Service",
+  "programs": "Programs",
+  "community": "Community",
+  "company": "Company",
+  "legal": "Legal"
 }

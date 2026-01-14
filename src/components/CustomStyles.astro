@@ -1,62 +1,65 @@
 ---
 import '@fontsource-variable/inter';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
+import '@fontsource-variable/manrope';
 ---
 
 <style is:inline>
   :root {
-    --aw-font-sans: 'Inter Variable';
-    --aw-font-serif: 'Inter Variable';
-    --aw-font-heading: 'Inter Variable';
+    /* Font Families */
+    --aw-font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+    --aw-font-serif: 'Noto Serif SC', 'Source Han Serif SC', serif;
+    --aw-font-heading: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    /* Brand Colors - Upstream Labs Palette */
+    --aw-color-primary: rgb(43 116 255);      /* Azure Blue #2B74FF */
+    --aw-color-secondary: rgb(0 200 150);     /* Aqua Teal #00C896 */
+    --aw-color-accent: rgb(255 198 64);       /* Osmanthus Gold #FFC640 */
 
-    --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
+    /* Text Colors */
+    --aw-color-text-heading: rgb(28 29 36);   /* Ink Black */
+    --aw-color-text-default: rgb(28 29 36);
+    --aw-color-text-muted: rgb(28 29 36 / 66%);
+
+    /* Background Colors */
     --aw-color-bg-page: rgb(255 255 255);
+    --aw-color-bg-page-dark: rgb(28 29 36);   /* Ink Black */
 
-    --aw-color-bg-page-dark: rgb(3 6 32);
+    /* Gradient Color Stops */
+    --aw-gradient-start: rgb(43 116 255);     /* Azure */
+    --aw-gradient-mid: rgb(0 200 150);        /* Aqua */
+    --aw-gradient-end: rgb(255 198 64);       /* Gold */
 
     ::selection {
-      background-color: lavender;
+      background-color: rgb(43 116 255 / 30%);
     }
   }
 
   .dark {
-    --aw-font-sans: 'Inter Variable';
-    --aw-font-serif: 'Inter Variable';
-    --aw-font-heading: 'Inter Variable';
+    /* Font Families (same in dark mode) */
+    --aw-font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+    --aw-font-serif: 'Noto Serif SC', 'Source Han Serif SC', serif;
+    --aw-font-heading: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    /* Adjusted colors for dark mode (slightly brighter) */
+    --aw-color-primary: rgb(77 142 255);      /* Lighter Azure */
+    --aw-color-secondary: rgb(0 220 170);     /* Brighter Aqua */
+    --aw-color-accent: rgb(255 210 90);       /* Brighter Gold */
 
-    --aw-color-text-heading: rgb(247, 248, 248);
+    /* Text Colors for dark mode */
+    --aw-color-text-heading: rgb(247 248 248);
     --aw-color-text-default: rgb(229 236 246);
     --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: rgb(3 6 32);
+
+    /* Background Colors */
+    --aw-color-bg-page: rgb(28 29 36);        /* Ink Black */
+
+    /* Gradient Color Stops (brighter for dark mode) */
+    --aw-gradient-start: rgb(77 142 255);
+    --aw-gradient-mid: rgb(0 220 170);
+    --aw-gradient-end: rgb(255 210 90);
 
     ::selection {
-      background-color: black;
+      background-color: rgb(77 142 255 / 40%);
       color: snow;
     }
   }

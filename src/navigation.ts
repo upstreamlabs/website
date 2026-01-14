@@ -1,167 +1,94 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink, getAsset } from './utils/permalinks';
 
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: 'Programs',
       links: [
         {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
+          text: 'Upstream Training Camp',
+          href: 'https://origin2025.upstreamlabs.org',
         },
         {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
+          text: 'GOBI Conference',
+          href: 'https://beijing2025.upstreamlabs.org',
         },
         {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app'),
-        },
-        {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
+          text: 'All Programs',
+          href: getPermalink('/services'),
         },
       ],
     },
     {
-      text: 'Pages',
+      text: 'About',
       links: [
         {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
-        },
-        {
-          text: 'Services',
-          href: getPermalink('/services'),
-        },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
-        },
-        {
-          text: 'About us',
+          text: 'About Us',
           href: getPermalink('/about'),
+        },
+        {
+          text: 'Our Mission',
+          href: getPermalink('/#mission'),
         },
         {
           text: 'Contact',
           href: getPermalink('/contact'),
         },
+      ],
+    },
+    {
+      text: 'Resources',
+      links: [
         {
-          text: 'Terms',
-          href: getPermalink('/terms'),
+          text: 'Blog',
+          href: getPermalink('/blog'),
         },
         {
-          text: 'Privacy policy',
+          text: 'Privacy Policy',
           href: getPermalink('/privacy'),
         },
-      ],
-    },
-    {
-      text: 'Landing',
-      links: [
         {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
-        },
-        {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
-        },
-        {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
-        },
-        {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
-        },
-        {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
-        },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
+          text: 'Terms of Service',
+          href: getPermalink('/terms'),
         },
       ],
-    },
-    {
-      text: 'Blog',
-      links: [
-        {
-          text: 'Blog List',
-          href: getBlogPermalink(),
-        },
-        {
-          text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
-        },
-        {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
-        },
-        {
-          text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
-        },
-        {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
-        },
-      ],
-    },
-    {
-      text: 'Widgets',
-      href: '#',
     },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/arthelokyo/astrowind', target: '_blank' }],
+  actions: [{ text: 'Join Us', href: getPermalink('/contact') }],
 };
 
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: 'Programs',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        { text: 'Upstream Training', href: 'https://origin2025.upstreamlabs.org' },
+        { text: 'GOBI Conference', href: 'https://beijing2025.upstreamlabs.org' },
+        { text: 'Ecosystem Grants', href: getPermalink('/services') },
+        { text: 'Mentorship Network', href: getPermalink('/services') },
       ],
     },
     {
-      title: 'Platform',
+      title: 'Community',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
-      ],
-    },
-    {
-      title: 'Support',
-      links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
+        { text: 'Partner Projects', href: getPermalink('/about') },
+        { text: 'Become a Mentor', href: getPermalink('/contact') },
+        { text: 'Join Our Events', href: getPermalink('/services') },
       ],
     },
     {
       title: 'Company',
       links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' },
+        { text: 'About Us', href: getPermalink('/about') },
+        { text: 'Blog', href: getPermalink('/blog') },
+        { text: 'Contact', href: getPermalink('/contact') },
+      ],
+    },
+    {
+      title: 'Legal',
+      links: [
+        { text: 'Privacy Policy', href: getPermalink('/privacy') },
+        { text: 'Terms of Service', href: getPermalink('/terms') },
       ],
     },
   ],
@@ -170,13 +97,11 @@ export const footerData = {
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
+    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/upstreamlabs' },
+    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/nicebins' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/arthelokyo/astrowind' },
   ],
   footNote: `
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://github.com/arthelokyo"> Arthelokyo</a> · All rights reserved.
+    © ${new Date().getFullYear()} Upstream Labs. All rights reserved.
   `,
 };
