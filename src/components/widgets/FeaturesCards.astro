@@ -1,0 +1,99 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
+import type { Features as Props } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  items = [],
+  columns = 3,
+
+  defaultIcon,
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+const {
+  container: containerClass = '',
+  panel: panelClass = '',
+  title: titleClass = '',
+  description: descriptionClass = '',
+  icon: defaultIconClass = '',
+} = (classes?.items as Record<string, string>) ?? {};
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
+
+  {items && items.length > 0 && (
+    <div
+      class={twMerge(
+        `grid gap-6 md:gap-8 ${
+          columns === 4
+            ? 'lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2'
+            : columns === 3
+              ? 'lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'
+              : columns === 2
+                ? 'md:grid-cols-2 sm:grid-cols-1'
+                : ''
+        }`,
+        containerClass
+      )}
+    >
+      {items.map(({ title, description, icon, classes: itemClasses = {} }) => (
+        <div
+          class={twMerge(
+            'relative flex flex-col p-6 md:p-8 rounded-2xl',
+            'bg-white/80 dark:bg-ink-800/70 backdrop-blur-sm',
+            'border border-azure-100/40 dark:border-azure-800/30',
+            'shadow-[0_8px_30px_rgba(43,116,255,0.06)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]',
+            'transition-all duration-300 ease-out',
+            'hover:shadow-[0_16px_40px_rgba(43,116,255,0.12)] hover:-translate-y-1',
+            'dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]',
+            'intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
+            panelClass,
+            itemClasses?.panel
+          )}
+        >
+          {(icon || defaultIcon) && (
+            <div class="mb-4">
+              <div class={twMerge(
+                'inline-flex items-center justify-center w-12 h-12 rounded-xl',
+                'bg-gradient-to-br from-azure-500 to-aqua-500',
+                'text-white shadow-md',
+                defaultIconClass,
+                itemClasses?.icon
+              )}>
+                <Icon name={icon || defaultIcon} class="w-6 h-6" />
+              </div>
+            </div>
+          )}
+          <div class={twMerge(
+            'text-xl font-bold text-ink-700 dark:text-white mb-2',
+            titleClass,
+            itemClasses?.title
+          )}>
+            {title}
+          </div>
+          {description && (
+            <p
+              class={twMerge(
+                'text-muted leading-relaxed',
+                descriptionClass,
+                itemClasses?.description
+              )}
+              set:html={description}
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  )}
+</WidgetWrapper>

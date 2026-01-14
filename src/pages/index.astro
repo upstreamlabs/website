@@ -3,7 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
-import Features from '~/components/widgets/Features.astro';
+import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
@@ -56,11 +56,12 @@ const metadata = {
 
   <!-- Features Widget *************** -->
 
-  <Features
+  <FeaturesCards
     id="mission"
     tagline="Mission"
     title="What We Do at Upstream Labs"
     subtitle="We build bridges between open-source communities, industry partners, and public institutions to create lasting impact."
+    columns={3}
     items={[
       {
         title: 'Spread Open Culture',
@@ -99,7 +100,11 @@ const metadata = {
         icon: 'tabler:target-arrow',
       },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </FeaturesCards>
 
   <!-- Content Widget **************** -->
 
@@ -130,12 +135,14 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Open Collaboration as Public Goods</h3>
-      Upstream is a learning-and-doing platform devoted to sustainable open-source ecosystems
+      <div class="relative pl-4 border-l-4 border-azure-500">
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Open Collaboration as Public Goods</h3>
+        <p class="text-muted">Upstream is a learning-and-doing platform devoted to sustainable open-source ecosystems</p>
+      </div>
     </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
     </Fragment>
   </Content>
 
@@ -147,21 +154,25 @@ const metadata = {
       {
         title: 'Breakthrough',
         description: 'Navigate through the fog of technology cycles, find your anchor of personal value in the AI wave.',
+        icon: 'tabler:bulb',
       },
       {
         title: 'Gather',
         description:
           'Move beyond individual learning bottlenecks, dive deep into open source communities, connect with collective wisdom.',
+        icon: 'tabler:users',
       },
       {
         title: 'Create',
         description:
           'Infuse AI with your own taste and feelings, unleash creativity and imagination, start your own renaissance.',
+        icon: 'tabler:palette',
       },
       {
         title: 'Sustain',
         description:
           'Master the methods of creation and collaboration in the AI era, turn passion into sustainable business.',
+        icon: 'tabler:heart-handshake',
       },
     ]}
     image={{
@@ -169,10 +180,15 @@ const metadata = {
       alt: 'Workshop collaboration',
     }}
   >
-    <Fragment slot="content">Finding certainty in the AI era through community and creation.</Fragment>
+    <Fragment slot="content">
+      <span class="inline-block px-4 py-2 rounded-full bg-aqua-100 dark:bg-aqua-900/30 text-aqua-700 dark:text-aqua-300 text-sm font-semibold mb-4">
+        The AI Era Journey
+      </span>
+      <p class="text-lg text-muted">Finding certainty in the AI era through community and creation.</p>
+    </Fragment>
 
     <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <div class="absolute inset-0 section-bg-aqua-flow"></div>
     </Fragment>
   </Content>
 
@@ -208,7 +224,11 @@ const metadata = {
       src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: 'Open office collaboration',
     }}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </Steps>
 
   <!-- Features2 Widget ************** -->
 
@@ -249,9 +269,6 @@ const metadata = {
       },
     ]}
   >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
   </Features2>
 
   <!-- FAQs Widget ******************* -->
@@ -304,7 +321,11 @@ const metadata = {
       { title: 'Days Immersive', amount: '5' },
       { title: 'Months Mentorship', amount: '6' },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-tri-color"></div>
+    </Fragment>
+  </Stats>
 
   <!-- CallToAction Widget *********** -->
 

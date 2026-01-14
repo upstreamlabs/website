@@ -29,31 +29,43 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(43, 116, 255, 0.12), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255, 198, 64, 0.08), transparent);
+      radial-gradient(ellipse 100% 60% at 50% -15%, rgba(43, 116, 255, 0.18), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 30%, rgba(255, 198, 64, 0.14), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 10% 60%, rgba(0, 200, 150, 0.12), transparent 50%),
+      radial-gradient(ellipse 50% 35% at 70% 80%, rgba(139, 210, 255, 0.10), transparent 45%);
     pointer-events: none;
     z-index: 0;
   }
 
   .dark .hero-gradient::before {
     background:
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(77, 142, 255, 0.20), transparent),
-      radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255, 210, 90, 0.10), transparent);
+      radial-gradient(ellipse 100% 60% at 50% -15%, rgba(77, 142, 255, 0.28), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 30%, rgba(255, 210, 90, 0.18), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 10% 60%, rgba(0, 220, 170, 0.16), transparent 50%),
+      radial-gradient(ellipse 50% 35% at 70% 80%, rgba(139, 210, 255, 0.12), transparent 45%);
   }
 
   /* CTA section gradient */
   .cta-gradient {
-    background: linear-gradient(135deg,
-      rgba(43, 116, 255, 0.05) 0%,
-      rgba(0, 200, 150, 0.04) 50%,
-      rgba(255, 198, 64, 0.05) 100%);
+    background:
+      linear-gradient(135deg,
+        rgba(43, 116, 255, 0.08) 0%,
+        rgba(0, 200, 150, 0.06) 50%,
+        rgba(255, 198, 64, 0.08) 100%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(43, 116, 255, 0.10), transparent 50%),
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(255, 198, 64, 0.08), transparent 45%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0, 200, 150, 0.06), transparent 40%);
   }
 
   .dark .cta-gradient {
-    background: linear-gradient(135deg,
-      rgba(77, 142, 255, 0.12) 0%,
-      rgba(0, 220, 170, 0.08) 50%,
-      rgba(255, 210, 90, 0.06) 100%);
+    background:
+      linear-gradient(135deg,
+        rgba(77, 142, 255, 0.15) 0%,
+        rgba(0, 220, 170, 0.10) 50%,
+        rgba(255, 210, 90, 0.12) 100%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(77, 142, 255, 0.14), transparent 50%),
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(255, 210, 90, 0.10), transparent 45%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0, 220, 170, 0.08), transparent 40%);
   }
 
   /* Text gradient utility */
@@ -62,6 +74,142 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* Section Background Style 1: Azure Glow (for Features/Mission, Steps) */
+  .section-bg-azure-glow {
+    position: relative;
+  }
+  .section-bg-azure-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 10% -10%, rgba(43, 116, 255, 0.18), transparent 55%),
+      radial-gradient(ellipse 80% 60% at 95% 20%, rgba(255, 198, 64, 0.12), transparent 50%),
+      radial-gradient(ellipse 70% 50% at 80% 90%, rgba(0, 200, 150, 0.14), transparent 50%),
+      radial-gradient(ellipse 50% 40% at 5% 70%, rgba(139, 210, 255, 0.10), transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .dark .section-bg-azure-glow::before {
+    background:
+      radial-gradient(ellipse 120% 80% at 10% -10%, rgba(77, 142, 255, 0.25), transparent 55%),
+      radial-gradient(ellipse 80% 60% at 95% 20%, rgba(255, 210, 90, 0.15), transparent 50%),
+      radial-gradient(ellipse 70% 50% at 80% 90%, rgba(0, 220, 170, 0.18), transparent 50%),
+      radial-gradient(ellipse 50% 40% at 5% 70%, rgba(139, 210, 255, 0.12), transparent 45%);
+  }
+
+  /* Section Background Style 2: Gold Accent (for Content #1) */
+  .section-bg-gold-accent {
+    position: relative;
+  }
+  .section-bg-gold-accent::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 70% at 75% 10%, rgba(255, 198, 64, 0.16), transparent 55%),
+      radial-gradient(ellipse 60% 50% at 5% 80%, rgba(43, 116, 255, 0.12), transparent 50%),
+      radial-gradient(ellipse 70% 40% at 90% 70%, rgba(0, 200, 150, 0.10), transparent 45%),
+      radial-gradient(ellipse 40% 30% at 30% 50%, rgba(255, 150, 50, 0.08), transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .dark .section-bg-gold-accent::before {
+    background:
+      radial-gradient(ellipse 90% 70% at 75% 10%, rgba(255, 210, 90, 0.20), transparent 55%),
+      radial-gradient(ellipse 60% 50% at 5% 80%, rgba(77, 142, 255, 0.16), transparent 50%),
+      radial-gradient(ellipse 70% 40% at 90% 70%, rgba(0, 220, 170, 0.14), transparent 45%),
+      radial-gradient(ellipse 40% 30% at 30% 50%, rgba(255, 180, 80, 0.10), transparent 40%);
+  }
+
+  /* Section Background Style 3: Aqua Flow (for Content #2) */
+  .section-bg-aqua-flow {
+    position: relative;
+  }
+  .section-bg-aqua-flow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 100% 60% at 50% 100%, rgba(0, 200, 150, 0.18), transparent 55%),
+      radial-gradient(ellipse 60% 50% at 0% 20%, rgba(43, 116, 255, 0.14), transparent 50%),
+      radial-gradient(ellipse 50% 40% at 100% 40%, rgba(255, 198, 64, 0.10), transparent 45%),
+      radial-gradient(ellipse 80% 30% at 60% 0%, rgba(139, 210, 255, 0.12), transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .dark .section-bg-aqua-flow::before {
+    background:
+      radial-gradient(ellipse 100% 60% at 50% 100%, rgba(0, 220, 170, 0.22), transparent 55%),
+      radial-gradient(ellipse 60% 50% at 0% 20%, rgba(77, 142, 255, 0.18), transparent 50%),
+      radial-gradient(ellipse 50% 40% at 100% 40%, rgba(255, 210, 90, 0.12), transparent 45%),
+      radial-gradient(ellipse 80% 30% at 60% 0%, rgba(139, 210, 255, 0.14), transparent 40%);
+  }
+
+  /* Section Background Style 4: Tri-Color Convergence (for Stats) */
+  .section-bg-tri-color {
+    position: relative;
+  }
+  .section-bg-tri-color::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 5% 50%, rgba(43, 116, 255, 0.16), transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 30%, rgba(255, 198, 64, 0.14), transparent 45%),
+      radial-gradient(ellipse 60% 60% at 95% 50%, rgba(0, 200, 150, 0.16), transparent 50%),
+      radial-gradient(ellipse 40% 40% at 30% 80%, rgba(139, 210, 255, 0.10), transparent 40%),
+      radial-gradient(ellipse 40% 40% at 70% 80%, rgba(255, 150, 50, 0.08), transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .dark .section-bg-tri-color::before {
+    background:
+      radial-gradient(ellipse 60% 60% at 5% 50%, rgba(77, 142, 255, 0.22), transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 30%, rgba(255, 210, 90, 0.16), transparent 45%),
+      radial-gradient(ellipse 60% 60% at 95% 50%, rgba(0, 220, 170, 0.22), transparent 50%),
+      radial-gradient(ellipse 40% 40% at 30% 80%, rgba(139, 210, 255, 0.12), transparent 40%),
+      radial-gradient(ellipse 40% 40% at 70% 80%, rgba(255, 180, 80, 0.10), transparent 40%);
+  }
+
+  /* Timeline gradient connector */
+  .timeline-connector {
+    background: linear-gradient(180deg,
+      rgba(43, 116, 255, 0.4) 0%,
+      rgba(0, 200, 150, 0.4) 100%);
+  }
+  .dark .timeline-connector {
+    background: linear-gradient(180deg,
+      rgba(77, 142, 255, 0.5) 0%,
+      rgba(0, 220, 170, 0.5) 100%);
+  }
+
+  /* Timeline marker pulsing effect */
+  .timeline-marker {
+    position: relative;
+  }
+  .timeline-marker::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(43, 116, 255, 0.3), rgba(0, 200, 150, 0.3));
+    opacity: 0;
+    animation: pulse-ring 2s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  @keyframes pulse-ring {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.4);
+      opacity: 0.4;
+    }
   }
 }
 

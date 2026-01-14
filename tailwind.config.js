@@ -75,9 +75,23 @@ export default {
         display: ['var(--aw-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
       },
 
+      borderRadius: {
+        '4xl': '28px',
+      },
+
+      boxShadow: {
+        'glow-azure': '0 0 20px rgba(43, 116, 255, 0.15)',
+        'glow-aqua': '0 0 20px rgba(0, 200, 150, 0.15)',
+        'glow-gold': '0 0 20px rgba(255, 198, 64, 0.15)',
+        'elevated': '0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.06)',
+        'elevated-lg': '0 30px 60px rgba(0, 0, 0, 0.12), 0 12px 24px rgba(0, 0, 0, 0.08)',
+      },
+
       animation: {
         fade: 'fadeInUp 1s both',
         'gradient-shift': 'gradientShift 8s ease infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float': 'float 6s ease-in-out infinite',
       },
 
       keyframes: {
@@ -88,6 +102,10 @@ export default {
         gradientShift: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
       },
 
