@@ -1,0 +1,96 @@
+---
+import FAQs from '~/components/widgets/FAQs.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: '常见问题',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="常见问题"
+    image={{
+      src: '/images/hero-image.jpg',
+      alt: '常见问题',
+    }}
+  >
+    <Fragment slot="title">
+      常见<br />
+      <span class="text-accent dark:text-white">问题解答</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      了解更多关于 Upstream Labs 以及我们如何支持开源生态系统。
+      没有找到您想要的答案？请直接联系我们。
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 hero-gradient"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="常见问题"
+    subtitle="查找关于 Upstream Labs、我们的项目以及我们如何支持开源生态系统的常见问题解答。"
+    tagline="常见问题"
+    classes={{ container: 'max-w-4xl' }}
+    items={[
+      {
+        title: '什么是 Upstream Labs？',
+        description:
+          'Upstream Labs 是一个致力于构建可持续开源生态的平台。我们通过培训、指导和资金支持，赋予开发者、创作者和社区将开放协作转化为可持续公共产品的能力。',
+      },
+      {
+        title: '谁可以参加 Upstream 的项目？',
+        description:
+          '我们欢迎任何对开源充满热情的人——开发者、社区组织者、产品经理、内容创作者和讲故事的人。我们的项目是为那些希望在开放生态系统中建立可持续影响的人设计的。',
+      },
+      {
+        title: 'Upstream 支持什么样的项目？',
+        description:
+          '我们支持 AI、机器人、开发者工具、协议和公民基础设施等领域的项目。我们的重点是那些作为数字公共产品、能够展示可持续社区和商业模式的项目。',
+      },
+      {
+        title: '生态资助如何运作？',
+        description:
+          '完成我们创新营并完成展示的团队有资格获得生态资助。资金支持社区项目、内容创作、合作伙伴关系、活动和治理设计。',
+      },
+      {
+        title: 'Upstream 与其他孵化器有什么不同？',
+        description:
+          '与只关注商业退出的传统孵化器不同，Upstream 相信商业成功应该维持开放性，而不是取代它。我们帮助项目建立能够放大而非损害其公共产品使命的商业模式。',
+      },
+      {
+        title: '我如何参与？',
+        description:
+          '您可以申请加入我们的下一期培训项目，参加我们的活动如 GOBI 大会，成为导师，或作为组织合作伙伴。请通过我们的联系页面了解当前机会。',
+      },
+      {
+        title: '我必须是开发者才能参与吗？',
+        description:
+          '完全不需要！虽然我们的许多参与者是开发者，但我们欢迎设计师、作家、社区组织者、产品经理以及任何对开源可持续性充满热情的人。多样化的观点能加强我们的生态系统。',
+      },
+      {
+        title: '项目是免费的吗？',
+        description:
+          '我们的培训项目旨在让更多人能够参与。我们提供各种赞助和奖学金机会。此外，表现优秀的团队可能会获得生态资助以继续他们的工作。请联系我们了解具体项目定价和奖学金信息。',
+      },
+      {
+        title: '国际申请人可以参加吗？',
+        description:
+          '可以！Upstream Labs 欢迎来自世界各地的申请人。我们的项目主要以英语和中文进行，并提供远程参与选项。某些活动可能在特定地点有线下环节。',
+      },
+      {
+        title: '我如何成为导师？',
+        description:
+          '我们欢迎来自学术界、产业界和开源社区的经验丰富的专业人士加入我们的导师网络。导师在我们的创新营期间及以后为团队提供指导。如果您有兴趣成为导师，请通过我们的联系页面联系我们。',
+      },
+    ]}
+  />
+</Layout>

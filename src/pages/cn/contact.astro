@@ -1,11 +1,8 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
 import ContactUs from '~/components/widgets/Contact.astro';
 import Features2 from '~/components/widgets/Features2.astro';
-import { useTranslations } from '~/i18n';
-
-const { t } = await useTranslations('cn');
 
 const metadata = {
   title: '联系我们',
@@ -13,32 +10,18 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+  <!-- HeroText Widget ******************* -->
 
-  <Hero
-    tagline={t('action.contactUs', { ns: 'common' })}
-    actions={[
-      { variant: 'primary', text: '发送消息', href: '#form' },
-    ]}
-  >
-    <Fragment slot="title">
-      与我们<span class="text-accent dark:text-white"> 取得联系</span>
+  <HeroText tagline="联系方式" title="与我们联系！" subtitle="我们很高兴收到您的来信。无论您是想加入我们的项目、成为导师，还是探索合作机会。">
+    <Fragment slot="bg">
+      <div class="absolute inset-0 hero-gradient"></div>
     </Fragment>
-
-    <Fragment slot="subtitle">
-      <span class="text-lg">
-        我们很乐意听取您的意见。无论您是初创企业创始人寻求支持，
-        还是投资者希望合作，或只是想了解更多关于 Upstream Labs 的信息，请随时与我们联系。
-      </span>
-    </Fragment>
-  </Hero>
-
-  <!-- Contact Widget **************** -->
+  </HeroText>
 
   <ContactUs
     id="form"
     title="发送消息"
-    subtitle="我们会尽快回复您的询问。"
+    subtitle="对 Upstream Labs 有疑问？请查看首页的常见问题，或直接联系我们，我们会尽快回复您。"
     inputs={[
       {
         type: 'text',
@@ -56,32 +39,50 @@ const metadata = {
     }}
     disclaimer={{
       label:
-        '提交此表单即表示您同意我们的隐私政策。',
+        '提交此联系表单即表示您确认并同意我们的隐私政策。',
     }}
-    description="我们的团队通常在1个工作日内回复。"
+    description="我们的团队通常在 1-2 个工作日内回复。"
   />
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="我们在这里为您服务"
+    title="我们可以如何帮助您？"
     items={[
       {
-        title: '一般咨询',
-        description: `关于 Upstream Labs 及我们服务的问题`,
+        title: '项目申请',
+        description: '有兴趣加入 Upstream 训练营或提交项目进行孵化。',
+        icon: 'tabler:rocket',
       },
       {
-        title: '寻求投资',
-        description: '如果您是初创企业寻求资金和支持',
+        title: '成为导师',
+        description: '与下一代开源建设者和创作者分享您的专业知识。',
+        icon: 'tabler:users',
       },
       {
         title: '合作机会',
-        description: '希望与 Upstream Labs 合作',
+        description: '为您的组织或项目探索合作机会。',
+        icon: 'tabler:heart-handshake',
       },
       {
-        title: '媒体询问',
-        description: '新闻和媒体相关问题',
+        title: '媒体咨询',
+        description: '关于 Upstream Labs 及我们倡议的新闻和媒体相关问题。',
+        icon: 'tabler:news',
+      },
+      {
+        title: '电子邮件',
+        description: 'info@upstreamlabs.org',
+        icon: 'tabler:mail',
+      },
+      {
+        title: '社交媒体',
+        description: '在 X (Twitter) 和 GitHub 上关注我们',
+        icon: 'tabler:brand-x',
       },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </Features2>
 </Layout>

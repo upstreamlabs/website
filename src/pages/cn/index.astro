@@ -1,14 +1,17 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Features from '~/components/widgets/Features.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import { useTranslations } from '~/i18n';
 
-const { t } = await useTranslations('cn');
+import HeroSplash from '~/components/widgets/HeroSplash.astro';
+import Note from '~/components/widgets/Note.astro';
+import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 
 const metadata = {
-  title: t('site.name', { ns: 'common' }),
+  title: 'Upstream Labs — 构建可持续的开源生态系统',
   ignoreTitleTemplate: true,
 };
 ---
@@ -16,86 +19,243 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero
+  <HeroSplash
+    tagline="开源 · AI · 公共产品"
     actions={[
       {
         variant: 'primary',
-        text: t('action.getStarted', { ns: 'common' }),
-        href: '/cn/contact',
-      },
-      { text: t('action.learnMore', { ns: 'common' }), href: '#features' },
-    ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'Upstream Labs' }}
-  >
-    <Fragment slot="title">
-      {t('hero.title', { ns: 'home' })}
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      <span class="text-xl">
-        {t('hero.description', { ns: 'home' })}
-      </span>
-    </Fragment>
-  </Hero>
-
-  <!-- Features Widget (Template placeholder for Stage 1) *************** -->
-
-  <Features
-    id="features"
-    tagline="特色"
-    title="我们提供什么"
-    subtitle="风险投资专业知识、孵化器资源和创业加速器服务的独特组合。"
-    items={[
-      {
-        title: '风险投资',
-        description: '为有前途的初创企业提供资金和战略指导。',
-        icon: 'tabler:chart-line',
-      },
-      {
-        title: '孵化器计划',
-        description: '全面的支持帮助您的想法变为现实。',
+        text: '加入我们的项目',
+        href: '/cn/services/',
         icon: 'tabler:rocket',
       },
       {
-        title: 'YC 方法论',
-        description: '应用成熟的 Y Combinator 原则加速成长。',
+        variant: 'secondary',
+        text: '了解更多',
+        href: '#mission',
+        icon: 'tabler:arrow-down',
+      },
+    ]}
+    image={{ src: '/images/hero-image.jpg', alt: 'Upstream Labs Hero Image' }}
+  >
+    <Fragment slot="title">
+      <span class="block">让创新</span>
+      <span class="text-gradient">开放,流动</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="font-semibold text-ink-700 dark:text-white">Upstream Labs</span> 赋能开发者、创作者和社区，通过培训、指导和资助，将开放协作转化为可持续的公共产品。
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 hero-gradient"></div>
+    </Fragment>
+  </HeroSplash>
+
+  <!-- Note Widget ******************* -->
+
+  <Note
+    title="我们的理念："
+    description="开源不仅仅是代码——它是一种协作的公民文化，培育信任、共享价值和长期可持续性。"
+  />
+
+  <!-- Features Widget *************** -->
+
+  <FeaturesCards
+    id="mission"
+    tagline="使命"
+    title="Upstream Labs 做什么"
+    subtitle="我们在开源社区、行业伙伴和公共机构之间搭建桥梁，创造持久影响。"
+    columns={3}
+    items={[
+      {
+        title: '传播开源文化',
+        description: '在各领域建立对开源原则、治理模型和公共产品基础设施的共识。',
+        icon: 'tabler:source-code',
+      },
+      {
+        title: '培养生态人才',
+        description: '为社区组织者、开发者和内容创作者提供维护和扩展开源生态系统的技能。',
+        icon: 'tabler:users-group',
+      },
+      {
+        title: '连接跨界伙伴',
+        description: '桥接政府、产业、学术界和社区资源，支持长期公共产品开发。',
+        icon: 'tabler:network',
+      },
+      {
+        title: 'AI 驱动创新',
+        description: '利用 AI 构建社区影响力、强大的内容生态系统和民主化创作的工具。',
+        icon: 'tabler:robot',
+      },
+      {
+        title: '可持续商业模式',
+        description: '帮助开源项目开发商业机制，在不损害开放性的前提下放大社会和经济价值。',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: '真实世界影响',
+        description: '通过实践指导和资助，为活跃的开源项目共同设计可持续增长策略。',
+        icon: 'tabler:target-arrow',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </FeaturesCards>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    tagline="我们的方法"
+    title="从源头到规模：Upstream 之道"
+    items={[
+      {
+        title: '实践中学习',
+        description: '我们的项目将在线培训与沉浸式训练营相结合，参与者在真实的开源项目中工作。',
+      },
+      {
+        title: '社区优先',
+        description: '我们相信集体智慧的力量——当人们协作和贡献时，学习效果最好。',
+      },
+      {
+        title: '可持续增长',
+        description: '商业动力不是终点——它是维持信任、活力和共同管理的持续力量。',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: '团队协作',
+    }}
+  >
+    <Fragment slot="content">
+      <div class="relative pl-4 border-l-4 border-azure-500">
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">开放协作即公共产品</h3>
+        <p class="text-muted">Upstream 是一个致力于可持续开源生态系统的学习与实践平台</p>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title="我们的项目结构"
+    items={[
+      {
+        title: '阶段 1：<span class="font-medium">基础营</span>',
+        description: '四周在线培训，包括每周直播课程、同伴工作室和开源原则、AI 工具及社区运营的指导作业。',
+        icon: 'tabler:tent',
+      },
+      {
+        title: '阶段 2：<span class="font-medium">攀登营</span>',
+        description: '多日沉浸式训练营，结合项目配对、治理设计冲刺、故事讲述实验室，以及与行业导师的最终展示。',
+        icon: 'tabler:mountain',
+      },
+      {
+        title: '阶段 3：<span class="font-medium">登顶营</span>',
+        description: '表现优异的团队将获得资助，并与开源项目团队配对进行为期 6 个月的协作开发计划。',
+        icon: 'tabler:trophy',
+      },
+      {
+        title: '启航与成长！',
+        icon: 'tabler:rocket',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: '开放办公协作',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </Steps>
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="我们的项目"
+    subtitle="通过各种倡议连接开发者、企业和政策伙伴"
+    tagline="活动与培训"
+    items={[
+      {
+        title: 'Upstream 训练营',
+        description: '开源生态系统、AI 工具和可持续商业模式的综合培训。',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'GOBI 大会',
+        description: '全球开源商业创新大会，连接开发者、企业和政策伙伴。',
+        icon: 'tabler:speakerphone',
+      },
+      {
+        title: '项目孵化',
+        description: '为专注于公共产品的有前途的开源项目提供指导、资金和资源。',
         icon: 'tabler:bulb',
       },
       {
+        title: '生态系统资助',
+        description: '为社区项目、内容创作、合作伙伴关系和治理设计提供财务支持。',
+        icon: 'tabler:coin',
+      },
+      {
         title: '导师网络',
-        description: '访问经验丰富的企业家和行业专家。',
+        description: '获得来自学术界、社区、产业和政府的导师指导项目开发。',
         icon: 'tabler:users',
       },
       {
-        title: '全球连接',
-        description: '与投资者、合作伙伴和客户建立联系。',
-        icon: 'tabler:world',
-      },
-      {
-        title: '持续支持',
-        description: '从创意到规模化的长期合作伙伴关系。',
-        icon: 'tabler:heart-handshake',
+        title: '知识网络',
+        description: '开放的案例研究和资源，帮助更广泛的社区从成功项目中学习。',
+        icon: 'tabler:books',
       },
     ]}
   />
 
-  <!-- Call to Action Widget ********* -->
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: '培训周数', amount: '4' },
+      { title: '资助金额（人民币）', amount: '100K' },
+      { title: '沉浸式天数', amount: '5' },
+      { title: '指导月数', amount: '6' },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-tri-color"></div>
+    </Fragment>
+  </Stats>
+
+  <!-- CallToAction Widget *********** -->
 
   <CallToAction
     actions={[
       {
         variant: 'primary',
-        text: t('action.contactUs', { ns: 'common' }),
-        href: '/cn/contact',
+        text: '加入 Upstream',
+        href: '/cn/contact/',
+        icon: 'tabler:arrow-right',
       },
     ]}
   >
     <Fragment slot="title">
-      准备好加速您的创业之旅了吗？
+      <span class="font-display">溯本铸源，万变更新</span><br class="block sm:hidden" /><span
+        class="sm:whitespace-nowrap">Upstream to Origin</span
+      >
     </Fragment>
 
     <Fragment slot="subtitle">
-      加入 Upstream Labs，让我们帮助您将愿景变为现实。
+      让创新开放流动，让开放驱动未来。<br class="hidden md:inline" />
+      加入我们，共建可持续的开源生态系统。
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
     </Fragment>
   </CallToAction>
 </Layout>

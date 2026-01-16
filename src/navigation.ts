@@ -3,58 +3,23 @@ import { getPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Programs',
-      links: [
-        {
-          text: 'Upstream Training Camp',
-          href: 'https://origin2025.upstreamlabs.org',
-        },
-        {
-          text: 'GOBI Conference',
-          href: 'https://beijing2025.upstreamlabs.org',
-        },
-        {
-          text: 'All Programs',
-          href: getPermalink('/services'),
-        },
-      ],
+      text: 'Upstream Camp',
+      href: 'https://camp.upstreamlabs.org',
+    },
+    {
+      text: 'Gobi Conference',
+      href: 'https://gobi.upstreamlabs.org',
     },
     {
       text: 'About',
-      links: [
-        {
-          text: 'About Us',
-          href: getPermalink('/about'),
-        },
-        {
-          text: 'Our Mission',
-          href: getPermalink('/#mission'),
-        },
-        {
-          text: 'Contact',
-          href: getPermalink('/contact'),
-        },
-      ],
+      href: getPermalink('/about'),
     },
     {
-      text: 'Resources',
-      links: [
-        {
-          text: 'Blog',
-          href: getPermalink('/blog'),
-        },
-        {
-          text: 'Privacy Policy',
-          href: getPermalink('/privacy'),
-        },
-        {
-          text: 'Terms of Service',
-          href: getPermalink('/terms'),
-        },
-      ],
+      text: 'Contact',
+      href: getPermalink('/contact'),
     },
   ],
-  actions: [{ text: 'Join Us', href: getPermalink('/contact') }],
+  actions: [],
 };
 
 export const footerData = {
@@ -62,8 +27,8 @@ export const footerData = {
     {
       title: 'Programs',
       links: [
-        { text: 'Upstream Training', href: 'https://origin2025.upstreamlabs.org' },
-        { text: 'GOBI Conference', href: 'https://beijing2025.upstreamlabs.org' },
+        { text: 'Upstream Training', href: 'https://camp.upstreamlabs.org' },
+        { text: 'GOBI Conference', href: 'https://gobi.upstreamlabs.org' },
         { text: 'Ecosystem Grants', href: getPermalink('/services') },
         { text: 'Mentorship Network', href: getPermalink('/services') },
       ],
@@ -81,6 +46,7 @@ export const footerData = {
       links: [
         { text: 'About Us', href: getPermalink('/about') },
         { text: 'Blog', href: getPermalink('/blog') },
+        { text: 'FAQs', href: getPermalink('/faq') },
         { text: 'Contact', href: getPermalink('/contact') },
       ],
     },
@@ -98,8 +64,8 @@ export const footerData = {
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/upstreamlabs' },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/nicebins' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
+    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/upstreamlabs' },
+    // { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
     © ${new Date().getFullYear()} Upstream Labs. All rights reserved.

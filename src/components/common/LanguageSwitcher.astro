@@ -1,92 +1,56 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { getLangFromUrl, getLocalizedPath, languages, stripLangFromPath } from '~/i18n';
+import { getLangFromUrl, stripLangFromPath, defaultLang } from '~/i18n';
 
 export interface Props {
-  showFlags?: boolean;
   class?: string;
 }
 
-const { showFlags = true, class: className = '' } = Astro.props;
+const { class: className = '' } = Astro.props;
 
 const currentLang = getLangFromUrl(Astro.url);
 const currentPath = stripLangFromPath(Astro.url.pathname);
 
-// Generate language switch URLs
-const languageLinks = Object.entries(languages).map(([code, name]) => ({
-  code,
-  name,
-  url: getLocalizedPath(currentPath, code),
-  isCurrent: code === currentLang,
-}));
+// Determine switch target: if on English, go to Chinese; if on Chinese, go to English
+const isEnglish = currentLang === defaultLang;
+const switchLink = isEnglish ? `/cn${currentPath}` : currentPath;
+const switchText = isEnglish ? 'CN' : 'EN';
 ---
 
-<div class={`language-switcher ${className}`}>
-  <div class="relative inline-block">
-    <button
-      type="button"
-      class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-default hover:text-link dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-      aria-label="Select language"
-      id="language-switcher-button"
-    >
-      <Icon name="tabler:language" class="w-5 h-5" />
-      <span>{languages[currentLang]}</span>
-      <Icon name="tabler:chevron-down" class="w-4 h-4" />
-    </button>
-
-    <div
-      class="language-dropdown hidden absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-50"
-      id="language-dropdown"
-    >
-      <div class="py-1" role="menu" aria-orientation="vertical">
-        {
-          languageLinks.map(({ code, name, url, isCurrent }) => (
-            <a
-              href={url}
-              class={`block px-4 py-2 text-sm ${
-                isCurrent
-                  ? 'bg-gray-100 dark:bg-gray-700 text-link dark:text-white font-semibold'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-              }`}
-              role="menuitem"
-            >
-              {showFlags && (
-                <span class="mr-2">
-                  {code === 'en' ? '🇺🇸' : code === 'cn' ? '🇨🇳' : '🌐'}
-                </span>
-              )}
-              {name}
-            </a>
-          ))
-        }
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Toggle dropdown
-  const button = document.getElementById('language-switcher-button');
-  const dropdown = document.getElementById('language-dropdown');
-
-  button?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown?.classList.toggle('hidden');
-  });
-
-  // Close dropdown when clicking outside
-  document.addEventListener('click', () => {
-    dropdown?.classList.add('hidden');
-  });
-
-  // Prevent closing when clicking inside dropdown
-  dropdown?.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
-</script>
+<a
+  href={switchLink}
+  class:list={[
+    'lang-switch',
+    className,
+  ]}
+  aria-label={isEnglish ? 'Switch to Chinese' : 'Switch to English'}
+>
+  {switchText}
+</a>
 
 <style>
-  .language-dropdown {
-    min-width: 10rem;
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--aw-color-text-default);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .lang-switch:hover {
+    color: var(--aw-color-primary);
+    background-color: rgba(43, 116, 255, 0.08);
+  }
+
+  :global(.dark) .lang-switch {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  :global(.dark) .lang-switch:hover {
+    color: rgb(139, 210, 255);
+    background-color: rgba(77, 142, 255, 0.15);
   }
 </style>

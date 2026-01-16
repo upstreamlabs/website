@@ -1,0 +1,226 @@
+---
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: '项目',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="项目"
+    title="开启您的开源之旅"
+    subtitle="加入我们的综合项目，帮助开发者、创作者和社区构建可持续的开源生态系统。从密集培训到长期指导，我们提供您所需的支持。"
+    actions={[{ variant: 'primary', text: '立即申请', href: '/cn/contact/' }]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Upstream Labs 项目',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 hero-gradient"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="我们的项目"
+    subtitle="为您开源之旅的每个阶段提供全面支持"
+    columns={3}
+    items={[
+      {
+        title: 'Upstream 训练营',
+        description:
+          '一个综合项目，结合 4 周在线培训和沉浸式线下训练营。学习开源原则、AI 工具、社区运营和可持续商业模式。',
+        icon: 'tabler:tent',
+      },
+      {
+        title: 'GOBI 大会',
+        description:
+          '全球开源商业创新大会，连接开发者、企业和政策伙伴，探索从源头到产业的可持续路径。',
+        icon: 'tabler:speakerphone',
+      },
+      {
+        title: '生态系统资助',
+        description:
+          '为完成创新营的团队提供最高 10 万元人民币的资金支持。资金用于社区项目、内容创作、合作伙伴关系和治理设计。',
+        icon: 'tabler:coin',
+      },
+      {
+        title: '项目孵化',
+        description:
+          '为有前景的开源项目提供实践支持。我们为项目配备导师和资源，加速其开发和社区增长。',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: '导师网络',
+        description:
+          '接触学术、社区、产业和政府导师，在技术、运营和商业发展方面提供指导。',
+        icon: 'tabler:users',
+      },
+      {
+        title: '6 个月奖学金',
+        description:
+          '表现优秀的团队将获得延长支持，包括持续指导、加入知识网络以及与政府孵化伙伴的联系。',
+        icon: 'tabler:award',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    items={[
+      {
+        title: '第一周：开源基础',
+        description:
+          '追溯开源历史和价值观，解读主要许可证合规性，构建贡献者旅程和治理框架。',
+        icon: 'tabler:source-code',
+      },
+      {
+        title: '第二周：AI 驱动的产品增长',
+        description:
+          '将产品管理思维与多平台社区策略相结合。学习 AI 编码工具进行快速网站构建和 AIGC 工作流程。',
+        icon: 'tabler:robot',
+      },
+      {
+        title: '第三周：可持续商业模式',
+        description:
+          '通过 SaaS 案例研究、AARRR 指标和增长策略重新构想公共服务商业模式。设计转化漏斗和合作伙伴沟通。',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: '第四周：项目配对与展示',
+        description:
+          '选择一个实际的开源项目，设计产品、增长和商业策略。以在线演示结束，争取驻留名额。',
+        icon: 'tabler:presentation',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: '在线培训',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">基础营：在线培训</h3>
+      四周全面的远程学习，包含每周直播课程和同伴协作
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: '第一天：启动',
+        description:
+          '现场启动，认识导师，统一共同目标，将团队与开源项目配对。',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: '第二天：放大',
+        description:
+          '原型设计传播资产，运行 AIGC 讲故事冲刺，完善公开发布的演示。',
+        icon: 'tabler:volume',
+      },
+      {
+        title: '第三天：展示',
+        description:
+          '展示生态系统路线图，收集跨部门反馈，表彰优秀协作。',
+        icon: 'tabler:trophy',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: '沉浸式训练营',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">攀登营：沉浸式训练营</h3>
+      多天线下驻留，结合项目配对、治理设计冲刺和讲故事实验室
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-aqua-flow"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Testimonials Widget *********** -->
+
+  <Testimonials
+    title="学员感言"
+    testimonials={[
+      {
+        testimonial: `Upstream 项目给了我对开源全新的视角。它不仅仅是代码——而是关于构建社区和可持续影响。导师网络非常宝贵。`,
+        name: '开源开发者',
+        job: 'AI 基础设施项目',
+        image: {
+          src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+          alt: '开发者图片',
+        },
+      },
+      {
+        testimonial: `学习 AI 驱动的内容创作和社区运营改变了我们处理项目的方式。实践训练营虽然紧张但收获颇丰。`,
+        name: '社区经理',
+        job: '机器人框架',
+        image: {
+          src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+          alt: '社区经理图片',
+        },
+      },
+      {
+        testimonial: `生态系统资助和持续指导帮助我们将开源项目转变为可持续的倡议。我们现在正在触达以前从未想过能触达的用户。`,
+        name: '项目负责人',
+        job: '协议开发',
+        image: {
+          src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+          alt: '项目负责人图片',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-tri-color"></div>
+    </Fragment>
+  </Testimonials>
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: '申请加入',
+        href: '/cn/contact/',
+      },
+      {
+        text: '成为导师',
+        href: '/cn/contact/',
+      },
+    ]}
+    title="准备好开始您的旅程了吗？"
+    subtitle="加入下一期 Upstream 学员或作为导师贡献力量。我们正在一起构建可持续的开源生态系统。"
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

@@ -23,7 +23,11 @@ const metadata = {
       src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: 'Upstream Labs Programs',
     }}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 hero-gradient"></div>
+    </Fragment>
+  </Hero>
 
   <!-- Features2 Widget ************** -->
 
@@ -69,7 +73,11 @@ const metadata = {
         icon: 'tabler:award',
       },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </Features2>
 
   <!-- Content Widget **************** -->
 
@@ -110,6 +118,10 @@ const metadata = {
       <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Base Camp: Online Training</h3>
       Four weeks of comprehensive remote learning with weekly live sessions and peer collaboration
     </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
   </Content>
 
   <!-- Content Widget **************** -->
@@ -144,6 +156,10 @@ const metadata = {
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Ascend Camp: Immersive Bootcamp</h3>
       Multi-day in-person residency combining project pairing, governance design sprints, and storytelling labs
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-aqua-flow"></div>
     </Fragment>
   </Content>
 
@@ -180,7 +196,11 @@ const metadata = {
         },
       },
     ]}
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-tri-color"></div>
+    </Fragment>
+  </Testimonials>
 
   <!-- CallToAction Widget *********** -->
 
@@ -198,5 +218,9 @@ const metadata = {
     ]}
     title="Ready to Start Your Journey?"
     subtitle="Join the next cohort of Upstream participants or contribute as a mentor. Together, we're building sustainable open-source ecosystems."
-  />
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
+    </Fragment>
+  </CallToAction>
 </Layout>

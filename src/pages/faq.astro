@@ -1,0 +1,96 @@
+---
+import FAQs from '~/components/widgets/FAQs.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Frequently Asked Questions',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="FAQs"
+    image={{
+      src: '/images/hero-image.jpg',
+      alt: 'FAQ section',
+    }}
+  >
+    <Fragment slot="title">
+      Frequently Asked<br />
+      <span class="text-accent dark:text-white">Questions</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Learn more about Upstream Labs and how we support open-source ecosystems.
+      Can't find what you're looking for? Reach out to us directly.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 hero-gradient"></div>
+    </Fragment>
+  </Hero>
+
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Common Questions"
+    subtitle="Find answers to frequently asked questions about Upstream Labs, our programs, and how we support open-source ecosystems."
+    tagline="FAQs"
+    classes={{ container: 'max-w-4xl' }}
+    items={[
+      {
+        title: 'What is Upstream Labs?',
+        description:
+          'Upstream Labs is a platform devoted to building sustainable open-source ecosystems. We empower developers, creators, and communities to transform open collaboration into lasting public goods through training, mentorship, and funding.',
+      },
+      {
+        title: 'Who can join Upstream programs?',
+        description:
+          'We welcome anyone passionate about open source—developers, community organizers, product managers, content creators, and storytellers. Our programs are designed for people who want to build sustainable impact in open ecosystems.',
+      },
+      {
+        title: 'What kind of projects does Upstream support?',
+        description:
+          'We support projects across AI, robotics, developer tools, protocols, and civic infrastructure. Our focus is on projects that serve as digital public goods and can demonstrate sustainable community and business models.',
+      },
+      {
+        title: 'How does the Ecosystem Grant work?',
+        description:
+          'Teams that complete our innovation camp and deliver their showcase become eligible for ecosystem grants. The funding supports community programs, content creation, partnerships, events, and governance design.',
+      },
+      {
+        title: 'What makes Upstream different from other incubators?',
+        description:
+          'Unlike traditional incubators focused solely on commercial exits, Upstream believes commercial success should sustain openness, not replace it. We help projects build business models that amplify rather than compromise their public goods mission.',
+      },
+      {
+        title: 'How can I get involved?',
+        description:
+          'You can apply to join our next training cohort, attend our conferences like GOBI, become a mentor, or partner with us as an organization. Reach out via our contact page to learn about current opportunities.',
+      },
+      {
+        title: 'Do I need to be a developer to participate?',
+        description:
+          'Not at all! While many of our participants are developers, we welcome designers, writers, community organizers, product managers, and anyone passionate about open-source sustainability. Diverse perspectives strengthen our ecosystems.',
+      },
+      {
+        title: 'Are the programs free?',
+        description:
+          'Our training programs are designed to be accessible. We offer various sponsorship and scholarship opportunities. Additionally, top-performing teams may receive ecosystem grants to continue their work. Contact us for specific program pricing and scholarship information.',
+      },
+      {
+        title: 'Can international applicants join?',
+        description:
+          'Yes! Upstream Labs welcomes applicants from around the world. Our programs are conducted primarily in English and Chinese, and we offer remote participation options. Some events may have in-person components in specific locations.',
+      },
+      {
+        title: 'How do I become a mentor?',
+        description:
+          'We welcome experienced professionals from academia, industry, and open-source communities to join our mentorship network. Mentors provide guidance to teams during our innovation camps and beyond. Reach out via our contact page if you are interested in mentoring.',
+      },
+    ]}
+  />
+</Layout>

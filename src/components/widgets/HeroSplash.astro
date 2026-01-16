@@ -1,0 +1,331 @@
+---
+import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
+
+import type { Hero as Props } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline,
+
+  content = await Astro.slots.render('content'),
+  actions = await Astro.slots.render('actions'),
+  image = await Astro.slots.render('image'),
+
+  id,
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<section class="relative md:-mt-[76px] not-prose overflow-hidden" {...id ? { id } : {}}>
+  <!-- Animated background layer -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+  </div>
+
+  <!-- Floating gradient orbs -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-orb hero-orb-4"></div>
+    <div class="hero-orb hero-orb-center"></div>
+  </div>
+
+  <!-- Decorative grid pattern -->
+  <div class="absolute inset-0 pointer-events-none hero-grid" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+    <div class="py-16 md:py-24 lg:py-32">
+      <div class="text-center pb-12 md:pb-20 max-w-5xl mx-auto">
+        {
+          tagline && (
+            <p
+              class="hero-tagline intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              set:html={tagline}
+            />
+          )
+        }
+        {
+          title && (
+            <h1
+              class="hero-title intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              set:html={title}
+            />
+          )
+        }
+        <div class="max-w-3xl mx-auto">
+          {
+            subtitle && (
+              <p
+                class="hero-subtitle intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                set:html={subtitle}
+              />
+            )
+          }
+          {
+            actions && (
+              <div class="hero-actions intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+                {Array.isArray(actions) ? (
+                  actions.map((action) => (
+                    <div class="flex w-full sm:w-auto">
+                      <Button {...(action || {})} class="w-full sm:w-auto px-8 py-4 text-lg" />
+                    </div>
+                  ))
+                ) : (
+                  <Fragment set:html={actions} />
+                )}
+              </div>
+            )
+          }
+        </div>
+        {content && <div class="mt-8"><Fragment set:html={content} /></div>}
+      </div>
+
+      <!-- Hero image with glow effect -->
+      {
+        image && (
+          <div class="intersect-once intersect-no-queue intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+            <div class="relative m-auto max-w-5xl">
+              <div class="hero-image-glow"></div>
+              {typeof image === 'string' ? (
+                <Fragment set:html={image} />
+              ) : typeof image.src === 'string' && image.src.startsWith('/') ? (
+                <img
+                  class="hero-image"
+                  src={image.src}
+                  alt={image.alt || ''}
+                  width="1792"
+                  height="1024"
+                  loading="eager"
+                />
+              ) : (
+                <Image
+                  class="hero-image"
+                  widths={[400, 768, 1024, 2040]}
+                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                  loading="eager"
+                  width={1024}
+                  height={576}
+                  {...image}
+                />
+              )}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <!-- Bottom gradient fade -->
+  <div class="hero-bottom-fade"></div>
+</section>
+
+<style>
+  /* Floating orbs */
+  .hero-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(48px);
+    animation: float 12s ease-in-out infinite;
+  }
+
+  .hero-orb-1 {
+    top: -8rem;
+    left: -8rem;
+    width: 24rem;
+    height: 24rem;
+    background: linear-gradient(to bottom right, rgba(43, 116, 255, 0.35), rgba(0, 200, 150, 0.25));
+  }
+
+  .hero-orb-2 {
+    top: -5rem;
+    right: -5rem;
+    width: 18rem;
+    height: 18rem;
+    background: linear-gradient(to bottom left, rgba(255, 198, 64, 0.30), rgba(43, 116, 255, 0.20));
+    animation-delay: -2s;
+  }
+
+  .hero-orb-3 {
+    bottom: 5rem;
+    left: 25%;
+    width: 12rem;
+    height: 12rem;
+    background: linear-gradient(to top right, rgba(0, 200, 150, 0.25), rgba(43, 116, 255, 0.20));
+    filter: blur(32px);
+    animation-delay: -4s;
+  }
+
+  .hero-orb-4 {
+    bottom: -2.5rem;
+    right: 25%;
+    width: 16rem;
+    height: 16rem;
+    background: linear-gradient(to top left, rgba(255, 198, 64, 0.25), rgba(0, 200, 150, 0.20));
+    animation-delay: -3s;
+  }
+
+  .hero-orb-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(43, 116, 255, 0.15), transparent 70%);
+    filter: blur(32px);
+    animation: none;
+  }
+
+  /* Dark mode orbs */
+  :global(.dark) .hero-orb-1 {
+    background: linear-gradient(to bottom right, rgba(77, 142, 255, 0.45), rgba(0, 220, 170, 0.35));
+  }
+
+  :global(.dark) .hero-orb-2 {
+    background: linear-gradient(to bottom left, rgba(255, 210, 90, 0.35), rgba(77, 142, 255, 0.25));
+  }
+
+  :global(.dark) .hero-orb-3 {
+    background: linear-gradient(to top right, rgba(0, 220, 170, 0.30), rgba(77, 142, 255, 0.25));
+  }
+
+  :global(.dark) .hero-orb-4 {
+    background: linear-gradient(to top left, rgba(255, 210, 90, 0.30), rgba(0, 220, 170, 0.25));
+  }
+
+  :global(.dark) .hero-orb-center {
+    background: radial-gradient(circle, rgba(77, 142, 255, 0.20), transparent 70%);
+  }
+
+  /* Grid pattern */
+  .hero-grid {
+    opacity: 0.03;
+    background-image: radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+
+  :global(.dark) .hero-grid {
+    opacity: 0.05;
+  }
+
+  /* Tagline badge */
+  .hero-tagline {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    background: rgba(43, 116, 255, 0.1);
+    color: rgb(43, 116, 255);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(43, 116, 255, 0.2);
+  }
+
+  :global(.dark) .hero-tagline {
+    background: rgba(77, 142, 255, 0.15);
+    color: rgb(139, 210, 255);
+    border-color: rgba(77, 142, 255, 0.3);
+  }
+
+  /* Hero title */
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    font-family: var(--aw-font-heading);
+  }
+
+  :global(.dark) .hero-title {
+    color: rgb(229, 236, 246);
+  }
+
+  /* Hero subtitle */
+  .hero-subtitle {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    color: var(--aw-color-text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  :global(.dark) .hero-subtitle {
+    color: rgb(148, 163, 184);
+  }
+
+  /* Hero actions */
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .hero-actions {
+      flex-direction: row;
+      gap: 1.5rem;
+    }
+  }
+
+  /* Hero image */
+  .hero-image {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 1rem;
+    width: 100%;
+    box-shadow: 0 25px 50px -12px rgba(43, 116, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  :global(.dark) .hero-image {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .hero-image-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(43, 116, 255, 0.25), rgba(0, 200, 150, 0.20), rgba(255, 198, 64, 0.25));
+    filter: blur(48px);
+    transform: scale(1.1);
+    opacity: 0.6;
+  }
+
+  /* Bottom fade */
+  .hero-bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8rem;
+    background: linear-gradient(to top, rgb(255, 255, 255), transparent);
+    pointer-events: none;
+  }
+
+  :global(.dark) .hero-bottom-fade {
+    background: linear-gradient(to top, rgb(28, 29, 36), transparent);
+  }
+
+  /* Float animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-20px) rotate(2deg);
+    }
+    66% {
+      transform: translateY(10px) rotate(-1deg);
+    }
+  }
+</style>
