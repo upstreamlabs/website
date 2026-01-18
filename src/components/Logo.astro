@@ -7,16 +7,10 @@ const { class: className = '' } = Astro.props;
 ---
 
 <span class:list={['flex items-center', className]}>
-  <!-- Light mode logo -->
+  <!-- Logo with golden color matching favicon (#EFBF04) -->
   <img
-    src="/images/upstream/upstream-black-logo.svg"
+    src="/images/upstream/upstream-golden-logo.svg"
     alt="Upstream Labs"
-    class="h-8 w-auto dark:hidden"
-  />
-  <!-- Dark mode logo -->
-  <img
-    src="/images/upstream/upstream-white-logo.svg"
-    alt="Upstream Labs"
-    class="h-8 w-auto hidden dark:block"
+    class="h-10 w-auto"
   />
 </span>

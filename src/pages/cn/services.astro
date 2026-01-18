@@ -16,12 +16,14 @@ const metadata = {
 
   <Hero
     tagline="项目"
-    title="开启您的开源之旅"
-    subtitle="加入我们的综合项目，帮助开发者、创作者和社区构建可持续的开源生态系统。从密集培训到长期指导，我们提供您所需的支持。"
-    actions={[{ variant: 'primary', text: '立即申请', href: '/cn/contact/' }]}
+    title="项目与支持"
+    subtitle="Upstream Labs 为不同阶段的开源项目提供多种支持路径——从密集训练营到持续指导，从生态系统资助到全球会议。我们开发了多样化的模式，因为不同的项目需要不同类型的支持。"
+    actions={[{ variant: 'primary', text: '联系我们', href: '/cn/contact/' }]}
     image={{
       src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: 'Upstream Labs 项目',
+      width: 2070,
+      height: 1380,
     }}
   >
     <Fragment slot="bg">
@@ -37,9 +39,9 @@ const metadata = {
     columns={3}
     items={[
       {
-        title: 'Upstream 训练营',
+        title: '训练营项目',
         description:
-          '一个综合项目，结合 4 周在线培训和沉浸式线下训练营。学习开源原则、AI 工具、社区运营和可持续商业模式。',
+          '密集的小组培训项目，结合在线学习与线下训练营。参与者在真实项目中学习开源原则、可持续商业模式和社区运营。近期案例：Upstream 2025 冬令营。',
         icon: 'tabler:tent',
       },
       {
@@ -85,38 +87,40 @@ const metadata = {
     isReversed
     items={[
       {
-        title: '第一周：开源基础',
+        title: '夯实基础',
         description:
-          '追溯开源历史和价值观，解读主要许可证合规性，构建贡献者旅程和治理框架。',
+          '学习开源原则、治理模式和公共产品的公民价值。掌握技术协作和社区运营的基本功。',
         icon: 'tabler:source-code',
       },
       {
-        title: '第二周：AI 驱动的产品增长',
+        title: '增长与可持续性',
         description:
-          '将产品管理思维与多平台社区策略相结合。学习 AI 编码工具进行快速网站构建和 AIGC 工作流程。',
-        icon: 'tabler:robot',
-      },
-      {
-        title: '第三周：可持续商业模式',
-        description:
-          '通过 SaaS 案例研究、AARRR 指标和增长策略重新构想公共服务商业模式。设计转化漏斗和合作伙伴沟通。',
+          '探索可持续商业模式、AI 驱动的内容策略和生态系统发展。设计平衡使命与动力的路径。',
         icon: 'tabler:chart-line',
       },
       {
-        title: '第四周：项目配对与展示',
+        title: '实战应用',
         description:
-          '选择一个实际的开源项目，设计产品、增长和商业策略。以在线演示结束，争取驻留名额。',
+          '直接与活跃的开源项目合作，将所学框架应用于真实挑战。制定全面的增长和治理策略。',
         icon: 'tabler:presentation',
+      },
+      {
+        title: '长期支持',
+        description:
+          '优秀的参与者将获得持续指导、生态系统资助，并加入我们的知识网络以获得持续影响。',
+        icon: 'tabler:award',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: '在线培训',
+      width: 2070,
+      height: 1380,
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">基础营：在线培训</h3>
-      四周全面的远程学习，包含每周直播课程和同伴协作
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">我们的培训方法</h3>
+      结合严格的学习与实践项目工作，由经验丰富的导师指导
     </Fragment>
 
     <Fragment slot="bg">
@@ -151,11 +155,13 @@ const metadata = {
     image={{
       src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: '沉浸式训练营',
+      width: 2070,
+      height: 1380,
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">攀登营：沉浸式训练营</h3>
-      多天线下驻留，结合项目配对、治理设计冲刺和讲故事实验室
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">沉浸式训练营</h3>
+      多天线下体验，团队与导师密集合作，完善策略并向合作伙伴展示
     </Fragment>
 
     <Fragment slot="bg">
@@ -175,6 +181,8 @@ const metadata = {
         image: {
           src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
           alt: '开发者图片',
+          width: 774,
+          height: 774,
         },
       },
       {
@@ -184,6 +192,8 @@ const metadata = {
         image: {
           src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
           alt: '社区经理图片',
+          width: 774,
+          height: 774,
         },
       },
       {
@@ -193,6 +203,8 @@ const metadata = {
         image: {
           src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
           alt: '项目负责人图片',
+          width: 774,
+          height: 774,
         },
       },
     ]}
@@ -216,8 +228,8 @@ const metadata = {
         href: '/cn/contact/',
       },
     ]}
-    title="准备好开始您的旅程了吗？"
-    subtitle="加入下一期 Upstream 学员或作为导师贡献力量。我们正在一起构建可持续的开源生态系统。"
+    title="准备好参与了吗？"
+    subtitle="无论您正在构建开源项目、希望指导下一代生态系统建设者，还是探索合作机会——我们都期待与您交流。"
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 cta-gradient"></div>

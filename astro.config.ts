@@ -28,9 +28,12 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: ['en', 'cn'],
     routing: {
-      prefixDefaultLocale: false,  // English at root: /
-      redirectToDefaultLocale: false,  // Don't redirect to default locale
+      prefixDefaultLocale: true,  // All locales get prefix: /en/ and /cn/
     }
+  },
+
+  redirects: {
+    '/': '/en/',  // Redirect root to English
   },
 
   integrations: [

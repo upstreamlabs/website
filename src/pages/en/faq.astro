@@ -1,7 +1,8 @@
 ---
 import FAQs from '~/components/widgets/FAQs.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import HeroSplash from '~/components/widgets/HeroSplash.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import heroImage from '~/assets/images/hero-image-3.jpg';
 
 const metadata = {
   title: 'Frequently Asked Questions',
@@ -11,16 +12,13 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero
+  <HeroSplash
     tagline="FAQs"
-    image={{
-      src: '/images/hero-image.jpg',
-      alt: 'FAQ section',
-    }}
+    image={heroImage}
   >
     <Fragment slot="title">
-      Frequently Asked<br />
-      <span class="text-accent dark:text-white">Questions</span>
+      <span class="block">Frequently Asked</span>
+      <span class="text-gradient">Questions</span>
     </Fragment>
 
     <Fragment slot="subtitle">
@@ -31,7 +29,7 @@ const metadata = {
     <Fragment slot="bg">
       <div class="absolute inset-0 hero-gradient"></div>
     </Fragment>
-  </Hero>
+  </HeroSplash>
 
   <!-- FAQs Widget ******************* -->
 

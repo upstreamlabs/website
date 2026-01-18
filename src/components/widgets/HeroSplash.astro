@@ -94,24 +94,16 @@ const {
               <div class="hero-image-glow"></div>
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
-              ) : typeof image.src === 'string' && image.src.startsWith('/') ? (
-                <img
-                  class="hero-image"
-                  src={image.src}
-                  alt={image.alt || ''}
-                  width="1792"
-                  height="1024"
-                  loading="eager"
-                />
               ) : (
                 <Image
                   class="hero-image"
                   widths={[400, 768, 1024, 2040]}
                   sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
                   loading="eager"
-                  width={1024}
-                  height={576}
-                  {...image}
+                  width={image.width || 1792}
+                  height={image.height || 1024}
+                  src={image}
+                  alt={image.alt || 'Hero image'}
                 />
               )}
             </div>
@@ -237,9 +229,9 @@ const {
 
   /* Hero title */
   .hero-title {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.1;
     letter-spacing: -0.04em;
     margin-bottom: 1.5rem;
     font-family: var(--aw-font-heading);
@@ -251,7 +243,7 @@ const {
 
   /* Hero subtitle */
   .hero-subtitle {
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-size: clamp(1rem, 2vw, 1.25rem);
     color: var(--aw-color-text-muted);
     margin-bottom: 2rem;
     line-height: 1.6;

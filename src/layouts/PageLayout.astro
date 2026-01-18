@@ -1,9 +1,9 @@
 ---
 import Layout from '~/layouts/Layout.astro';
-import Header from '~/components/widgets/Header.astro';
+import HeaderNew from '~/components/widgets/HeaderNew.astro';
 import Footer from '~/components/widgets/Footer.astro';
 
-import { headerData, footerData } from '~/navigation';
+import { getHeaderData, getFooterData } from '~/navigation';
 
 import type { MetaData } from '~/types';
 
@@ -12,11 +12,18 @@ export interface Props {
 }
 
 const { metadata } = Astro.props;
+
+// Detect locale from URL
+const pathname = Astro.url.pathname;
+const locale = pathname.startsWith('/cn') ? 'cn' : 'en';
+
+const headerData = getHeaderData(locale);
+const footerData = getFooterData(locale);
 ---
 
 <Layout metadata={metadata}>
   <slot name="header">
-    <Header {...headerData} isSticky showToggleTheme />
+    <HeaderNew {...headerData} />
   </slot>
   <main>
     <slot />

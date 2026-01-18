@@ -16,12 +16,14 @@ const metadata = {
 
   <Hero
     tagline="Programs"
-    title="Build Your Open-Source Journey"
-    subtitle="Join our comprehensive programs designed to help developers, creators, and communities build sustainable open-source ecosystems. From intensive training to long-term mentorship, we provide the support you need."
-    actions={[{ variant: 'primary', text: 'Apply Now', href: '/contact/' }]}
+    title="Programs & Support"
+    subtitle="Upstream Labs offers multiple pathways to support open-source projects at every stage—from intensive training camps to ongoing mentorship, from ecosystem grants to global conferences. We've developed diverse models because different projects need different kinds of support."
+    actions={[{ variant: 'primary', text: 'Get in Touch', href: '/en/contact/' }]}
     image={{
       src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: 'Upstream Labs Programs',
+      width: 2070,
+      height: 1380,
     }}
   >
     <Fragment slot="bg">
@@ -37,9 +39,9 @@ const metadata = {
     columns={3}
     items={[
       {
-        title: 'Upstream Training Camp',
+        title: 'Training Camps',
         description:
-          'A comprehensive program combining 4 weeks of online training with an intensive in-person bootcamp. Learn open-source principles, AI tools, community operations, and sustainable business models.',
+          'Intensive cohort-based programs combining online learning with in-person bootcamps. Participants learn open-source principles, sustainable business models, and community operations while working on real projects. Recent examples: Upstream 2025 Winter Camp.',
         icon: 'tabler:tent',
       },
       {
@@ -85,38 +87,40 @@ const metadata = {
     isReversed
     items={[
       {
-        title: 'Week 1: Open Source Foundations',
+        title: 'Foundation Building',
         description:
-          'Trace open-source history and values, unpack major license compliance, architect contributor journeys and governance frameworks.',
+          'Learn open-source principles, governance models, and the civic value of public goods. Master technical collaboration and community operations fundamentals.',
         icon: 'tabler:source-code',
       },
       {
-        title: 'Week 2: AI-Driven Product Growth',
+        title: 'Growth & Sustainability',
         description:
-          'Blend product management mindset with multi-platform community strategies. Learn AI coding tools for rapid site builds and AIGC workflows.',
-        icon: 'tabler:robot',
-      },
-      {
-        title: 'Week 3: Sustainable Business Models',
-        description:
-          'Reimagine public-service business models through SaaS case studies, AARRR metrics, and growth hacks. Design conversion funnels and partner communication.',
+          'Explore sustainable business models, AI-driven content strategies, and ecosystem development. Design pathways that balance mission and momentum.',
         icon: 'tabler:chart-line',
       },
       {
-        title: 'Week 4: Project Pairing & Showcase',
+        title: 'Real-World Application',
         description:
-          'Select a live open-source project, architect product, growth, and business strategies. Culminate in an online demo to earn residency spots.',
+          'Work directly with active open-source projects, applying learned frameworks to real challenges. Develop comprehensive growth and governance strategies.',
         icon: 'tabler:presentation',
+      },
+      {
+        title: 'Long-Term Support',
+        description:
+          'Top participants receive ongoing mentorship, ecosystem grants, and inclusion in our knowledge network for sustained impact.',
+        icon: 'tabler:award',
       },
     ]}
     image={{
       src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: 'Online Training',
+      width: 2070,
+      height: 1380,
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Base Camp: Online Training</h3>
-      Four weeks of comprehensive remote learning with weekly live sessions and peer collaboration
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Our Training Approach</h3>
+      Combining rigorous learning with hands-on project work, guided by experienced mentors
     </Fragment>
 
     <Fragment slot="bg">
@@ -151,11 +155,13 @@ const metadata = {
     image={{
       src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
       alt: 'Immersive Bootcamp',
+      width: 2070,
+      height: 1380,
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Ascend Camp: Immersive Bootcamp</h3>
-      Multi-day in-person residency combining project pairing, governance design sprints, and storytelling labs
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Immersive Bootcamps</h3>
+      Multi-day in-person experiences where teams work intensively with mentors, refine their strategies, and showcase to partners
     </Fragment>
 
     <Fragment slot="bg">
@@ -175,6 +181,8 @@ const metadata = {
         image: {
           src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
           alt: 'Developer Image',
+          width: 774,
+          height: 774,
         },
       },
       {
@@ -184,6 +192,8 @@ const metadata = {
         image: {
           src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
           alt: 'Community Manager Image',
+          width: 774,
+          height: 774,
         },
       },
       {
@@ -193,6 +203,8 @@ const metadata = {
         image: {
           src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
           alt: 'Project Lead Image',
+          width: 774,
+          height: 774,
         },
       },
     ]}
@@ -209,15 +221,15 @@ const metadata = {
       {
         variant: 'primary',
         text: 'Apply to Join',
-        href: '/contact/',
+        href: '/en/contact/',
       },
       {
         text: 'Become a Mentor',
-        href: '/contact/',
+        href: '/en/contact/',
       },
     ]}
-    title="Ready to Start Your Journey?"
-    subtitle="Join the next cohort of Upstream participants or contribute as a mentor. Together, we're building sustainable open-source ecosystems."
+    title="Ready to Get Involved?"
+    subtitle="Whether you're building an open-source project, want to mentor the next generation of ecosystem builders, or explore partnership opportunities—we'd love to hear from you."
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 cta-gradient"></div>

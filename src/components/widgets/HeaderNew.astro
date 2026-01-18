@@ -1,0 +1,938 @@
+---
+/**
+ * HeaderNew component adapted from beijing2025/origin2025
+ * Auto-hide on scroll, transparent background, no underlines
+ */
+import Logo from '~/components/Logo.astro';
+import { getHomePermalink, trimSlash } from '~/utils/permalinks';
+import { Icon } from 'astro-icon/components';
+
+interface NavLink {
+  text: string;
+  link: string;
+  openInNewTab?: boolean;
+  download?: boolean;
+  submenu?: Array<{ text: string; link: string; openInNewTab?: boolean }>;
+}
+
+interface Props {
+  links?: Array<NavLink>;
+  cta?: {
+    text: string;
+    link: string;
+    openInNewTab?: boolean;
+  };
+}
+
+const {
+  links = [],
+  cta,
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+const isChinesePage = pathname.startsWith('/cn/') || pathname === '/cn';
+
+const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
+// Generate the language switch link with trailing slash (site configured with trailingSlash: true)
+let langSwitchLink: string;
+if (isChinesePage) {
+  // Remove /cn prefix and add /en prefix
+  const pathWithoutCn = currentPath.replace(/^\/cn/, '');
+  if (pathWithoutCn === '' || pathWithoutCn === '/') {
+    langSwitchLink = '/en/';
+  } else {
+    langSwitchLink = `/en${pathWithoutCn}`;
+    // Ensure trailing slash
+    if (!langSwitchLink.endsWith('/')) {
+      langSwitchLink += '/';
+    }
+  }
+} else {
+  // Remove /en prefix and add /cn prefix
+  const pathWithoutEn = currentPath.replace(/^\/en/, '');
+  if (pathWithoutEn === '' || pathWithoutEn === '/') {
+    langSwitchLink = '/cn/';
+  } else {
+    langSwitchLink = `/cn${pathWithoutEn}`;
+    // Ensure trailing slash
+    if (!langSwitchLink.endsWith('/')) {
+      langSwitchLink += '/';
+    }
+  }
+}
+const langSwitchText = isChinesePage ? 'EN' : '中文';
+
+const slug = Astro.url.pathname;
+---
+
+<header>
+  {cta && (
+    <div class="floating-ticket-button">
+      <a
+        href={cta.link}
+        target={cta.openInNewTab ? '_blank' : '_self'}
+        rel={cta.openInNewTab ? 'noopener noreferrer' : ''}
+        class="floating-cta-btn"
+      >
+        {cta.text}
+      </a>
+    </div>
+  )}
+
+  <div class="mobile-nav">
+    <div class="overlay overlay-dark" data-navigation-toggle="close"></div>
+
+    <div class="mobile-nav-box">
+      <div class="box-row box-row-logo">
+        <a href={getHomePermalink()} aria-label="Go to homepage">
+          <Logo />
+        </a>
+      </div>
+      <nav class="box-row box-row-nav" aria-label="Navigation Mobile">
+        <ul>
+          {links.map((link) => {
+            const hashIndex = link.link.indexOf('#');
+            const isAnchorLink = hashIndex !== -1;
+
+            const linkPath = isAnchorLink ? link.link.slice(0, hashIndex) : link.link;
+            const normalizedLinkPath = linkPath.replace(/\/$/, "");
+            const normalizedSlug = slug.replace(/\/$/, "");
+
+            const isCurrentPageAnchor = isAnchorLink && (normalizedLinkPath === normalizedSlug || (normalizedLinkPath === "" && normalizedSlug === "/"));
+            const anchorTarget = isAnchorLink ? link.link.slice(hashIndex) : null;
+            const linkHref = isCurrentPageAnchor ? anchorTarget : link.link;
+
+            if (link.submenu) {
+              return (
+                <li class="link dropdown" data-link-status="not-active">
+                  <button
+                    class="dropdown-toggle"
+                    data-dropdown-toggle="dropdown"
+                  >
+                    <span>{link.text}</span>
+                    <svg class="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                      <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <ul class="dropdown-menu">
+                    {link.submenu.map((subitem) => (
+                      <li>
+                        <a
+                          href={subitem.link}
+                          target={subitem.openInNewTab ? '_blank' : '_self'}
+                          rel={subitem.openInNewTab ? 'noopener noreferrer' : ''}
+                          class="dropdown-link inline-flex items-center gap-1"
+                        >
+                          {subitem.text}
+                          {subitem.openInNewTab && <Icon name="tabler:external-link" class="w-3 h-3 opacity-70" />}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            }
+
+            return (
+              <li
+                class="link"
+                data-link-status={link.link === slug ? 'active' : 'not-active'}
+              >
+                <a
+                  href={linkHref}
+                  target={link.openInNewTab ? '_blank' : '_self'}
+                  rel={link.openInNewTab ? 'noopener noreferrer' : ''}
+                  download={link.download ? true : undefined}
+                  class="inline-flex items-center gap-1"
+                >
+                  <span>{link.text}</span>
+                  {link.openInNewTab && <Icon name="tabler:external-link" class="w-3.5 h-3.5 opacity-70" />}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+      <div class="box-row box-row-btn" style="display: flex; gap: 1rem; align-items: center;">
+        <div class="link lang-switcher">
+          <a href={langSwitchLink}>
+            <span>{langSwitchText}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="hamburger btn-floating"
+    aria-label="Open menu"
+    data-navigation-toggle="toggle"
+  >
+    <div class="hamburger-fill"></div>
+    <div class="bar bar-top"></div>
+    <div class="bar bar-bottom"></div>
+  </button>
+
+  <div class="main-nav-bar">
+    <div class="overlay nav-fill"></div>
+    <div class="row">
+      <div class="border-bottom"></div>
+
+      <div class="logo">
+        <a href={getHomePermalink()} aria-label="Go to homepage" class="logo-click">
+          <Logo />
+        </a>
+      </div>
+
+      <nav aria-label="Navigation Desktop">
+        <ul>
+          {links.map((link) => {
+            const hashIndex = link.link.indexOf('#');
+            const isAnchorLink = hashIndex !== -1;
+
+            const linkPath = isAnchorLink ? link.link.slice(0, hashIndex) : link.link;
+            const normalizedLinkPath = linkPath.replace(/\/$/, "");
+            const normalizedSlug = slug.replace(/\/$/, "");
+
+            const isCurrentPageAnchor = isAnchorLink && (normalizedLinkPath === normalizedSlug || (normalizedLinkPath === "" && normalizedSlug === "/"));
+            const anchorTarget = isAnchorLink ? link.link.slice(hashIndex) : null;
+            const linkHref = isCurrentPageAnchor ? anchorTarget : link.link;
+
+            if (link.submenu) {
+              return (
+                <li class="link dropdown" data-link-status="not-active">
+                  <button
+                    class="dropdown-toggle"
+                    data-dropdown-toggle="dropdown"
+                  >
+                    <span>{link.text}</span>
+                    <svg class="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                      <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <ul class="dropdown-menu">
+                    {link.submenu.map((subitem) => (
+                      <li>
+                        <a
+                          href={subitem.link}
+                          target={subitem.openInNewTab ? '_blank' : '_self'}
+                          rel={subitem.openInNewTab ? 'noopener noreferrer' : ''}
+                          class="dropdown-link inline-flex items-center gap-1"
+                        >
+                          {subitem.text}
+                          {subitem.openInNewTab && <Icon name="tabler:external-link" class="w-3 h-3 opacity-70" />}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            }
+
+            return (
+              <li
+                class="link"
+                data-link-status={link.link === slug ? 'active' : 'not-active'}
+              >
+                <a
+                  href={linkHref}
+                  target={link.openInNewTab ? '_blank' : '_self'}
+                  rel={link.openInNewTab ? 'noopener noreferrer' : ''}
+                  download={link.download ? true : undefined}
+                  class="inline-flex items-center gap-1"
+                >
+                  <span>{link.text}</span>
+                  {link.openInNewTab && <Icon name="tabler:external-link" class="w-3.5 h-3.5 opacity-70" />}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <div class="link lang-switcher">
+          <a href={langSwitchLink}>
+            <span>{langSwitchText}</span>
+          </a>
+        </div>
+        {cta && (
+          <a
+            href={cta.link}
+            target={cta.openInNewTab ? '_blank' : '_self'}
+            rel={cta.openInNewTab ? 'noopener noreferrer' : ''}
+            class="header-cta-btn"
+          >
+            {cta.text}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Order */
+  header {
+    order: 1;
+  }
+
+  main {
+    order: 2;
+  }
+
+  footer {
+    order: 3;
+  }
+
+  /* Main Navigation Bar */
+  .main-nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem 2rem;
+    pointer-events: all;
+    transform: translateY(0%) rotate(0.001deg);
+    transition: transform 0.4s ease, background 0.4s ease;
+    z-index: 40;
+  }
+
+  /* Auto-hide on scroll down */
+  :global(body[data-scrolling-started="true"][data-scrolling-direction="down"]) .main-nav-bar {
+    transform: translateY(calc(-100% + -2px)) rotate(0.001deg);
+  }
+
+  .main-nav-bar .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .main-nav-bar .border-bottom {
+    position: absolute;
+    bottom: calc(2.5rem * -1);
+    left: 2rem;
+    right: 2rem;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  /* Show border when scrolled */
+  :global(body[data-scrolling-started="true"]) .main-nav-bar .border-bottom {
+    opacity: 1;
+  }
+
+  .main-nav-bar nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .main-nav-bar ul {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-nav-bar .logo {
+    width: auto;
+    position: relative;
+    height: auto;
+    z-index: 2;
+  }
+
+  .main-nav-bar .logo-click {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+  }
+
+  /* Nav fill - fully transparent initially, gets background when scrolled */
+  .main-nav-bar .nav-fill {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    transition: background 0.4s ease;
+    backdrop-filter: blur(0px);
+  }
+
+  /* Scrolled state - nav fill gets background */
+  :global(body[data-scrolling-started="true"]) .main-nav-bar .nav-fill {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  :global(.dark body[data-scrolling-started="true"]) .main-nav-bar .nav-fill {
+    background: rgba(28, 29, 36, 0.95);
+  }
+
+  /* Links - visible in both light and dark modes */
+  .link {
+    position: relative;
+  }
+
+  .link a {
+    padding: 0.5em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .link a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: rgb(43, 116, 255);
+    transition: width 0.3s ease;
+  }
+
+  .link:hover a::after,
+  .link[data-link-status="active"] a::after {
+    width: 100%;
+  }
+
+  .link button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: inherit;
+    font: inherit;
+    position: relative;
+  }
+
+  .link button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: rgb(43, 116, 255);
+    transition: width 0.3s ease;
+  }
+
+  .link:hover button::after,
+  .link[data-link-status="active"] button::after {
+    width: 100%;
+  }
+
+  /* Dark mode - white text */
+  :global(.dark) .link a span,
+  :global(.dark) .link button span {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  :global(.dark) .link:hover a span,
+  :global(.dark) .link:hover button span,
+  :global(.dark) .link[data-link-status="active"] a span,
+  :global(.dark) .link[data-link-status="active"] button span {
+    color: white;
+  }
+
+  /* Light mode - dark text */
+  :global(html:not(.dark)) .link a span,
+  :global(html:not(.dark)) .link button span {
+    font-size: 0.9rem;
+    color: rgb(28, 29, 36);
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  :global(html:not(.dark)) .link:hover a span,
+  :global(html:not(.dark)) .link:hover button span,
+  :global(html:not(.dark)) .link[data-link-status="active"] a span,
+  :global(html:not(.dark)) .link[data-link-status="active"] button span {
+    color: rgb(43, 116, 255);
+  }
+
+  /* Language switcher */
+  .lang-switcher a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5em 0;
+    transition: color 0.2s ease;
+  }
+
+  :global(.dark) .lang-switcher a span {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  :global(html:not(.dark)) .lang-switcher a span {
+    color: rgb(28, 29, 36);
+  }
+
+  :global(.dark) .lang-switcher:hover a span {
+    color: white;
+  }
+
+  :global(html:not(.dark)) .lang-switcher:hover a span {
+    color: rgb(43, 116, 255);
+  }
+
+  /* Dropdown */
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-arrow {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    padding: 8px 0;
+    margin-top: 10px;
+    z-index: 1000;
+    list-style: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .dark .dropdown-menu {
+    background: rgba(28, 29, 36, 0.98);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-link {
+    display: block;
+    padding: 10px 20px;
+    color: #0d1c3a;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+
+  .dark .dropdown-link {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .dropdown-link:hover {
+    background: rgba(43, 116, 255, 0.1);
+    color: #2b74ff;
+  }
+
+  .dark .dropdown-link:hover {
+    background: rgba(43, 116, 255, 0.2);
+    color: #5b9eff;
+  }
+
+  /* Header right section - language, theme, button */
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 2rem;
+    flex-shrink: 0;
+  }
+
+  /* Floating CTA button - appears when header hides on scroll */
+  .floating-ticket-button {
+    position: fixed;
+    top: 0.875rem;
+    right: max(2rem, calc((100vw - 1440px) / 2 + 1rem));
+    z-index: 41;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, right 0.3s ease;
+    pointer-events: none;
+  }
+
+  /* Show floating button when header is hidden */
+  :global(body[data-scrolling-started="true"][data-scrolling-direction="down"]) .floating-ticket-button {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  /* Hide floating button when header is visible */
+  :global(body[data-scrolling-started="false"]) .floating-ticket-button,
+  :global(body[data-scrolling-direction="up"]) .floating-ticket-button {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+  }
+
+  /* Floating CTA button - smaller and oval */
+  .floating-cta-btn {
+    display: inline-block;
+    padding: 0.625rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #2b74ff 0%, #00c8a8 100%);
+    color: white;
+    box-shadow: 0 4px 16px rgba(43, 116, 255, 0.4);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    border: 1px solid rgba(43, 116, 255, 0.3);
+  }
+
+  .floating-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(43, 116, 255, 0.5);
+    background: linear-gradient(135deg, #3d84ff 0%, #00d8b8 100%);
+  }
+
+  :global(.dark) .floating-cta-btn {
+    box-shadow: 0 4px 16px rgba(43, 116, 255, 0.5);
+    border-color: rgba(77, 142, 255, 0.4);
+  }
+
+  :global(.dark) .floating-cta-btn:hover {
+    box-shadow: 0 6px 20px rgba(43, 116, 255, 0.6);
+    background: linear-gradient(135deg, #4d8eff 0%, #00e8c8 100%);
+  }
+
+  /* Header CTA button - inline pill button */
+  .header-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(43, 116, 255, 0.85) 0%, rgba(0, 200, 168, 0.85) 100%);
+    color: white;
+    box-shadow: 0 2px 12px rgba(43, 116, 255, 0.25);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    border: 1px solid rgba(43, 116, 255, 0.2);
+    backdrop-filter: blur(4px);
+  }
+
+  .header-cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(43, 116, 255, 0.35);
+    background: linear-gradient(135deg, rgba(43, 116, 255, 0.95) 0%, rgba(0, 200, 168, 0.95) 100%);
+  }
+
+  :global(.dark) .header-cta-btn {
+    box-shadow: 0 2px 12px rgba(43, 116, 255, 0.3);
+    border-color: rgba(77, 142, 255, 0.3);
+  }
+
+  :global(.dark) .header-cta-btn:hover {
+    box-shadow: 0 4px 16px rgba(43, 116, 255, 0.45);
+    background: linear-gradient(135deg, rgba(77, 142, 255, 1) 0%, rgba(0, 220, 184, 1) 100%);
+  }
+
+  /* Hamburger & Mobile Nav */
+  .hamburger,
+  .mobile-nav {
+    display: none;
+  }
+
+  /* Mobile Navigation */
+  @media (max-width: 930px) {
+    .main-nav-bar nav {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .main-nav-bar .header-right {
+      display: none;
+    }
+
+    .main-nav-bar .border-bottom {
+      bottom: calc(2rem * -1);
+    }
+
+    .hamburger {
+      display: flex;
+      gap: 0.25em;
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: #2b74ff;
+      cursor: pointer;
+      z-index: 50;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .hamburger .hamburger-fill {
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      background-color: #2b74ff;
+    }
+
+    .hamburger .bar {
+      position: absolute;
+      width: 35%;
+      height: 2px;
+      background-color: white;
+      transition: transform 0.3s ease;
+    }
+
+    .hamburger .bar-top {
+      transform: translateY(-4px);
+    }
+
+    .hamburger .bar-bottom {
+      transform: translateY(4px);
+    }
+
+    .mobile-nav {
+      display: flex;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      align-items: flex-start;
+      z-index: 45;
+    }
+
+    .mobile-nav .overlay-dark {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-nav-box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 120px 2rem 80px;
+      gap: 2rem;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .dark .mobile-nav-box {
+      background: rgba(28, 29, 36, 0.98);
+    }
+
+    .mobile-nav-box .box-row-logo {
+      text-align: center;
+    }
+
+    .mobile-nav-box nav ul {
+      flex-direction: column;
+      gap: 0;
+      text-align: center;
+    }
+
+    .mobile-nav-box .link a,
+    .mobile-nav-box .link button {
+      padding: 1rem 0;
+    }
+
+    .mobile-nav-box .link a span,
+    .mobile-nav-box .link button span {
+      color: #0d1c3a;
+      font-size: 1.5rem;
+    }
+
+    .dark .mobile-nav-box .link a span,
+    .dark .mobile-nav-box .link button span {
+      color: white;
+    }
+
+    .mobile-nav-box .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      background: none;
+      backdrop-filter: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+    }
+
+    .mobile-nav-box .dropdown-toggle .dropdown-arrow {
+      transform: rotate(90deg);
+    }
+
+    .mobile-nav-box .dropdown-link {
+      padding: 12px 20px;
+      color: #0d1c3a;
+    }
+
+    .dark .mobile-nav-box .dropdown-link {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .mobile-nav-box .dropdown-link:hover {
+      background: none;
+      color: #2b74ff;
+    }
+
+    .box-row-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  /* Active states for mobile navigation (controlled by JS) */
+  .mobile-nav.is-active {
+    pointer-events: all;
+  }
+
+  .mobile-nav.is-active .overlay-dark {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-nav.is-active .mobile-nav-box {
+    transform: translateY(0);
+  }
+
+  .hamburger.is-active .bar-top {
+    transform: translateY(0) rotate(45deg);
+  }
+
+  .hamburger.is-active .bar-bottom {
+    transform: translateY(0) rotate(-45deg);
+  }
+</style>
+
+<script is:inline>
+  // Initialize body data attributes
+  document.body.dataset.scrollingStarted = 'false';
+  document.body.dataset.scrollingDirection = 'down';
+  document.body.dataset.navigationStatus = 'not-active';
+
+  // Scroll detection for auto-hide behavior
+  let lastScrollTop = 0;
+  let threshold = 60;
+  let ticking = false;
+
+  function updateScrollState() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Update scrolling started
+    if (scrollTop > threshold) {
+      document.body.dataset.scrollingStarted = 'true';
+    } else {
+      document.body.dataset.scrollingStarted = 'false';
+    }
+
+    // Update scroll direction
+    if (scrollTop > lastScrollTop) {
+      document.body.dataset.scrollingDirection = 'down';
+    } else if (scrollTop < lastScrollTop) {
+      document.body.dataset.scrollingDirection = 'up';
+    }
+
+    lastScrollTop = scrollTop;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateScrollState);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Mobile navigation toggle
+  const hamburger = document.querySelector('.hamburger');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const body = document.body;
+
+  hamburger?.addEventListener('click', () => {
+    const isActive = body.dataset.navigationStatus === 'active';
+
+    if (isActive) {
+      body.dataset.navigationStatus = 'not-active';
+      hamburger.classList.remove('is-active');
+      mobileNav?.classList.remove('is-active');
+    } else {
+      body.dataset.navigationStatus = 'active';
+      hamburger.classList.add('is-active');
+      mobileNav?.classList.add('is-active');
+    }
+  });
+
+  // Close mobile nav when clicking overlay
+  const overlay = document.querySelector('.overlay-dark');
+  overlay?.addEventListener('click', () => {
+    body.dataset.navigationStatus = 'not-active';
+    hamburger?.classList.remove('is-active');
+    mobileNav?.classList.remove('is-active');
+  });
+
+  // Close mobile nav when clicking a link
+  const mobileLinks = document.querySelectorAll('.mobile-nav-box .link a, .mobile-nav-box .link button');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      body.dataset.navigationStatus = 'not-active';
+      hamburger?.classList.remove('is-active');
+      mobileNav?.classList.remove('is-active');
+    });
+  });
+
+  // Close mobile nav on ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && body.dataset.navigationStatus === 'active') {
+      body.dataset.navigationStatus = 'not-active';
+      hamburger?.classList.remove('is-active');
+      mobileNav?.classList.remove('is-active');
+    }
+  });
+
+  // Initial check
+  updateScrollState();
+</script>

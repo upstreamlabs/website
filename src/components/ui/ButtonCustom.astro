@@ -1,0 +1,157 @@
+---
+/**
+ * ButtonCustom component adapted from beijing2025
+ * Custom styled button with hover effects
+ */
+interface Props {
+  text: string;
+  link: string;
+  openInNewTab?: boolean;
+  class?: string;
+}
+
+const { text, link, openInNewTab, class: className } = Astro.props;
+const targetAttr = openInNewTab ? '_blank' : undefined;
+const relAttr = openInNewTab ? 'noopener noreferrer' : undefined;
+---
+
+<div class={className || 'btn outline btn-hover xl'}>
+  <a
+    href={link}
+    class="btn-click"
+    target={targetAttr}
+    rel={relAttr}
+  >
+    <div class="btn-content duplicate">
+      <div class="btn-fill"></div>
+      <span>{text}</span>
+    </div>
+
+    <div class="border-box"></div>
+  </a>
+</div>
+
+<style>
+  /* Button base styles */
+  .btn {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+
+  .btn-click {
+    text-decoration: none;
+    display: block;
+  }
+
+  .btn-content {
+    position: relative;
+    z-index: 2;
+    padding: 12px 28px;
+    transition: all 0.3s ease;
+  }
+
+  .btn-content span {
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-fill {
+    position: absolute;
+    inset: 0;
+    transform: scaleY(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  .border-box {
+    position: absolute;
+    inset: 0;
+    border: 2px solid currentColor;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* Primary button */
+  .btn.primary {
+    background: #2b74ff;
+    color: white;
+    border-radius: 8px;
+  }
+
+  .btn.primary .btn-content span {
+    color: white;
+  }
+
+  .btn.primary .btn-fill {
+    background: linear-gradient(135deg, #4d8eff 0%, #00dc8a 100%);
+  }
+
+  .btn.primary:hover .btn-fill {
+    transform: scaleY(1);
+  }
+
+  .btn.primary .border-box {
+    border-color: transparent;
+  }
+
+  /* Outline button */
+  .btn.outline {
+    background: transparent;
+    color: white;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .btn.outline .btn-content span {
+    color: white;
+  }
+
+  .btn.outline .btn-fill {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+  }
+
+  .btn.outline:hover .btn-fill {
+    transform: scaleY(1);
+  }
+
+  .btn.outline:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .btn.outline .border-box {
+    display: none;
+  }
+
+  /* Size variants */
+  .btn.xl .btn-content {
+    padding: 16px 36px;
+  }
+
+  .btn.xl .btn-content span {
+    font-size: 1.1rem;
+  }
+
+  /* Hover effect class */
+  .btn-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(43, 116, 255, 0.3);
+  }
+
+  /* Floating button */
+  .btn-floating {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+</style>

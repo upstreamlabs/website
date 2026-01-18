@@ -48,7 +48,7 @@ const {
               width={432}
               height={768}
               layout="cover"
-              src={image?.src}
+              src={typeof image?.src === 'string' && image.src.startsWith('http') ? image.src : image}
               alt={image?.alt || ''}
             />
           )}

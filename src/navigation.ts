@@ -1,73 +1,88 @@
-import { getPermalink, getAsset } from './utils/permalinks';
+import { getPermalink } from './utils/permalinks';
 
-export const headerData = {
-  links: [
-    {
-      text: 'Upstream Camp',
-      href: 'https://camp.upstreamlabs.org',
-    },
-    {
-      text: 'Gobi Conference',
-      href: 'https://gobi.upstreamlabs.org',
-    },
-    {
-      text: 'About',
-      href: getPermalink('/about'),
-    },
-    {
-      text: 'Contact',
-      href: getPermalink('/contact'),
-    },
-  ],
-  actions: [],
+// Helper to add locale prefix to paths
+const localizePath = (path: string, locale: string) => {
+  if (path.startsWith('http://') || path.startsWith('https://')) {
+    return path;
+  }
+  return `/${locale}${path}`;
 };
 
-export const footerData = {
+// Get locale-aware header data
+export const getHeaderData = (locale: string = 'en') => ({
   links: [
     {
-      title: 'Programs',
+      text: locale === 'cn' ? '首页' : 'Home',
+      link: localizePath('/', locale),
+    },
+    {
+      text: locale === 'cn' ? '关于' : 'About',
+      link: localizePath('/about', locale),
+    },
+    {
+      text: locale === 'cn' ? '源起之道' : 'Upstream 2025',
+      link: 'https://camp.upstreamlabs.org',
+      openInNewTab: true,
+    },
+    {
+      text: locale === 'cn' ? 'GOBI 大会' : 'GOBI Conference',
+      link: 'https://gobi.upstreamlabs.org',
+      openInNewTab: true,
+    },
+    {
+      text: locale === 'cn' ? '联系' : 'Contact',
+      link: localizePath('/contact', locale),
+    },
+  ],
+  cta: {
+    text: locale === 'cn' ? '加入我们' : 'Join Us',
+    link: localizePath('/contact', locale),
+  },
+});
+
+// Get locale-aware footer data
+export const getFooterData = (locale: string = 'en') => ({
+  links: [
+    {
+      title: locale === 'cn' ? '项目' : 'Programs',
       links: [
-        { text: 'Upstream Training', href: 'https://camp.upstreamlabs.org' },
-        { text: 'GOBI Conference', href: 'https://gobi.upstreamlabs.org' },
-        { text: 'Ecosystem Grants', href: getPermalink('/services') },
-        { text: 'Mentorship Network', href: getPermalink('/services') },
+        {
+          text: locale === 'cn' ? 'Upstream 训练营' : 'Upstream 2025',
+          href: 'https://camp.upstreamlabs.org'
+        },
+        {
+          text: locale === 'cn' ? 'GOBI 大会' : 'GOBI Conference',
+          href: 'https://gobi.upstreamlabs.org'
+        },
       ],
     },
     {
-      title: 'Community',
+      title: locale === 'cn' ? '社区' : 'Community',
       links: [
-        { text: 'Partner Projects', href: getPermalink('/about') },
-        { text: 'Become a Mentor', href: getPermalink('/contact') },
-        { text: 'Join Our Events', href: getPermalink('/services') },
+        { text: locale === 'cn' ? '关于我们' : 'About Us', href: localizePath('/about', locale) },
+        { text: locale === 'cn' ? '成为导师' : 'Become a Mentor', href: localizePath('/contact', locale) },
+        { text: locale === 'cn' ? '联系我们' : 'Contact', href: localizePath('/contact', locale) },
       ],
     },
     {
-      title: 'Company',
+      title: locale === 'cn' ? '资源' : 'Resources',
       links: [
-        { text: 'About Us', href: getPermalink('/about') },
-        { text: 'Blog', href: getPermalink('/blog') },
-        { text: 'FAQs', href: getPermalink('/faq') },
-        { text: 'Contact', href: getPermalink('/contact') },
-      ],
-    },
-    {
-      title: 'Legal',
-      links: [
-        { text: 'Privacy Policy', href: getPermalink('/privacy') },
-        { text: 'Terms of Service', href: getPermalink('/terms') },
+        { text: locale === 'cn' ? '常见问题' : 'FAQs', href: localizePath('/faq', locale) },
+        { text: locale === 'cn' ? '隐私政策' : 'Privacy Policy', href: localizePath('/privacy', locale) },
+        { text: locale === 'cn' ? '服务条款' : 'Terms of Service', href: localizePath('/terms', locale) },
       ],
     },
   ],
-  secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
-    { text: 'Privacy Policy', href: getPermalink('/privacy') },
-  ],
+  secondaryLinks: [],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/upstreamlabs' },
+    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/UpstreamLabs_X' },
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/upstreamlabs' },
-    // { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
-    © ${new Date().getFullYear()} Upstream Labs. All rights reserved.
+    © ${new Date().getFullYear()} Upstream Labs. ${locale === 'cn' ? '保留所有权利。' : 'All rights reserved.'}
   `,
-};
+});
+
+// Legacy exports for backward compatibility
+export const headerData = getHeaderData('en');
+export const footerData = getFooterData('en');

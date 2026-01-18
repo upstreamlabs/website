@@ -1,8 +1,8 @@
 ---
 import PageLayout from '~/layouts/PageLayout.astro';
-import Header from '~/components/widgets/Header.astro';
+import HeaderNew from '~/components/widgets/HeaderNew.astro';
 
-import { headerData } from '~/navigation';
+import { getHeaderData } from '~/navigation';
 import type { MetaData } from '~/types';
 
 export interface Props {
@@ -10,6 +10,12 @@ export interface Props {
 }
 
 const { metadata } = Astro.props;
+
+// Detect locale from URL
+const pathname = Astro.url.pathname;
+const locale = pathname.startsWith('/cn') ? 'cn' : 'en';
+
+const headerData = getHeaderData(locale);
 ---
 
 <PageLayout metadata={metadata}>
@@ -18,16 +24,9 @@ const { metadata } = Astro.props;
   </Fragment>
   <Fragment slot="header">
     <slot name="header">
-      <Header
-        links={headerData?.links[2] ? [headerData.links[2]] : undefined}
-        actions={[
-          {
-            text: 'Download',
-            href: 'https://github.com/arthelokyo/astrowind',
-          },
-        ]}
-        showToggleTheme
-        position="right"
+      <HeaderNew
+        links={headerData?.links || []}
+        cta={headerData?.cta}
       />
     </slot>
   </Fragment>

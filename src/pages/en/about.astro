@@ -1,0 +1,276 @@
+---
+import HeroSplash from '~/components/widgets/HeroSplash.astro';
+import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
+import Content from '~/components/widgets/Content.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import heroImage from '~/assets/images/hero-image-3.jpg';
+import valuesImage from '~/assets/images/hero-v.jpg';
+
+const metadata = {
+  title: 'About Us',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <HeroSplash
+    tagline="About Upstream Labs"
+    image={heroImage}
+  >
+    <Fragment slot="title">
+      <span class="block">Building Sustainable</span>
+      <span class="text-gradient">Open-Source Ecosystems</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Upstream Labs is devoted to building sustainable open-source ecosystems. Since our founding, we've worked at the intersection of technology, policy, and public good—training ecosystem builders, convening cross-sector partners, and supporting projects that serve as digital public infrastructure.
+      <br /><br />
+      We believe open source is more than a technical pathway—it is a collaborative civic culture that cultivates trust, shared value, and long-term sustainability so collective innovation can power a shared future.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 hero-gradient"></div>
+    </Fragment>
+  </HeroSplash>
+
+  <!-- Content Widget (Our Philosophy) - Hidden
+  <Content
+    isReversed
+    tagline="Our Philosophy"
+    title="Open Source as Civic Culture"
+    items={[
+      {
+        title: 'More Than Technology',
+        description:
+          'Open source is more than a technical pathway—it is a collaborative civic culture that cultivates trust, shared value, and long-term sustainability.',
+      },
+      {
+        title: 'Sustainable by Design',
+        description:
+          'Commercial momentum is never the destination—it is the sustaining force that preserves trust, vitality, and shared stewardship across the ecosystem.',
+      },
+      {
+        title: 'Collective Innovation',
+        description:
+          'At Upstream Labs, we believe collective innovation powers a shared future. When communities collaborate openly, they create value that serves everyone.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Team collaboration',
+    }}
+  >
+    <Fragment slot="content">
+      <div class="relative pl-4 border-l-4 border-azure-500">
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+          Building Digital Public Infrastructure
+        </h3>
+        <p class="text-muted">
+          Upstream Labs is devoted to sustainable open-source ecosystems where technology serves the commons
+        </p>
+      </div>
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </Content>
+  -->
+
+  <!-- Features Widget *************** -->
+
+  <FeaturesCards
+    title="Our Focus Areas"
+    tagline="Building Digital Public Goods"
+    subtitle="We support open-source projects across multiple domains that serve as digital public goods."
+    columns={3}
+    items={[
+      {
+        title: 'AI & Machine Learning',
+        description:
+          'Supporting open AI infrastructure, from heterogeneous inference engines to edge computing speech AI and AI-native development tools.',
+        icon: 'tabler:robot',
+      },
+      {
+        title: 'Robotics & Embodied Intelligence',
+        description:
+          'Building open robotics operating systems, dataflow frameworks, and affordable hardware kits for education and industry.',
+        icon: 'tabler:cpu',
+      },
+      {
+        title: 'Protocols & Identity',
+        description:
+          'Developing open standards for agent networks, decentralized identity, and sovereign communication infrastructure.',
+        icon: 'tabler:network',
+      },
+      {
+        title: 'Developer Tools',
+        description:
+          'Creating Rust-native frameworks, GPU-accelerated UI engines, and full-stack toolkits for AI-native applications.',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'Community Building',
+        description:
+          'Nurturing indie maker collectives, creator communities, and governance models that sustain open collaboration.',
+        icon: 'tabler:users-group',
+      },
+      {
+        title: 'Civic Infrastructure',
+        description:
+          'Supporting projects that serve public institutions, education, and communities with open digital infrastructure.',
+        icon: 'tabler:building-community',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </FeaturesCards>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: 'Weeks of Training', amount: '4' },
+      { title: 'Grant (RMB)', amount: '100K' },
+      { title: 'Days Immersive', amount: '5' },
+      { title: 'Months Mentorship', amount: '6' },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </Stats>
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title="Our Values"
+    subtitle="Upstream is rooted in open-source spirit and centered on public goods. Commercial momentum is never the destination—it is the sustaining force that preserves trust, vitality, and shared stewardship across the ecosystem."
+    items={[
+      {
+        title: 'Open Collaboration',
+        description:
+          'We believe in the power of working in the open—sharing knowledge, code, and resources creates more value than hoarding them.',
+        icon: 'tabler:share',
+      },
+      {
+        title: 'Public Goods First',
+        description:
+          'Our focus is on projects that serve the commons. Technology should benefit everyone, not just those who can pay.',
+        icon: 'tabler:world',
+      },
+      {
+        title: 'Sustainable Growth',
+        description:
+          'We help projects find business models that amplify their mission rather than compromise it. Long-term impact over short-term gains.',
+        icon: 'tabler:chart-line',
+      },
+    ]}
+    image={valuesImage}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </Steps>
+
+  <!-- Features Widget (Our Mentorship Network) - Hidden
+  <FeaturesCards
+    title="Our Mentorship Network"
+    tagline="Ecosystem Support"
+    subtitle="An ecosystem of mentors ensures every team receives strategic, operational, and creative guidance from multiple vantage points."
+    columns={2}
+    items={[
+      {
+        title: 'Academic Mentors',
+        description: 'Professors and researchers guiding theoretical framing and cultural grounding.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Community Mentors',
+        description: 'Maintainers and community builders sharing operational best practices.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Industry Mentors',
+        description: 'OSPO leads and open-source strategists contributing enterprise experience.',
+        icon: 'tabler:building',
+      },
+      {
+        title: 'Investment Partners',
+        description: 'Impact funds and sustainable capital linking long-term financial and ecosystem support.',
+        icon: 'tabler:chart-line',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </FeaturesCards>
+  -->
+
+  <!-- Features Widget *************** -->
+
+  <FeaturesCards
+    title="Our Events"
+    tagline="Programs"
+    columns={2}
+    items={[
+      {
+        title: 'Upstream 源起之道',
+        description:
+          'Our flagship training program combining online learning with immersive bootcamps. Participants learn open-source principles, AI tools, and sustainable business models while working on real projects.',
+        icon: 'tabler:school',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://camp.upstreamlabs.org',
+        },
+      },
+      {
+        title: 'GOBI Conference',
+        description:
+          'Global Open Source Business Innovation Conference. Connecting developers, businesses, and policy partners to explore sustainable paths from source to industry.',
+        icon: 'tabler:speakerphone',
+        callToAction: {
+          text: 'Learn More',
+          href: 'https://gobi.upstreamlabs.org',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </FeaturesCards>
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Get in Touch',
+        href: '/en/contact/',
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="font-display">Join Our Mission</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Reach out to discuss partnership opportunities, program applications, mentorship, or general inquiries about Upstream Labs.<br class="hidden md:inline" />
+      Together, we can build sustainable open-source ecosystems that serve as digital public infrastructure.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

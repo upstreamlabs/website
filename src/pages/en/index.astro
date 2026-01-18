@@ -1,0 +1,165 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import HeroSplash from '~/components/widgets/HeroSplash.astro';
+import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import heroImage from '~/assets/images/hero-image.jpg';
+
+const metadata = {
+  title: 'Upstream Labs — Building Sustainable Open-Source Ecosystems',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <HeroSplash
+    tagline="Open Source · AI · Public Goods"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Join Our Programs',
+        href: '/en/contact/',
+        icon: 'tabler:rocket',
+      },
+      {
+        variant: 'secondary',
+        text: 'Learn more',
+        href: '#mission',
+        icon: 'tabler:arrow-down',
+      },
+    ]}
+    image={heroImage}
+  >
+    <Fragment slot="title">
+      <span class="block">Where Innovation</span>
+      <span class="text-gradient">Flows Open</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="font-semibold text-ink-700 dark:text-white">Upstream Labs</span> is devoted to building sustainable open-source
+      ecosystems. We unite partners across academia, industry, and civic sectors to transform open collaboration into lasting
+      public goods and digital infrastructure.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 hero-gradient"></div>
+    </Fragment>
+  </HeroSplash>
+
+  <!-- Features Widget *************** -->
+
+  <FeaturesCards
+    id="mission"
+    tagline="Building Sustainable Ecosystems"
+    title="How We Work"
+    subtitle="Upstream Labs operates at the intersection of open source, business innovation, and public policy. Through training, convening, and long-term support, we help projects grow from code to community to sustainable impact."
+    columns={3}
+    items={[
+      {
+        title: 'Upstream Training Camp',
+        description: 'Comprehensive training in open-source ecosystems, AI tools, and sustainable business models.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'GOBI Conference',
+        description:
+          'Global Open Source Business Innovation Conference connecting developers, businesses, and policy partners.',
+        icon: 'tabler:speakerphone',
+      },
+      {
+        title: 'Project Incubation',
+        description: 'Mentorship, funding, and resources for promising open-source projects focused on public goods.',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: 'Ecosystem Grants',
+        description: 'Financial support for community programs, content creation, partnerships, and governance design.',
+        icon: 'tabler:coin',
+      },
+      {
+        title: 'Mentorship Network',
+        description: 'Access to academic, community, industry, and government mentors who guide project development.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Knowledge Network',
+        description: 'Open case studies and resources that help the broader community learn from successful projects.',
+        icon: 'tabler:books',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </FeaturesCards>
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title="Our Program Structure"
+    items={[
+      {
+        title: 'Stage 1: <span class="font-medium">Base Camp</span>',
+        description:
+          'Four-week online training featuring weekly live sessions, peer studios, and guided assignments in open-source principles, AI tools, and community operations.',
+        icon: 'tabler:tent',
+      },
+      {
+        title: 'Stage 2: <span class="font-medium">Ascend Camp</span>',
+        description:
+          'Multi-day immersive bootcamp combining project pairing, governance design sprints, storytelling labs, and final showcases with industry mentors.',
+        icon: 'tabler:mountain',
+      },
+      {
+        title: 'Stage 3: <span class="font-medium">Summit Camp</span>',
+        description:
+          'Top-performing teams receive funding and are paired with open-source project teams for a 6-month collaborative development program.',
+        icon: 'tabler:trophy',
+      },
+      {
+        title: 'Launch & Grow!',
+        icon: 'tabler:rocket',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Open office collaboration',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
+    </Fragment>
+  </Steps>
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Join Upstream',
+        href: '/en/contact/',
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="font-display">Upstream to Origin, All Commits Return</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Where every contribution returns to the source, and every source renews the commons.<br
+        class="hidden md:inline"
+      />
+      Join us in building sustainable open-source ecosystems that serve as digital public infrastructure.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

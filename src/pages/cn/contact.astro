@@ -1,8 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
-import ContactUs from '~/components/widgets/Contact.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
 
 const metadata = {
   title: '联系我们',
@@ -18,36 +17,11 @@ const metadata = {
     </Fragment>
   </HeroText>
 
-  <ContactUs
-    id="form"
-    title="发送消息"
-    subtitle="对 Upstream Labs 有疑问？请查看首页的常见问题，或直接联系我们，我们会尽快回复您。"
-    inputs={[
-      {
-        type: 'text',
-        name: 'name',
-        label: '姓名',
-      },
-      {
-        type: 'email',
-        name: 'email',
-        label: '电子邮件',
-      },
-    ]}
-    textarea={{
-      label: '消息',
-    }}
-    disclaimer={{
-      label:
-        '提交此联系表单即表示您确认并同意我们的隐私政策。',
-    }}
-    description="我们的团队通常在 1-2 个工作日内回复。"
-  />
+  <!-- FeaturesCards Widget ************** -->
 
-  <!-- Features2 Widget ************** -->
-
-  <Features2
+  <FeaturesCards
     title="我们可以如何帮助您？"
+    columns={3}
     items={[
       {
         title: '项目申请',
@@ -84,5 +58,5 @@ const metadata = {
     <Fragment slot="bg">
       <div class="absolute inset-0 section-bg-azure-glow"></div>
     </Fragment>
-  </Features2>
+  </FeaturesCards>
 </Layout>

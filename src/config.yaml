@@ -2,7 +2,7 @@ site:
   name: Upstream Labs
   site: 'https://upstreamlabs.org'
   base: '/'
-  trailingSlash: true
+  trailingSlash: false
 
   googleSiteVerificationId: null
 
@@ -23,8 +23,8 @@ metadata:
         height: 628
     type: website
   twitter:
-    handle: '@upstreamlabs'
-    site: '@upstreamlabs'
+    handle: '@UpstreamLabs_X'
+    site: '@UpstreamLabs_X'
     cardType: summary_large_image
 
 i18n:

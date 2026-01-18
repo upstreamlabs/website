@@ -1,10 +1,13 @@
 ---
-import Features2 from '~/components/widgets/Features2.astro';
-import Features3 from '~/components/widgets/Features3.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import HeroSplash from '~/components/widgets/HeroSplash.astro';
+import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
+import Content from '~/components/widgets/Content.astro';
 import Stats from '~/components/widgets/Stats.astro';
-import Steps2 from '~/components/widgets/Steps2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import heroImage from '~/assets/images/hero-image-2.jpg';
+import valuesImage from '~/assets/images/hero-v.jpg';
 
 const metadata = {
   title: '关于我们',
@@ -14,50 +17,74 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero
+  <HeroSplash
     tagline="关于 Upstream Labs"
-    image={{
-      src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: '社区协作',
-    }}
+    image={heroImage}
   >
     <Fragment slot="title">
-      构建可持续的<br />
-      <span class="text-accent dark:text-white">开源生态系统</span>
+      <span class="block">构建可持续的</span>
+      <span class="text-gradient">开源生态系统</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Upstream Labs 致力于构建可持续的开源生态系统。我们相信开源不仅仅是一种技术路径——它是一种协作的公民文化，培育信任、共享价值和长期可持续性，让集体创新推动共同的未来。
+      Upstream Labs 致力于构建可持续的开源生态系统。自成立以来，我们一直立足于技术、政策与公共利益的交汇点——培养生态系统建设者，召集跨界合作伙伴，支持作为数字公共基础设施的项目。
+      <br /><br />
+      我们相信开源不仅是一种技术路径——它是一种协作文明，培育信任、共享价值和长期可持续性，让集体创新推动共同的未来。
     </Fragment>
 
     <Fragment slot="bg">
       <div class="absolute inset-0 hero-gradient"></div>
     </Fragment>
-  </Hero>
+  </HeroSplash>
 
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    title="我们的影响力"
-    stats={[
-      { title: '培训项目', amount: '2+' },
-      { title: '合作项目', amount: '10+' },
-      { title: '社区成员', amount: '500+' },
-      { title: '覆盖城市', amount: '5+' },
+  <!-- Content Widget (Our Philosophy) - Hidden
+  <Content
+    isReversed
+    tagline="我们的理念"
+    title="开源即协作文明"
+    items={[
+      {
+        title: '超越技术本身',
+        description: '开源不仅是一种技术路径，更是一种协作文明。它培育信任、共享价值和长期可持续性。',
+      },
+      {
+        title: '可持续设计',
+        description: '商业化并非终点，而是维系生态信任与活力的支撑力量，让协作文明得以长期生长。',
+      },
+      {
+        title: '集体创新',
+        description: '在 Upstream Labs，我们相信集体创新推动共同的未来。当社区开放协作时，它们创造服务所有人的价值。',
+      },
     ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: '团队协作',
+    }}
   >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 section-bg-tri-color"></div>
+    <Fragment slot="content">
+      <div class="relative pl-4 border-l-4 border-azure-500">
+        <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+          构建数字公共基础设施
+        </h3>
+        <p class="text-muted">
+          Upstream Labs 致力于构建可持续的开源生态系统，让技术服务于公共利益
+        </p>
+      </div>
     </Fragment>
-  </Stats>
 
-  <!-- Features3 Widget ************** -->
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </Content>
+  -->
 
-  <Features3
+  <!-- Features Widget *************** -->
+
+  <FeaturesCards
     title="我们的关注领域"
+    tagline="构建数字公共产品"
     subtitle="我们支持多个领域的开源项目，这些项目作为数字公共产品服务社会。"
     columns={3}
-    isBeforeContent={true}
     items={[
       {
         title: 'AI 与机器学习',
@@ -77,19 +104,6 @@ const metadata = {
           '为代理网络、去中心化身份和主权通信基础设施开发开放标准。',
         icon: 'tabler:network',
       },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 section-bg-azure-glow"></div>
-    </Fragment>
-  </Features3>
-
-  <!-- Features3 Widget ************** -->
-
-  <Features3
-    columns={3}
-    isAfterContent={true}
-    items={[
       {
         title: '开发者工具',
         description:
@@ -109,54 +123,65 @@ const metadata = {
         icon: 'tabler:building-community',
       },
     ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: '团队协作',
-    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </FeaturesCards>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: '培训周数', amount: '4' },
+      { title: '资助金额（人民币）', amount: '100K' },
+      { title: '沉浸式天数', amount: '5' },
+      { title: '指导月数', amount: '6' },
+    ]}
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 section-bg-gold-accent"></div>
     </Fragment>
-  </Features3>
+  </Stats>
 
-  <!-- Steps2 Widget ****************** -->
+  <!-- Steps Widget ****************** -->
 
-  <Steps2
+  <Steps
     title="我们的价值观"
-    subtitle="Upstream 植根于开源精神，以公共产品为中心。我们相信商业动力应该维持开放性，而不是取代它。"
+    subtitle="Upstream 植根于开源精神，以公共产品为中心。商业化并非终点，而是维系生态信任与活力的支撑力量，让协作文明得以长期生长。"
     items={[
       {
         title: '开放协作',
         description:
           '我们相信开放工作的力量——分享知识、代码和资源比囤积它们创造更多价值。',
+        icon: 'tabler:share',
       },
       {
         title: '公共产品优先',
         description:
           '我们的重点是服务于公共利益的项目。技术应该惠及所有人，而不仅仅是那些能够付费的人。',
+        icon: 'tabler:world',
       },
       {
         title: '可持续增长',
         description:
           '我们帮助项目找到能够放大而非损害其使命的商业模式。长期影响优于短期收益。',
+        icon: 'tabler:chart-line',
       },
     ]}
+    image={valuesImage}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 section-bg-aqua-flow"></div>
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
     </Fragment>
-  </Steps2>
+  </Steps>
 
-  <!-- Steps2 Widget ****************** -->
-
-  <Steps2
+  <!-- Features Widget (Our Mentorship Network) - Hidden
+  <FeaturesCards
     title="我们的导师网络"
+    tagline="生态系统支持"
     subtitle="导师生态系统确保每个团队从多个角度获得战略、运营和创意指导。"
-    isReversed={true}
-    callToAction={{
-      text: '成为导师',
-      href: '/cn/contact/',
-    }}
+    columns={2}
     items={[
       {
         title: '学术导师',
@@ -181,13 +206,14 @@ const metadata = {
     ]}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 section-bg-azure-glow"></div>
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
     </Fragment>
-  </Steps2>
+  </FeaturesCards>
+  -->
 
-  <!-- Features2 Widget ************** -->
+  <!-- Features Widget *************** -->
 
-  <Features2
+  <FeaturesCards
     title="我们的活动"
     tagline="项目"
     columns={2}
@@ -196,38 +222,52 @@ const metadata = {
         title: 'Upstream 源起之道',
         description:
           '我们的旗舰培训项目，结合在线学习与沉浸式训练营。参与者在真实项目中学习开源原则、AI 工具和可持续商业模式。',
+        icon: 'tabler:school',
+        callToAction: {
+          text: '了解更多',
+          href: 'https://camp.upstreamlabs.org',
+        },
       },
       {
         title: 'GOBI 大会',
         description:
           '全球开源商业创新大会。连接开发者、企业和政策伙伴，探索从源头到产业的可持续路径。',
+        icon: 'tabler:speakerphone',
+        callToAction: {
+          text: '了解更多',
+          href: 'https://gobi.upstreamlabs.org',
+        },
       },
     ]}
   >
     <Fragment slot="bg">
-      <div class="absolute inset-0 section-bg-gold-accent"></div>
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
     </Fragment>
-  </Features2>
+  </FeaturesCards>
 
-  <!-- Features2 Widget ************** -->
+  <!-- CallToAction Widget *********** -->
 
-  <Features2
-    title="联系我们"
-    tagline="联系方式"
-    columns={2}
-    items={[
+  <CallToAction
+    actions={[
       {
-        title: '发送邮件',
-        description:
-          '联系我们讨论合作机会、项目申请，或关于 Upstream Labs 的一般咨询。',
-        icon: 'tabler:mail',
-      },
-      {
-        title: '关注我们',
-        description:
-          '通过我们的社交渠道了解我们的项目、活动和我们支持的项目的最新动态。',
-        icon: 'tabler:brand-x',
+        variant: 'primary',
+        text: '联系我们',
+        href: '/cn/contact/',
+        icon: 'tabler:arrow-right',
       },
     ]}
-  />
+  >
+    <Fragment slot="title">
+      <span class="font-display">加入我们的使命</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      联系我们讨论合作机会、项目申请、导师资格，或关于 Upstream Labs 的一般咨询。<br class="hidden md:inline" />
+      让我们一起构建服务公共利益的可持续开源生态系统。
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
+    </Fragment>
+  </CallToAction>
 </Layout>

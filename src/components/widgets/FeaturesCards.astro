@@ -47,7 +47,7 @@ const {
         containerClass
       )}
     >
-      {items.map(({ title, description, icon, classes: itemClasses = {} }) => (
+      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => (
         <div
           class={twMerge(
             'relative flex flex-col p-6 md:p-8 rounded-2xl',
@@ -91,6 +91,19 @@ const {
               )}
               set:html={description}
             />
+          )}
+          {callToAction && (
+            <div class="mt-4">
+              <a
+                href={callToAction.href}
+                class="inline-flex items-center gap-1 text-azure-600 dark:text-azure-400 font-medium hover:text-azure-700 dark:hover:text-azure-300 transition-colors"
+                target={callToAction.href?.startsWith('http') ? '_blank' : undefined}
+                rel={callToAction.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
+                {callToAction.text || 'Learn More'}
+                <Icon name="tabler:arrow-right" class="w-4 h-4" />
+              </a>
+            </div>
           )}
         </div>
       ))}
