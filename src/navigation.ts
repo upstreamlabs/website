@@ -76,7 +76,6 @@ export const getFooterData = (locale: string = 'en') => ({
   secondaryLinks: [],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/UpstreamLabs_X' },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/upstreamlabs' },
   ],
   footNote: `
     © ${new Date().getFullYear()} Upstream Labs. ${locale === 'cn' ? '保留所有权利。' : 'All rights reserved.'}

@@ -4,7 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the Upstream Labs website, built on the AstroWind template - an Astro 5 site using Tailwind CSS. It's a venture capital / startup incubator marketing website with i18n support (English and Chinese).
+This is the Upstream Labs website, built on the AstroWind template - an Astro 5 site using Tailwind CSS. Upstream Labs is devoted to building sustainable open-source ecosystems through training, mentorship, and funding.
+
+### Key Programs
+- **Upstream 2025** (源起之道) - Flagship training program: https://camp.upstreamlabs.org
+- **GOBI Conference** - Global Open Source Business Innovation: https://gobi.upstreamlabs.org
+
+### Social Links
+- X (Twitter): https://x.com/UpstreamLabs_X
 
 ## Commands
 
@@ -24,59 +31,54 @@ npm run fix          # Auto-fix eslint and prettier issues
 
 The site uses a YAML-based configuration loaded via a custom Astro integration:
 
-- `src/config.yaml` - Main site config (SEO metadata, blog settings, analytics, theme)
+- `src/config.yaml` - Main site config (SEO metadata, analytics, theme)
 - `vendor/integration/` - Custom Astro integration that:
   - Reads `src/config.yaml` and exposes it as a virtual module `astrowind:config`
-  - Provides `SITE`, `METADATA`, `APP_BLOG`, `UI`, `ANALYTICS` exports
+  - Provides `SITE`, `METADATA`, `UI`, `ANALYTICS` exports
   - Auto-updates `robots.txt` with sitemap URL on build
 
 ### Path Aliases
 
 Use `~/` to import from `src/`:
 ```typescript
-import { something } from '~/utils/blog';
+import { something } from '~/utils/permalinks';
 ```
 
 ### Internationalization
 
-- Default locale: `en` (no URL prefix)
-- Additional locale: `cn` (prefix `/cn/`)
-- Translation files: `src/i18n/locales/{lang}/{namespace}.json`
-- Namespaces: `common`, `nav`, `home`, `footer`
-- Use `useTranslations(lang)` from `~/i18n/utils` to get the `t()` function
+- English locale: `/en/` prefix
+- Chinese locale: `/cn/` prefix
+- Pages are duplicated in each locale folder with translated content
+- Navigation is locale-aware via `src/navigation.ts`
 
-### Content Collections
+### Site Structure
 
-Blog posts use Astro's Content Collections with glob loader:
-- Posts location: `src/data/post/` (`.md` or `.mdx`)
-- Schema defined in `src/content/config.ts`
-- Post metadata: `publishDate`, `title`, `excerpt`, `image`, `category`, `tags`, `author`, `draft`
+Pages (in both `/en/` and `/cn/`):
+- `index.astro` - Homepage
+- `about.astro` - About Upstream Labs
+- `contact.astro` - Contact information
+- `faq.astro` - Frequently asked questions
+- `privacy.astro` - Privacy policy
+- `terms.astro` - Terms of service
+- `services.astro` - Programs page (orphaned, not in navigation)
 
 ### Component Organization
 
-- `src/components/widgets/` - Page section components (Hero, Features, Pricing, Footer, etc.)
+- `src/components/widgets/` - Page section components (Hero, Features, FeaturesCards, Footer, etc.)
 - `src/components/ui/` - Reusable UI primitives
 - `src/components/common/` - Shared components
-- `src/components/blog/` - Blog-specific components
-- `src/layouts/` - Page layouts (Layout, PageLayout, MarkdownLayout, LandingLayout)
+- `src/layouts/` - Page layouts (Layout, PageLayout, LandingLayout)
 
 ### Routing
 
-- `src/pages/` - File-based routing
+- `src/pages/en/` - English locale pages
 - `src/pages/cn/` - Chinese locale pages
-- `src/pages/[...blog]/` - Dynamic blog routes (posts, categories, tags, pagination)
-- `src/navigation.ts` - Header and footer navigation configuration
-
-### Permalink System
-
-The `src/utils/permalinks.ts` module handles URL generation:
-- `getPermalink(slug, type)` - Generate URLs for pages, posts, categories, tags
-- `getBlogPermalink()` - Blog index URL
-- Respects `trailingSlash` setting from config
+- `src/navigation.ts` - Header and footer navigation configuration (locale-aware)
 
 ### Tailwind Theme
 
 Custom theme variables via CSS custom properties:
-- Colors: `primary`, `secondary`, `accent`, `default`, `muted`
-- Fonts: `sans`, `serif`, `heading`
+- Colors: `azure`, `aqua`, `gold`, `ink` (brand colors)
+- Section backgrounds: `section-bg-azure-glow`, `section-bg-gold-accent`
+- Gradients: `hero-gradient`, `cta-gradient`
 - Dark mode: class-based (`darkMode: 'class'`)
