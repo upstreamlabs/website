@@ -4,6 +4,7 @@
  * Auto-hide on scroll, transparent background, no underlines
  */
 import Logo from '~/components/Logo.astro';
+import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import { getHomePermalink, trimSlash } from '~/utils/permalinks';
 import { Icon } from 'astro-icon/components';
 
@@ -154,6 +155,7 @@ const slug = Astro.url.pathname;
         </ul>
       </nav>
       <div class="box-row box-row-btn" style="display: flex; gap: 1rem; align-items: center;">
+        <ToggleTheme iconClass="w-6 h-6" class="theme-toggle-btn" />
         <div class="link lang-switcher">
           <a href={langSwitchLink}>
             <span>{langSwitchText}</span>
@@ -251,6 +253,7 @@ const slug = Astro.url.pathname;
       </nav>
 
       <div class="header-right">
+        <ToggleTheme iconClass="w-5 h-5" class="theme-toggle-btn" />
         <div class="link lang-switcher">
           <a href={langSwitchLink}>
             <span>{langSwitchText}</span>
@@ -313,9 +316,9 @@ const slug = Astro.url.pathname;
 
   .main-nav-bar .border-bottom {
     position: absolute;
-    bottom: calc(2.5rem * -1);
-    left: 2rem;
-    right: 2rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
     height: 1px;
     background: rgba(255, 255, 255, 0.15);
     opacity: 0;
@@ -363,6 +366,7 @@ const slug = Astro.url.pathname;
     background: transparent;
     transition: background 0.4s ease;
     backdrop-filter: blur(0px);
+    pointer-events: none; /* Allow clicks to pass through to buttons */
   }
 
   /* Scrolled state - nav fill gets background */
@@ -465,6 +469,30 @@ const slug = Astro.url.pathname;
   :global(html:not(.dark)) .link[data-link-status="active"] a span,
   :global(html:not(.dark)) .link[data-link-status="active"] button span {
     color: rgb(43, 116, 255);
+  }
+
+  /* Theme toggle button - must be global since it's from ToggleTheme component */
+  :global(.theme-toggle-btn) {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+  }
+
+  :global(.dark .theme-toggle-btn) {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  :global(html:not(.dark) .theme-toggle-btn) {
+    color: rgb(28, 29, 36);
+  }
+
+  :global(.theme-toggle-btn:hover) {
+    opacity: 0.7;
   }
 
   /* Language switcher */
@@ -683,7 +711,7 @@ const slug = Astro.url.pathname;
     }
 
     .main-nav-bar .border-bottom {
-      bottom: calc(2rem * -1);
+      bottom: 0;
     }
 
     .hamburger {
@@ -935,4 +963,23 @@ const slug = Astro.url.pathname;
 
   // Initial check
   updateScrollState();
+
+  // Theme toggle
+  const themeToggles = document.querySelectorAll('[data-aw-toggle-color-scheme]');
+  themeToggles.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.theme = isDark ? 'dark' : 'light';
+
+      // Update icon for all theme toggle buttons
+      const allToggles = document.querySelectorAll('[data-aw-toggle-color-scheme]');
+      allToggles.forEach(toggle => {
+        const icon = toggle.querySelector('svg');
+        if (icon) {
+          // Toggle between sun and moon icons by swapping the icon
+          // This is a simple approach - the icon will update on next page load
+        }
+      });
+    });
+  });
 </script>
