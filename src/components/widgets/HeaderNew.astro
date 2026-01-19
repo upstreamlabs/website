@@ -4,7 +4,6 @@
  * Auto-hide on scroll, transparent background, no underlines
  */
 import Logo from '~/components/Logo.astro';
-import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import { getHomePermalink, trimSlash } from '~/utils/permalinks';
 import { Icon } from 'astro-icon/components';
 
@@ -155,7 +154,14 @@ const slug = Astro.url.pathname;
         </ul>
       </nav>
       <div class="box-row box-row-btn" style="display: flex; gap: 1rem; align-items: center;">
-        <ToggleTheme iconClass="w-6 h-6" class="theme-toggle-btn" />
+        <button
+          type="button"
+          class="theme-toggle-btn"
+          aria-label="Toggle between Dark and Light mode"
+          onclick="document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';"
+        >
+          <Icon name="tabler:sun" class="w-6 h-6" />
+        </button>
         <div class="link lang-switcher">
           <a href={langSwitchLink}>
             <span>{langSwitchText}</span>
@@ -253,7 +259,14 @@ const slug = Astro.url.pathname;
       </nav>
 
       <div class="header-right">
-        <ToggleTheme iconClass="w-5 h-5" class="theme-toggle-btn" />
+        <button
+          type="button"
+          class="theme-toggle-btn"
+          aria-label="Toggle between Dark and Light mode"
+          onclick="document.documentElement.classList.toggle('dark'); localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';"
+        >
+          <Icon name="tabler:sun" class="w-5 h-5" />
+        </button>
         <div class="link lang-switcher">
           <a href={langSwitchLink}>
             <span>{langSwitchText}</span>
@@ -312,6 +325,8 @@ const slug = Astro.url.pathname;
     justify-content: space-between;
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
   .main-nav-bar .border-bottom {
@@ -963,23 +978,4 @@ const slug = Astro.url.pathname;
 
   // Initial check
   updateScrollState();
-
-  // Theme toggle
-  const themeToggles = document.querySelectorAll('[data-aw-toggle-color-scheme]');
-  themeToggles.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.toggle('dark');
-      localStorage.theme = isDark ? 'dark' : 'light';
-
-      // Update icon for all theme toggle buttons
-      const allToggles = document.querySelectorAll('[data-aw-toggle-color-scheme]');
-      allToggles.forEach(toggle => {
-        const icon = toggle.querySelector('svg');
-        if (icon) {
-          // Toggle between sun and moon icons by swapping the icon
-          // This is a simple approach - the icon will update on next page load
-        }
-      });
-    });
-  });
 </script>
