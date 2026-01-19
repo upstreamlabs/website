@@ -892,90 +892,107 @@ const slug = Astro.url.pathname;
 </style>
 
 <script is:inline>
-  // Initialize body data attributes
-  document.body.dataset.scrollingStarted = 'false';
-  document.body.dataset.scrollingDirection = 'down';
-  document.body.dataset.navigationStatus = 'not-active';
+  (function() {
+    // Prevent duplicate initialization
+    if (window._headerInitialized) return;
+    window._headerInitialized = true;
 
-  // Scroll detection for auto-hide behavior
-  let lastScrollTop = 0;
-  let threshold = 60;
-  let ticking = false;
+    // Scroll detection for auto-hide behavior
+    let lastScrollTop = 0;
+    let threshold = 60;
+    let ticking = false;
 
-  function updateScrollState() {
+    function updateScrollState() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      // Update scrolling started
+      if (scrollTop > threshold) {
+        document.body.dataset.scrollingStarted = 'true';
+      } else {
+        document.body.dataset.scrollingStarted = 'false';
+      }
+
+      // Update scroll direction
+      if (scrollTop > lastScrollTop) {
+        document.body.dataset.scrollingDirection = 'down';
+      } else if (scrollTop < lastScrollTop) {
+        document.body.dataset.scrollingDirection = 'up';
+      }
+
+      lastScrollTop = scrollTop;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollState);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Close mobile nav on ESC key (only attach once)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.body.dataset.navigationStatus === 'active') {
+        document.body.dataset.navigationStatus = 'not-active';
+        document.querySelector('.hamburger')?.classList.remove('is-active');
+        document.querySelector('.mobile-nav')?.classList.remove('is-active');
+      }
+    });
+  })();
+
+  // Initialize header functionality (runs on each page load/navigation)
+  function initHeader() {
+    // Initialize body data attributes
+    document.body.dataset.scrollingStarted = 'false';
+    document.body.dataset.scrollingDirection = 'down';
+    document.body.dataset.navigationStatus = 'not-active';
+
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+
+    // Mobile navigation toggle - use onclick to replace any existing handler
+    if (hamburger) {
+      hamburger.onclick = () => {
+        const isActive = document.body.dataset.navigationStatus === 'active';
+        if (isActive) {
+          document.body.dataset.navigationStatus = 'not-active';
+          hamburger.classList.remove('is-active');
+          mobileNav?.classList.remove('is-active');
+        } else {
+          document.body.dataset.navigationStatus = 'active';
+          hamburger.classList.add('is-active');
+          mobileNav?.classList.add('is-active');
+        }
+      };
+    }
+
+    // Close mobile nav when clicking overlay
+    const overlay = document.querySelector('.overlay-dark');
+    if (overlay) {
+      overlay.onclick = () => {
+        document.body.dataset.navigationStatus = 'not-active';
+        hamburger?.classList.remove('is-active');
+        mobileNav?.classList.remove('is-active');
+      };
+    }
+
+    // Close mobile nav when clicking a link
+    document.querySelectorAll('.mobile-nav-box .link a, .mobile-nav-box .link button').forEach(link => {
+      link.onclick = () => {
+        document.body.dataset.navigationStatus = 'not-active';
+        hamburger?.classList.remove('is-active');
+        mobileNav?.classList.remove('is-active');
+      };
+    });
+
+    // Initial scroll state check
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    // Update scrolling started
-    if (scrollTop > threshold) {
-      document.body.dataset.scrollingStarted = 'true';
-    } else {
-      document.body.dataset.scrollingStarted = 'false';
-    }
-
-    // Update scroll direction
-    if (scrollTop > lastScrollTop) {
-      document.body.dataset.scrollingDirection = 'down';
-    } else if (scrollTop < lastScrollTop) {
-      document.body.dataset.scrollingDirection = 'up';
-    }
-
-    lastScrollTop = scrollTop;
-    ticking = false;
+    document.body.dataset.scrollingStarted = scrollTop > 60 ? 'true' : 'false';
   }
 
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateScrollState);
-      ticking = true;
-    }
-  }, { passive: true });
+  // Run on initial load
+  initHeader();
 
-  // Mobile navigation toggle
-  const hamburger = document.querySelector('.hamburger');
-  const mobileNav = document.querySelector('.mobile-nav');
-  const body = document.body;
-
-  hamburger?.addEventListener('click', () => {
-    const isActive = body.dataset.navigationStatus === 'active';
-
-    if (isActive) {
-      body.dataset.navigationStatus = 'not-active';
-      hamburger.classList.remove('is-active');
-      mobileNav?.classList.remove('is-active');
-    } else {
-      body.dataset.navigationStatus = 'active';
-      hamburger.classList.add('is-active');
-      mobileNav?.classList.add('is-active');
-    }
-  });
-
-  // Close mobile nav when clicking overlay
-  const overlay = document.querySelector('.overlay-dark');
-  overlay?.addEventListener('click', () => {
-    body.dataset.navigationStatus = 'not-active';
-    hamburger?.classList.remove('is-active');
-    mobileNav?.classList.remove('is-active');
-  });
-
-  // Close mobile nav when clicking a link
-  const mobileLinks = document.querySelectorAll('.mobile-nav-box .link a, .mobile-nav-box .link button');
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      body.dataset.navigationStatus = 'not-active';
-      hamburger?.classList.remove('is-active');
-      mobileNav?.classList.remove('is-active');
-    });
-  });
-
-  // Close mobile nav on ESC key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && body.dataset.navigationStatus === 'active') {
-      body.dataset.navigationStatus = 'not-active';
-      hamburger?.classList.remove('is-active');
-      mobileNav?.classList.remove('is-active');
-    }
-  });
-
-  // Initial check
-  updateScrollState();
+  // Re-run after View Transitions navigation
+  document.addEventListener('astro:after-swap', initHeader);
 </script>
