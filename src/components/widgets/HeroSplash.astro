@@ -35,6 +35,25 @@ const {
     <div class="hero-orb hero-orb-center"></div>
   </div>
 
+  <!-- Ripple effect - multiple centers -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <!-- Ripple center 1 - top left area -->
+    <div class="ripple-origin ripple-origin-1">
+      <div class="hero-ripple hero-ripple-a"></div>
+      <div class="hero-ripple hero-ripple-b"></div>
+    </div>
+    <!-- Ripple center 2 - bottom right area -->
+    <div class="ripple-origin ripple-origin-2">
+      <div class="hero-ripple hero-ripple-a"></div>
+      <div class="hero-ripple hero-ripple-b"></div>
+    </div>
+    <!-- Ripple center 3 - center area -->
+    <div class="ripple-origin ripple-origin-3">
+      <div class="hero-ripple hero-ripple-a"></div>
+      <div class="hero-ripple hero-ripple-b"></div>
+    </div>
+  </div>
+
   <!-- Decorative grid pattern -->
   <div class="absolute inset-0 pointer-events-none hero-grid" aria-hidden="true"></div>
 
@@ -203,6 +222,95 @@ const {
 
   :global(.dark) .hero-grid {
     opacity: 0.05;
+  }
+
+  /* Ripple effect - multiple origins */
+  .ripple-origin {
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  .ripple-origin-1 {
+    top: 25%;
+    left: 20%;
+    animation: origin-fade 12s ease-in-out infinite;
+  }
+
+  .ripple-origin-2 {
+    top: 65%;
+    right: 15%;
+    left: auto;
+    animation: origin-fade 12s ease-in-out infinite;
+    animation-delay: -4s;
+  }
+
+  .ripple-origin-3 {
+    top: 45%;
+    left: 55%;
+    animation: origin-fade 12s ease-in-out infinite;
+    animation-delay: -8s;
+  }
+
+  .hero-ripple {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%) scale(0);
+    width: min(600px, 70vw);
+    height: min(600px, 70vw);
+    border-radius: 50%;
+    border: 2px solid rgba(43, 116, 255, 0.4);
+    box-shadow: 0 0 20px rgba(43, 116, 255, 0.2), inset 0 0 20px rgba(43, 116, 255, 0.1);
+    animation: ripple-expand 6s ease-out infinite;
+  }
+
+  .hero-ripple-a {
+    animation-delay: 0s;
+  }
+
+  .hero-ripple-b {
+    animation-delay: 3s;
+    border-color: rgba(0, 200, 150, 0.35);
+    box-shadow: 0 0 20px rgba(0, 200, 150, 0.2), inset 0 0 20px rgba(0, 200, 150, 0.1);
+  }
+
+  /* Stagger each origin's ripples differently */
+  .ripple-origin-1 .hero-ripple-a { animation-delay: 0s; }
+  .ripple-origin-1 .hero-ripple-b { animation-delay: 3s; }
+  .ripple-origin-2 .hero-ripple-a { animation-delay: 2s; }
+  .ripple-origin-2 .hero-ripple-b { animation-delay: 5s; }
+  .ripple-origin-3 .hero-ripple-a { animation-delay: 4s; }
+  .ripple-origin-3 .hero-ripple-b { animation-delay: 1s; }
+
+  :global(.dark) .hero-ripple {
+    border-color: rgba(77, 142, 255, 0.5);
+    box-shadow: 0 0 25px rgba(77, 142, 255, 0.3), inset 0 0 25px rgba(77, 142, 255, 0.15);
+  }
+
+  :global(.dark) .hero-ripple-b {
+    border-color: rgba(0, 220, 170, 0.45);
+    box-shadow: 0 0 25px rgba(0, 220, 170, 0.3), inset 0 0 25px rgba(0, 220, 170, 0.15);
+  }
+
+  @keyframes ripple-expand {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes origin-fade {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
   }
 
   /* Tagline badge */
