@@ -20,14 +20,24 @@ export const getHeaderData = (locale: string = 'en') => ({
       link: localizePath('/about', locale),
     },
     {
-      text: locale === 'cn' ? '源起之道' : 'Upstream 2025',
-      link: 'https://camp.upstreamlabs.org',
-      openInNewTab: true,
+      text: locale === 'cn' ? '项目' : 'Projects',
+      link: localizePath('/projects', locale),
     },
     {
-      text: locale === 'cn' ? 'GOBI 大会' : 'GOBI Conference',
-      link: 'https://gobi.upstreamlabs.org',
-      openInNewTab: true,
+      text: locale === 'cn' ? '活动' : 'Events',
+      link: '#',
+      submenu: [
+        {
+          text: locale === 'cn' ? '源起之道' : 'Upstream 2025',
+          link: 'https://camp.upstreamlabs.org',
+          openInNewTab: true,
+        },
+        {
+          text: locale === 'cn' ? 'GOBI 大会' : 'GOBI Conference',
+          link: 'https://gobi.upstreamlabs.org',
+          openInNewTab: true,
+        },
+      ],
     },
     {
       text: locale === 'cn' ? '联系' : 'Contact',
@@ -44,8 +54,12 @@ export const getHeaderData = (locale: string = 'en') => ({
 export const getFooterData = (locale: string = 'en') => ({
   links: [
     {
-      title: locale === 'cn' ? '项目' : 'Programs',
+      title: locale === 'cn' ? '项目与活动' : 'Projects & Events',
       links: [
+        {
+          text: locale === 'cn' ? '开源项目' : 'Open-Source Projects',
+          href: localizePath('/projects', locale),
+        },
         {
           text: locale === 'cn' ? 'Upstream 训练营' : 'Upstream 2025',
           href: 'https://camp.upstreamlabs.org'

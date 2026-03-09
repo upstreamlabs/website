@@ -20,6 +20,8 @@ const {
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 
+const visual = await Astro.slots.render('visual');
+
 const {
   container: containerClass = '',
   panel: panelClass = '',
@@ -32,81 +34,149 @@ const {
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl ${classes?.container ?? ''}`} bg={bg}>
   <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
 
-  {items && items.length > 0 && (
-    <div
-      class={twMerge(
-        `grid gap-6 md:gap-8 ${
-          columns === 4
-            ? 'lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2'
-            : columns === 3
-              ? 'lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'
-              : columns === 2
-                ? 'md:grid-cols-2 sm:grid-cols-1'
-                : ''
-        }`,
-        containerClass
-      )}
-    >
-      {items.map(({ title, description, icon, callToAction, classes: itemClasses = {} }) => (
-        <div
-          class={twMerge(
-            'relative flex flex-col p-6 md:p-8 rounded-2xl',
-            'bg-white/80 dark:bg-ink-800/70 backdrop-blur-sm',
-            'border border-azure-100/40 dark:border-azure-800/30',
-            'shadow-[0_8px_30px_rgba(43,116,255,0.06)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)]',
-            'transition-all duration-300 ease-out',
-            'hover:shadow-[0_16px_40px_rgba(43,116,255,0.12)] hover:-translate-y-1',
-            'dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]',
-            'intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
-            panelClass,
-            itemClasses?.panel
-          )}
-        >
-          {(icon || defaultIcon) && (
-            <div class="mb-4">
-              <div class={twMerge(
-                'inline-flex items-center justify-center w-12 h-12 rounded-xl',
-                'bg-gradient-to-br from-azure-500 to-aqua-500',
-                'text-white shadow-md',
-                defaultIconClass,
-                itemClasses?.icon
-              )}>
-                <Icon name={icon || defaultIcon} class="w-6 h-6" />
-              </div>
-            </div>
-          )}
-          <div class={twMerge(
-            'text-xl font-bold text-ink-700 dark:text-white mb-2',
-            titleClass,
-            itemClasses?.title
-          )}>
-            {title}
-          </div>
-          {description && (
-            <p
-              class={twMerge(
-                'text-muted leading-relaxed',
-                descriptionClass,
-                itemClasses?.description
-              )}
-              set:html={description}
-            />
-          )}
-          {callToAction && (
-            <div class="mt-4">
-              <a
-                href={callToAction.href}
-                class="inline-flex items-center gap-1 text-azure-600 dark:text-azure-400 font-medium hover:text-azure-700 dark:hover:text-azure-300 transition-colors"
-                target={callToAction.href?.startsWith('http') ? '_blank' : undefined}
-                rel={callToAction.href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-              >
-                {callToAction.text || 'Learn More'}
-                <Icon name="tabler:arrow-right" class="w-4 h-4" />
-              </a>
-            </div>
-          )}
-        </div>
-      ))}
+  {visual && (
+    <div class="mb-8 md:mb-12">
+      <Fragment set:html={visual} />
     </div>
   )}
+
+  {
+    items && items.length > 0 && (
+      <div
+        class={twMerge(
+          `grid gap-6 md:gap-8 ${
+            columns === 4
+              ? 'lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2'
+              : columns === 3
+                ? 'lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1'
+                : columns === 2
+                  ? 'md:grid-cols-2 sm:grid-cols-1'
+                  : ''
+          }`,
+          containerClass
+        )}
+      >
+        {items.map(({ title, description, icon, image, callToAction, classes: itemClasses = {} }) => {
+          const actionHref = callToAction?.href ? String(callToAction.href) : undefined;
+          const hasLogo = Boolean(image);
+
+          return (
+            <div
+              class={twMerge(
+                'group relative isolate flex h-full flex-col overflow-hidden rounded-[1.75rem] p-6 md:p-8',
+                'bg-white/[0.78] dark:bg-[rgba(7,17,31,0.78)] backdrop-blur-xl',
+                'border border-white/70 dark:border-white/10',
+                'shadow-[0_18px_55px_rgba(15,23,42,0.08)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.35)]',
+                'transition-all duration-500 ease-out',
+                'hover:-translate-y-2 hover:border-azure-200/80 hover:shadow-[0_28px_80px_rgba(37,99,235,0.14)]',
+                'dark:hover:border-azure-400/20 dark:hover:shadow-[0_26px_80px_rgba(0,0,0,0.42)]',
+                'intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
+                panelClass,
+                itemClasses?.panel
+              )}
+            >
+              <div class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                <div class="absolute -right-10 top-0 h-32 w-32 rounded-full bg-aqua-300/25 blur-3xl dark:bg-aqua-400/15" />
+                <div class="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-gold-300/20 blur-3xl dark:bg-gold-400/15" />
+              </div>
+              <div class="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-azure-400 via-aqua-400 to-gold-400 opacity-70" />
+              {(image || icon || defaultIcon) && (
+                <div class="mb-5 relative z-[1]">
+                  <div class="relative inline-flex">
+                    <div
+                      class={twMerge(
+                        'pointer-events-none absolute inset-0 translate-y-1 blur-xl transition duration-500 group-hover:scale-110 group-hover:opacity-100',
+                        hasLogo
+                          ? 'rounded-full opacity-55'
+                          : 'rounded-[1.35rem] opacity-80 bg-gradient-to-br from-azure-500/35 via-aqua-400/25 to-gold-300/25',
+                        'transition duration-500 group-hover:scale-110 group-hover:opacity-100',
+                        itemClasses?.iconGlow
+                      )}
+                    />
+                    <div
+                      class={twMerge(
+                        hasLogo
+                          ? 'relative inline-flex h-14 w-[4.5rem] items-center justify-center overflow-visible rounded-none border-transparent bg-transparent text-white shadow-none'
+                          : 'relative inline-flex h-14 w-14 items-center justify-center overflow-hidden rounded-[1.35rem] border border-white/65 bg-gradient-to-br from-azure-500 via-aqua-500 to-gold-400 text-white shadow-[0_16px_36px_rgba(37,99,235,0.22)] dark:border-white/10 dark:shadow-[0_16px_36px_rgba(0,0,0,0.32)]',
+                        'transition duration-500 group-hover:-translate-y-1 group-hover:scale-105 group-hover:-rotate-3',
+                        defaultIconClass,
+                        !hasLogo && itemClasses?.icon
+                      )}
+                    >
+                      {!hasLogo && <span class="pointer-events-none absolute inset-[1px] rounded-[1.28rem] bg-white/10 dark:bg-white/5" />}
+                      {!hasLogo && <span class="pointer-events-none absolute inset-x-2 top-1 h-4 rounded-full bg-white/20 blur-md" />}
+                      {image ? (
+                        <img
+                          src={image.src}
+                          alt={image.alt ?? `${title ?? 'Project'} logo`}
+                          class={twMerge(
+                            hasLogo
+                              ? 'relative z-[1] max-h-10 w-auto max-w-[4.2rem] object-contain drop-shadow-[0_10px_20px_rgba(15,23,42,0.14)]'
+                              : 'relative z-[1] max-h-8 w-auto max-w-[2.3rem] object-contain drop-shadow-[0_6px_16px_rgba(15,23,42,0.18)]',
+                            itemClasses?.iconGlyph
+                          )}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <Icon
+                          name={icon || defaultIcon}
+                          class={twMerge(
+                            'relative z-[1] h-6 w-6 drop-shadow-[0_6px_16px_rgba(15,23,42,0.18)]',
+                            itemClasses?.iconGlyph
+                          )}
+                        />
+                      )}
+                    </div>
+                    {!hasLogo && (
+                      <span
+                        class={twMerge(
+                          'pointer-events-none absolute -right-1 -top-1 h-3 w-3 rounded-full',
+                          'border border-white/75 bg-white/80 shadow-[0_8px_16px_rgba(15,23,42,0.12)]',
+                          'dark:border-white/10 dark:bg-white/12',
+                          itemClasses?.iconDot
+                        )}
+                      />
+                    )}
+                  </div>
+                </div>
+              )}
+              <div
+                class={twMerge(
+                  'relative z-[1] mb-2 text-xl font-bold text-ink-700 dark:text-white',
+                  titleClass,
+                  itemClasses?.title
+                )}
+              >
+                {title}
+              </div>
+              {description && (
+                <p
+                  class={twMerge(
+                    'relative z-[1] text-muted leading-relaxed dark:text-slate-300',
+                    descriptionClass,
+                    itemClasses?.description
+                  )}
+                  set:html={description}
+                />
+              )}
+              {callToAction && (
+                <div class="relative z-[1] mt-4">
+                  <a
+                    href={callToAction.href}
+                    class="inline-flex items-center gap-1 font-medium text-azure-600 transition-all hover:gap-2 hover:text-azure-700 dark:text-azure-300 dark:hover:text-azure-200"
+                    target={actionHref?.startsWith('http') ? '_blank' : undefined}
+                    rel={actionHref?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    {callToAction.text || 'Learn More'}
+                    <Icon name="tabler:arrow-right" class="w-4 h-4" />
+                  </a>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    )
+  }
 </WidgetWrapper>

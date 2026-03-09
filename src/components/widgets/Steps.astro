@@ -18,6 +18,13 @@ const {
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+const imageSource =
+  image && typeof image !== 'string'
+    ? 'format' in image
+      ? (image as import('astro').ImageMetadata)
+      : image.src
+    : image;
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
@@ -48,7 +55,7 @@ const {
               width={432}
               height={768}
               layout="cover"
-              src={typeof image?.src === 'string' && image.src.startsWith('http') ? image.src : image}
+              src={imageSource}
               alt={image?.alt || ''}
             />
           )}

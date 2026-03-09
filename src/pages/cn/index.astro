@@ -3,20 +3,18 @@ import Layout from '~/layouts/PageLayout.astro';
 
 import HeroSplash from '~/components/widgets/HeroSplash.astro';
 import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
-import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import heroImage from '~/assets/images/hero-image.jpg';
-import programImage from '~/assets/images/hero-v2.jpg';
+import { appSvg, infraSvg } from '~/data/homeIllustrations';
+import { projectIconThemes, projectLogos } from '~/data/projectIconThemes';
 
 const metadata = {
-  title: 'Upstream Labs — 构建可持续的开源生态系统',
+  title: 'Upstream Labs - 构建可持续的开源生态系统',
   ignoreTitleTemplate: true,
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
-
   <HeroSplash
     tagline="开源 · AI · 公共产品"
     actions={[
@@ -33,15 +31,46 @@ const metadata = {
         icon: 'tabler:arrow-down',
       },
     ]}
-    image={heroImage}
   >
     <Fragment slot="title">
       <span class="block">让创新</span>
-      <span class="text-gradient">开放,流动</span>
+      <span class="text-gradient">开放流动</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="font-semibold text-ink-700 dark:text-white">Upstream Labs</span> 致力于构建可持续的开源生态系统。我们联结学术界、产业界和公民社会，将开放协作转化为持久的公共产品与数字基础设施。
+      <span class="font-semibold text-ink-700 dark:text-white">Upstream Labs</span> 正在为可持续开源构建一层长期运转的操作系统。我们连接研究者、维护者、企业和公共部门，让有潜力的项目真正成长为持久的数字公共基础设施。
+    </Fragment>
+
+    <Fragment slot="content">
+      <div class="mx-auto grid max-w-4xl gap-3 text-left sm:grid-cols-3">
+        <div
+          class="group rounded-[1.5rem] border border-white/70 bg-white/70 px-4 py-4 shadow-[0_18px_45px_rgba(37,99,235,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-azure-200/80 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] dark:border-white/10 dark:bg-white/5 dark:shadow-[0_20px_45px_rgba(0,0,0,0.28)]"
+        >
+          <div class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted">活跃组合</div>
+          <div class="mt-2 text-3xl font-bold text-ink-700 dark:text-white">10+</div>
+          <p class="mt-1 text-sm leading-6 text-muted dark:text-slate-400">
+            覆盖 Rust、AI、机器人与系统软件的长期项目组合。
+          </p>
+        </div>
+        <div
+          class="group rounded-[1.5rem] border border-white/70 bg-white/70 px-4 py-4 shadow-[0_18px_45px_rgba(15,183,154,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-aqua-200/80 hover:shadow-[0_24px_60px_rgba(15,183,154,0.14)] dark:border-white/10 dark:bg-white/5 dark:shadow-[0_20px_45px_rgba(0,0,0,0.28)]"
+        >
+          <div class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted">社区规模</div>
+          <div class="mt-2 text-3xl font-bold text-ink-700 dark:text-white">15k+</div>
+          <p class="mt-1 text-sm leading-6 text-muted dark:text-slate-400">
+            跨项目累计 star 与持续放大的生态网络效应。
+          </p>
+        </div>
+        <div
+          class="group rounded-[1.5rem] border border-white/70 bg-white/70 px-4 py-4 shadow-[0_18px_45px_rgba(255,138,76,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-gold-200/80 hover:shadow-[0_24px_60px_rgba(255,138,76,0.14)] dark:border-white/10 dark:bg-white/5 dark:shadow-[0_20px_45px_rgba(0,0,0,0.28)]"
+        >
+          <div class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted">运作方式</div>
+          <div class="mt-2 text-3xl font-bold text-ink-700 dark:text-white">3x</div>
+          <p class="mt-1 text-sm leading-6 text-muted dark:text-slate-400">
+            构建、连接、持续三条线并行推进，形成闭环增长。
+          </p>
+        </div>
+      </div>
     </Fragment>
 
     <Fragment slot="bg">
@@ -49,44 +78,27 @@ const metadata = {
     </Fragment>
   </HeroSplash>
 
-  <!-- Features Widget *************** -->
-
   <FeaturesCards
     id="mission"
-    tagline="构建可持续生态系统"
-    title="我们的工作方式"
-    subtitle="Upstream Labs 立足于开源、商业创新与公共政策的交汇点。通过培训、对话和长期支持，我们帮助项目从代码成长为社区，实现可持续影响。"
+    tagline="我们的使命"
+    title="构建 · 连接 · 持续"
+    subtitle="Upstream Labs 立足于开源、商业创新与公共政策的交汇点。通过孵化、对话和长期支持，我们帮助项目从代码成长为社区，并形成可持续的现实影响。"
     columns={3}
     items={[
       {
-        title: 'Upstream 训练营',
-        description: '开源生态系统、AI 工具和可持续商业模式的综合培训。',
-        icon: 'tabler:school',
+        title: '构建',
+        description: '孵化 Rust、AI 与系统基础设施方向的世界级开源项目。10+ 活跃项目，15,000+ GitHub stars。',
+        icon: 'tabler:hammer',
       },
       {
-        title: 'GOBI 大会',
-        description: '全球开源商业创新大会，连接开发者、企业和政策伙伴。',
-        icon: 'tabler:speakerphone',
+        title: '连接',
+        description: '通过大会、培训与导师制度连接开发者、企业和学术界。活跃于 GOSIM、FOSDEM、RustWeek 和 GSoC。',
+        icon: 'tabler:network',
       },
       {
-        title: '项目孵化',
-        description: '为专注于公共产品的有前途的开源项目提供指导、资金和资源。',
-        icon: 'tabler:bulb',
-      },
-      {
-        title: '生态系统资助',
-        description: '为社区项目、内容创作、合作伙伴关系和治理设计提供财务支持。',
-        icon: 'tabler:coin',
-      },
-      {
-        title: '导师网络',
-        description: '获得来自学术界、社区、产业和政府的导师指导项目开发。',
-        icon: 'tabler:users',
-      },
-      {
-        title: '知识网络',
-        description: '开放的案例研究和资源，帮助更广泛的社区从成功项目中学习。',
-        icon: 'tabler:books',
+        title: '持续',
+        description: '通过咨询、孵化、培训和生态合作，为开源长期增长建立可执行的商业模型。',
+        icon: 'tabler:recycle',
       },
     ]}
   >
@@ -95,42 +107,92 @@ const metadata = {
     </Fragment>
   </FeaturesCards>
 
-  <!-- Steps Widget ****************** -->
-
-  <Steps
-    title="我们的项目结构"
+  <Content
+    tagline="项目组合"
+    title="开源基础设施"
     items={[
       {
-        title: '阶段 1：<span class="font-medium">基础营</span>',
-        description:
-          '四周在线培训，包括每周直播课程、同伴工作室和开源原则、AI 工具及社区运营的指导作业。',
-        icon: 'tabler:tent',
+        title: 'Makepad',
+        description: '支持 GPU 渲染的跨平台 Rust UI 框架。6.2k stars。',
+        icon: 'tabler:layout',
+        image: projectLogos.makepad,
+        classes: projectIconThemes.makepad,
       },
       {
-        title: '阶段 2：<span class="font-medium">攀登营</span>',
-        description:
-          '多日沉浸式训练营，结合项目配对、治理设计冲刺、故事讲述实验室，以及与行业导师的最终展示。',
-        icon: 'tabler:mountain',
+        title: 'Dora',
+        description: '机器人中间件，比 ROS2 快 10 到 17 倍。3k stars。',
+        icon: 'tabler:robot',
+        image: projectLogos.dora,
+        classes: projectIconThemes.dora,
       },
       {
-        title: '阶段 3：<span class="font-medium">登顶营</span>',
-        description:
-          '表现优异的团队将获得资助，并与开源项目团队配对进行为期 6 个月的协作开发计划。',
-        icon: 'tabler:trophy',
+        title: 'Rapier',
+        description: '由 Dimforge 开发的 2D 与 3D 物理引擎。5.2k stars。',
+        icon: 'tabler:3d-cube-sphere',
+        classes: projectIconThemes.rapier,
       },
       {
-        title: '启航与成长！',
-        icon: 'tabler:rocket',
+        title: 'OminiX-ai',
+        description: '面向 Apple Silicon 的端侧 AI，纯 Rust MLX。20+ crates。',
+        icon: 'tabler:cpu',
+        classes: projectIconThemes.ominix,
       },
     ]}
-    image={programImage}
+    image={infraSvg}
+    callToAction={{
+      text: '查看所有项目',
+      href: '/cn/projects/',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    tagline="面向用户的产品"
+    title="应用项目"
+    isReversed={true}
+    items={[
+      {
+        title: 'Moly',
+        description: 'AI LLM 客户端，6 平台原生 GUI，支持多模型提供商。403 stars。',
+        icon: 'tabler:message-chatbot',
+        image: projectLogos.moly,
+        classes: projectIconThemes.moly,
+      },
+      {
+        title: 'Robrix',
+        description: 'Matrix 聊天客户端，支持端到端加密，覆盖 6 个平台。413 stars。',
+        icon: 'tabler:message-circle',
+        image: projectLogos.robrix,
+        classes: projectIconThemes.robrix,
+      },
+      {
+        title: 'MoFA',
+        description: '模块化 AI Agent 框架，采用微内核架构。195 stars。',
+        icon: 'tabler:atom',
+        image: projectLogos.mofa,
+        classes: projectIconThemes.mofa,
+      },
+      {
+        title: 'Moxin LLM',
+        description: '开源可复现 LLM 系列，具备 VLM 与 TTS 能力。610 stars。',
+        icon: 'tabler:brain',
+        image: projectLogos.moxin,
+        classes: projectIconThemes.moxin,
+      },
+    ]}
+    image={appSvg}
+    callToAction={{
+      text: '查看所有项目',
+      href: '/cn/projects/',
+    }}
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 cta-gradient"></div>
     </Fragment>
-  </Steps>
-
-  <!-- CallToAction Widget *********** -->
+  </Content>
 
   <CallToAction
     actions={[

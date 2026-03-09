@@ -6,60 +6,60 @@ import '@fontsource-variable/manrope';
 <style is:inline>
   :root {
     /* Font Families */
-    --aw-font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+    --aw-font-sans: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
     --aw-font-serif: 'Noto Serif SC', 'Source Han Serif SC', serif;
     --aw-font-heading: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
 
-    /* Brand Colors - Upstream Labs Palette */
-    --aw-color-primary: rgb(43 116 255);      /* Azure Blue #2B74FF */
-    --aw-color-secondary: rgb(0 200 150);     /* Aqua Teal #00C896 */
-    --aw-color-accent: rgb(255 198 64);       /* Osmanthus Gold #FFC640 */
+    /* Brand Colors - refreshed Upstream palette */
+    --aw-color-primary: rgb(37 99 235); /* Cobalt #2563EB */
+    --aw-color-secondary: rgb(15 183 154); /* Mint teal #0FB79A */
+    --aw-color-accent: rgb(255 138 76); /* Apricot #FF8A4C */
 
     /* Text Colors */
-    --aw-color-text-heading: rgb(28 29 36);   /* Ink Black */
-    --aw-color-text-default: rgb(28 29 36);
-    --aw-color-text-muted: rgb(28 29 36 / 66%);
+    --aw-color-text-heading: rgb(15 23 42);
+    --aw-color-text-default: rgb(22 31 53);
+    --aw-color-text-muted: rgb(56 72 98 / 72%);
 
     /* Background Colors */
-    --aw-color-bg-page: rgb(255 255 255);
-    --aw-color-bg-page-dark: rgb(28 29 36);   /* Ink Black */
+    --aw-color-bg-page: rgb(245 247 252);
+    --aw-color-bg-page-dark: rgb(7 17 31);
 
     /* Gradient Color Stops */
-    --aw-gradient-start: rgb(43 116 255);     /* Azure */
-    --aw-gradient-mid: rgb(0 200 150);        /* Aqua */
-    --aw-gradient-end: rgb(255 198 64);       /* Gold */
+    --aw-gradient-start: rgb(37 99 235);
+    --aw-gradient-mid: rgb(15 183 154);
+    --aw-gradient-end: rgb(255 138 76);
 
     ::selection {
-      background-color: rgb(43 116 255 / 30%);
+      background-color: rgb(37 99 235 / 24%);
     }
   }
 
   .dark {
     /* Font Families (same in dark mode) */
-    --aw-font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+    --aw-font-sans: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
     --aw-font-serif: 'Noto Serif SC', 'Source Han Serif SC', serif;
     --aw-font-heading: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
 
-    /* Adjusted colors for dark mode (slightly brighter) */
-    --aw-color-primary: rgb(77 142 255);      /* Lighter Azure */
-    --aw-color-secondary: rgb(0 220 170);     /* Brighter Aqua */
-    --aw-color-accent: rgb(255 210 90);       /* Brighter Gold */
+    /* Dark mode palette */
+    --aw-color-primary: rgb(96 165 250);
+    --aw-color-secondary: rgb(52 211 153);
+    --aw-color-accent: rgb(253 186 116);
 
     /* Text Colors for dark mode */
-    --aw-color-text-heading: rgb(247 248 248);
-    --aw-color-text-default: rgb(229 236 246);
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
+    --aw-color-text-heading: rgb(241 245 249);
+    --aw-color-text-default: rgb(226 232 240);
+    --aw-color-text-muted: rgb(203 213 225 / 72%);
 
     /* Background Colors */
-    --aw-color-bg-page: rgb(28 29 36);        /* Ink Black */
+    --aw-color-bg-page: rgb(7 17 31);
 
-    /* Gradient Color Stops (brighter for dark mode) */
-    --aw-gradient-start: rgb(77 142 255);
-    --aw-gradient-mid: rgb(0 220 170);
-    --aw-gradient-end: rgb(255 210 90);
+    /* Gradient Color Stops */
+    --aw-gradient-start: rgb(96 165 250);
+    --aw-gradient-mid: rgb(52 211 153);
+    --aw-gradient-end: rgb(253 186 116);
 
     ::selection {
-      background-color: rgb(77 142 255 / 40%);
+      background-color: rgb(96 165 250 / 32%);
       color: snow;
     }
   }

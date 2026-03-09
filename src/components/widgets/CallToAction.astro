@@ -27,21 +27,26 @@ const {
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
   <div
-    class="max-w-3xl mx-auto text-center p-6 md:p-8 rounded-2xl glass dark:glass-dark shadow-xl"
+    class="group relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] border border-white/70 bg-white/[0.76] p-6 text-center shadow-[0_28px_80px_rgba(15,23,42,0.10)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_34px_96px_rgba(37,99,235,0.14)] dark:border-white/10 dark:bg-[rgba(7,17,31,0.78)] dark:shadow-[0_28px_90px_rgba(0,0,0,0.34)] dark:hover:shadow-[0_34px_96px_rgba(0,0,0,0.42)] md:p-10"
   >
+    <div class="pointer-events-none absolute inset-0 opacity-80">
+      <div class="absolute -left-8 top-0 h-32 w-32 rounded-full bg-azure-300/25 blur-3xl dark:bg-azure-400/15"></div>
+      <div class="absolute bottom-0 right-0 h-36 w-36 rounded-full bg-gold-300/25 blur-3xl dark:bg-gold-400/15"></div>
+      <div class="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-azure-400 via-aqua-400 to-gold-400"></div>
+    </div>
     <Headline
       title={title}
       subtitle={subtitle}
       tagline={tagline}
       classes={{
-        container: 'mb-0 md:mb-0',
+        container: 'mb-0 md:mb-0 relative z-[1]',
         title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
         subtitle: 'text-xl text-muted dark:text-slate-400',
       }}
     />
     {
       actions && (
-        <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
+        <div class="relative z-[1] m-auto mt-6 flex max-w-xs flex-nowrap flex-col gap-4 sm:max-w-md sm:flex-row sm:justify-center">
           {Array.isArray(actions) ? (
             actions.map((action) => (
               <div class="flex w-full sm:w-auto">

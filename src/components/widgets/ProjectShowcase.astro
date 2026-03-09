@@ -1,0 +1,333 @@
+---
+import Image from '~/components/common/Image.astro';
+import type { Image as AstroImage } from '~/types';
+
+interface ShowcaseStat {
+  label: string;
+  value: string;
+  tone?: 'azure' | 'aqua' | 'gold';
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  image?: string | AstroImage;
+  chips?: string[];
+  stats?: ShowcaseStat[];
+}
+
+const {
+  eyebrow = '',
+  title = '',
+  description = '',
+  image,
+  chips = [],
+  stats = [],
+} = Astro.props;
+
+const chipOffsets = [
+  'left-4 top-4 md:-left-5 md:top-8',
+  'right-4 top-5 md:-right-4 md:top-12',
+  'left-5 bottom-5 md:left-8 md:bottom-10',
+  'right-5 bottom-4 md:right-4 md:bottom-14',
+];
+
+const overlayChips = chips
+  .slice(0, 4)
+  .map((chip, index) => ({ chip, positionClass: chipOffsets[index] ?? chipOffsets[0] }));
+
+const toneClasses = {
+  azure: 'showcase-stat-value showcase-stat-value-azure',
+  aqua: 'showcase-stat-value showcase-stat-value-aqua',
+  gold: 'showcase-stat-value showcase-stat-value-gold',
+} as const;
+---
+
+<div class="project-showcase">
+  <div class="project-showcase-copy">
+    {eyebrow && <div class="project-showcase-eyebrow">{eyebrow}</div>}
+    {title && <h3 class="project-showcase-title">{title}</h3>}
+    {description && <p class="project-showcase-description">{description}</p>}
+
+    {stats.length > 0 && (
+      <div class="project-showcase-stats">
+        {stats.map((stat) => (
+          <div class="project-showcase-stat">
+            <div class={toneClasses[stat.tone ?? 'azure']}>{stat.value}</div>
+            <div class="showcase-stat-label">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {chips.length > 0 && (
+      <div class="project-showcase-chip-row">
+        {chips.map((chip) => (
+          <span class="project-showcase-chip">{chip}</span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {
+    image && (
+      <div class="project-showcase-art-shell">
+        <div class="project-showcase-glow" />
+        <div class="project-showcase-art">
+          {typeof image === 'string' ? (
+            <Fragment set:html={image} />
+          ) : (
+            <Image
+              class="mx-auto w-full rounded-[1.75rem] bg-gray-500 shadow-lg"
+              width={500}
+              height={500}
+              widths={[400, 768]}
+              sizes="(max-width: 768px) 100vw, 560px"
+              layout="responsive"
+              {...image}
+            />
+          )}
+        </div>
+        {overlayChips.map(({ chip, positionClass }) => (
+          <span class={`project-showcase-floating-chip ${positionClass}`}>{chip}</span>
+        ))}
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .project-showcase {
+    display: grid;
+    gap: 1.75rem;
+    align-items: center;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(248, 250, 255, 0.72)),
+      radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 38%);
+    padding: 1.5rem;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(18px);
+  }
+
+  .project-showcase-copy {
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-showcase-eyebrow {
+    margin-bottom: 0.85rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #2563eb;
+  }
+
+  .project-showcase-title {
+    margin: 0;
+    font-size: clamp(1.85rem, 2vw, 2.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+  }
+
+  .project-showcase-description {
+    margin: 1rem 0 0;
+    max-width: 38rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(15, 23, 42, 0.68);
+  }
+
+  .project-showcase-stats {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .project-showcase-stat {
+    border-radius: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.72);
+    padding: 0.9rem 1rem;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+  }
+
+  .showcase-stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .showcase-stat-value-azure {
+    color: #2563eb;
+  }
+
+  .showcase-stat-value-aqua {
+    color: #0f9f8a;
+  }
+
+  .showcase-stat-value-gold {
+    color: #d97706;
+  }
+
+  .showcase-stat-label {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: rgba(15, 23, 42, 0.6);
+  }
+
+  .project-showcase-chip-row {
+    margin-top: 1.15rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .project-showcase-chip,
+  .project-showcase-floating-chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.76);
+    padding: 0.48rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgba(15, 23, 42, 0.82);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(12px);
+  }
+
+  .project-showcase-art-shell {
+    position: relative;
+    border-radius: 1.9rem;
+    padding: 0.9rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(248, 250, 255, 0.7)),
+      radial-gradient(circle at top left, rgba(15, 183, 154, 0.14), transparent 34%),
+      radial-gradient(circle at bottom right, rgba(255, 138, 76, 0.12), transparent 30%);
+    box-shadow: 0 28px 80px rgba(15, 23, 42, 0.1);
+  }
+
+  .project-showcase-art-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 35%),
+      radial-gradient(circle at bottom left, rgba(15, 183, 154, 0.1), transparent 28%);
+    pointer-events: none;
+  }
+
+  .project-showcase-glow {
+    position: absolute;
+    inset: 8% 10%;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(15, 183, 154, 0.14), rgba(255, 138, 76, 0.18));
+    filter: blur(48px);
+    opacity: 0.82;
+  }
+
+  .project-showcase-art {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 1.65rem;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 247, 255, 0.92));
+  }
+
+  .project-showcase-art :global(svg),
+  .project-showcase-art :global(img),
+  .project-showcase-art :global(picture img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .project-showcase-floating-chip {
+    position: absolute;
+    z-index: 2;
+  }
+
+  :global(.dark) .project-showcase {
+    border-color: rgba(255, 255, 255, 0.1);
+    background:
+      linear-gradient(180deg, rgba(7, 17, 31, 0.84), rgba(11, 21, 39, 0.78)),
+      radial-gradient(circle at top right, rgba(96, 165, 250, 0.16), transparent 38%);
+    box-shadow: 0 28px 84px rgba(0, 0, 0, 0.34);
+  }
+
+  :global(.dark) .project-showcase-title {
+    color: #f8fafc;
+  }
+
+  :global(.dark) .project-showcase-description {
+    color: rgba(226, 232, 240, 0.72);
+  }
+
+  :global(.dark) .project-showcase-stat {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  :global(.dark) .showcase-stat-label {
+    color: rgba(203, 213, 225, 0.72);
+  }
+
+  :global(.dark) .project-showcase-chip,
+  :global(.dark) .project-showcase-floating-chip {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(15, 23, 42, 0.84);
+    color: rgba(226, 232, 240, 0.9);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+  }
+
+  :global(.dark) .project-showcase-art-shell {
+    border-color: rgba(255, 255, 255, 0.1);
+    background:
+      linear-gradient(180deg, rgba(7, 17, 31, 0.82), rgba(11, 21, 39, 0.76)),
+      radial-gradient(circle at top left, rgba(52, 211, 153, 0.16), transparent 36%),
+      radial-gradient(circle at bottom right, rgba(253, 186, 116, 0.12), transparent 32%);
+    box-shadow: 0 30px 88px rgba(0, 0, 0, 0.38);
+  }
+
+  :global(.dark) .project-showcase-art {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(10, 19, 34, 0.94), rgba(7, 17, 31, 0.98));
+  }
+
+  @media (min-width: 960px) {
+    .project-showcase {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr);
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .project-showcase {
+      padding: 1.1rem;
+      border-radius: 1.6rem;
+    }
+
+    .project-showcase-art-shell {
+      padding: 0.75rem;
+      border-radius: 1.5rem;
+    }
+
+    .project-showcase-floating-chip {
+      font-size: 0.64rem;
+      padding: 0.4rem 0.7rem;
+    }
+  }
+</style>

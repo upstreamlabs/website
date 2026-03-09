@@ -3,20 +3,18 @@ import Layout from '~/layouts/PageLayout.astro';
 
 import HeroSplash from '~/components/widgets/HeroSplash.astro';
 import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
-import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
-import heroImage from '~/assets/images/hero-image.jpg';
-import programImage from '~/assets/images/hero-v2.jpg';
+import { appSvg, infraSvg } from '~/data/homeIllustrations';
+import { projectIconThemes, projectLogos } from '~/data/projectIconThemes';
 
 const metadata = {
-  title: 'Upstream Labs — Building Sustainable Open-Source Ecosystems',
+  title: 'Upstream Labs - Building Sustainable Open-Source Ecosystems',
   ignoreTitleTemplate: true,
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
-
   <HeroSplash
     tagline="Open Source · AI · Public Goods"
     actions={[
@@ -33,7 +31,6 @@ const metadata = {
         icon: 'tabler:arrow-down',
       },
     ]}
-    image={heroImage}
   >
     <Fragment slot="title">
       <span class="block">Where Innovation</span>
@@ -41,9 +38,41 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="font-semibold text-ink-700 dark:text-white">Upstream Labs</span> is devoted to building sustainable open-source
-      ecosystems. We unite partners across academia, industry, and civic sectors to transform open collaboration into lasting
-      public goods and digital infrastructure.
+      <span class="font-semibold text-ink-700 dark:text-white">Upstream Labs</span> builds the operating layer for sustainable
+      open source. We align research, maintainers, companies, and civic partners so promising projects can compound into
+      durable digital public infrastructure.
+    </Fragment>
+
+    <Fragment slot="content">
+      <div class="mx-auto grid max-w-4xl gap-3 text-left sm:grid-cols-3">
+        <div
+          class="group rounded-[1.5rem] border border-white/70 bg-white/70 px-4 py-4 shadow-[0_18px_45px_rgba(37,99,235,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-azure-200/80 hover:shadow-[0_24px_60px_rgba(37,99,235,0.14)] dark:border-white/10 dark:bg-white/5 dark:shadow-[0_20px_45px_rgba(0,0,0,0.28)]"
+        >
+          <div class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted">Active portfolio</div>
+          <div class="mt-2 text-3xl font-bold text-ink-700 dark:text-white">10+</div>
+          <p class="mt-1 text-sm leading-6 text-muted dark:text-slate-400">
+            Rust, AI, robotics, and systems bets under active support.
+          </p>
+        </div>
+        <div
+          class="group rounded-[1.5rem] border border-white/70 bg-white/70 px-4 py-4 shadow-[0_18px_45px_rgba(15,183,154,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-aqua-200/80 hover:shadow-[0_24px_60px_rgba(15,183,154,0.14)] dark:border-white/10 dark:bg-white/5 dark:shadow-[0_20px_45px_rgba(0,0,0,0.28)]"
+        >
+          <div class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted">Community reach</div>
+          <div class="mt-2 text-3xl font-bold text-ink-700 dark:text-white">15k+</div>
+          <p class="mt-1 text-sm leading-6 text-muted dark:text-slate-400">
+            Combined stars and growing network effects across the stack.
+          </p>
+        </div>
+        <div
+          class="group rounded-[1.5rem] border border-white/70 bg-white/70 px-4 py-4 shadow-[0_18px_45px_rgba(255,138,76,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-gold-200/80 hover:shadow-[0_24px_60px_rgba(255,138,76,0.14)] dark:border-white/10 dark:bg-white/5 dark:shadow-[0_20px_45px_rgba(0,0,0,0.28)]"
+        >
+          <div class="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-muted">Delivery model</div>
+          <div class="mt-2 text-3xl font-bold text-ink-700 dark:text-white">3x</div>
+          <p class="mt-1 text-sm leading-6 text-muted dark:text-slate-400">
+            Build, connect, and sustain with one continuous operating loop.
+          </p>
+        </div>
+      </div>
     </Fragment>
 
     <Fragment slot="bg">
@@ -51,45 +80,30 @@ const metadata = {
     </Fragment>
   </HeroSplash>
 
-  <!-- Features Widget *************** -->
-
   <FeaturesCards
     id="mission"
-    tagline="Building Sustainable Ecosystems"
-    title="How We Work"
-    subtitle="Upstream Labs operates at the intersection of open source, business innovation, and public policy. Through training, convening, and long-term support, we help projects grow from code to community to sustainable impact."
+    tagline="Our Mission"
+    title="Build · Connect · Sustain"
+    subtitle="Upstream Labs operates at the intersection of open source, business innovation, and public policy. Through incubation, convening, and long-term support, we help projects grow from code to community to durable impact."
     columns={3}
     items={[
       {
-        title: 'Upstream Training Camp',
-        description: 'Comprehensive training in open-source ecosystems, AI tools, and sustainable business models.',
-        icon: 'tabler:school',
-      },
-      {
-        title: 'GOBI Conference',
+        title: 'Build',
         description:
-          'Global Open Source Business Innovation Conference connecting developers, businesses, and policy partners.',
-        icon: 'tabler:speakerphone',
+          'Incubate world-class open-source projects in Rust, AI, and systems infrastructure. 10+ active projects with 15,000+ combined GitHub stars.',
+        icon: 'tabler:hammer',
       },
       {
-        title: 'Project Incubation',
-        description: 'Mentorship, funding, and resources for promising open-source projects focused on public goods.',
-        icon: 'tabler:bulb',
+        title: 'Connect',
+        description:
+          'Unite developers, enterprises, and academia through conferences, training, and mentorship. Active at GOSIM, FOSDEM, RustWeek, and GSoC.',
+        icon: 'tabler:network',
       },
       {
-        title: 'Ecosystem Grants',
-        description: 'Financial support for community programs, content creation, partnerships, and governance design.',
-        icon: 'tabler:coin',
-      },
-      {
-        title: 'Mentorship Network',
-        description: 'Access to academic, community, industry, and government mentors who guide project development.',
-        icon: 'tabler:users',
-      },
-      {
-        title: 'Knowledge Network',
-        description: 'Open case studies and resources that help the broader community learn from successful projects.',
-        icon: 'tabler:books',
+        title: 'Sustain',
+        description:
+          'Create viable business models for long-term open-source growth through consulting, incubation, training, and ecosystem partnerships.',
+        icon: 'tabler:recycle',
       },
     ]}
   >
@@ -98,42 +112,92 @@ const metadata = {
     </Fragment>
   </FeaturesCards>
 
-  <!-- Steps Widget ****************** -->
-
-  <Steps
-    title="Our Program Structure"
+  <Content
+    tagline="Our Portfolio"
+    title="Open-Source Infrastructure"
     items={[
       {
-        title: 'Stage 1: <span class="font-medium">Base Camp</span>',
-        description:
-          'Four-week online training featuring weekly live sessions, peer studios, and guided assignments in open-source principles, AI tools, and community operations.',
-        icon: 'tabler:tent',
+        title: 'Makepad',
+        description: 'Cross-platform Rust UI framework with GPU rendering. 6.2k stars.',
+        icon: 'tabler:layout',
+        image: projectLogos.makepad,
+        classes: projectIconThemes.makepad,
       },
       {
-        title: 'Stage 2: <span class="font-medium">Ascend Camp</span>',
-        description:
-          'Multi-day immersive bootcamp combining project pairing, governance design sprints, storytelling labs, and final showcases with industry mentors.',
-        icon: 'tabler:mountain',
+        title: 'Dora',
+        description: 'Robotic middleware, 10 to 17 times faster than ROS2. 3k stars.',
+        icon: 'tabler:robot',
+        image: projectLogos.dora,
+        classes: projectIconThemes.dora,
       },
       {
-        title: 'Stage 3: <span class="font-medium">Summit Camp</span>',
-        description:
-          'Top-performing teams receive funding and are paired with open-source project teams for a 6-month collaborative development program.',
-        icon: 'tabler:trophy',
+        title: 'Rapier',
+        description: '2D and 3D physics engine by Dimforge. 5.2k stars.',
+        icon: 'tabler:3d-cube-sphere',
+        classes: projectIconThemes.rapier,
       },
       {
-        title: 'Launch & Grow!',
-        icon: 'tabler:rocket',
+        title: 'OminiX-ai',
+        description: 'On-device AI for Apple Silicon, pure Rust MLX. 20+ crates.',
+        icon: 'tabler:cpu',
+        classes: projectIconThemes.ominix,
       },
     ]}
-    image={programImage}
+    image={infraSvg}
+    callToAction={{
+      text: 'View All Projects',
+      href: '/en/projects/',
+    }}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </Content>
+
+  <Content
+    tagline="User-Facing Products"
+    title="Application Projects"
+    isReversed={true}
+    items={[
+      {
+        title: 'Moly',
+        description: 'AI LLM client with 6-platform native GUI and multi-provider support. 403 stars.',
+        icon: 'tabler:message-chatbot',
+        image: projectLogos.moly,
+        classes: projectIconThemes.moly,
+      },
+      {
+        title: 'Robrix',
+        description: 'Matrix chat client with end-to-end encryption across 6 platforms. 413 stars.',
+        icon: 'tabler:message-circle',
+        image: projectLogos.robrix,
+        classes: projectIconThemes.robrix,
+      },
+      {
+        title: 'MoFA',
+        description: 'Modular AI agent framework with a microkernel architecture. 195 stars.',
+        icon: 'tabler:atom',
+        image: projectLogos.mofa,
+        classes: projectIconThemes.mofa,
+      },
+      {
+        title: 'Moxin LLM',
+        description: 'Open-source reproducible LLM family with VLM and TTS capabilities. 610 stars.',
+        icon: 'tabler:brain',
+        image: projectLogos.moxin,
+        classes: projectIconThemes.moxin,
+      },
+    ]}
+    image={appSvg}
+    callToAction={{
+      text: 'View All Projects',
+      href: '/en/projects/',
+    }}
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 cta-gradient"></div>
     </Fragment>
-  </Steps>
-
-  <!-- CallToAction Widget *********** -->
+  </Content>
 
   <CallToAction
     actions={[

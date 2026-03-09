@@ -1,13 +1,11 @@
 ---
 import HeroSplash from '~/components/widgets/HeroSplash.astro';
 import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
-import Content from '~/components/widgets/Content.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Layout from '~/layouts/PageLayout.astro';
-import heroImage from '~/assets/images/hero-image-3.jpg';
-import valuesImage from '~/assets/images/hero-v.jpg';
+import { valuesSvgEn } from '~/data/homeIllustrations';
 
 const metadata = {
   title: 'About Us',
@@ -17,19 +15,19 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <HeroSplash
-    tagline="About Upstream Labs"
-    image={heroImage}
-  >
+  <HeroSplash tagline="About Upstream Labs">
     <Fragment slot="title">
       <span class="block">Building Sustainable</span>
       <span class="text-gradient">Open-Source Ecosystems</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Upstream Labs is devoted to building sustainable open-source ecosystems. Since our founding, we've worked at the intersection of technology, policy, and public good—training ecosystem builders, convening cross-sector partners, and supporting projects that serve as digital public infrastructure.
+      Upstream Labs is devoted to building sustainable open-source ecosystems. Since our founding, we've worked at the
+      intersection of technology, policy, and public good—training ecosystem builders, convening cross-sector partners,
+      and supporting projects that serve as digital public infrastructure.
       <br /><br />
-      We believe open source is more than a technical pathway—it is a collaborative civic culture that cultivates trust, shared value, and long-term sustainability so collective innovation can power a shared future.
+      We believe open source is more than a technical pathway—it is a collaborative civic culture that cultivates trust,
+      shared value, and long-term sustainability so collective innovation can power a shared future.
     </Fragment>
 
     <Fragment slot="bg">
@@ -136,10 +134,10 @@ const metadata = {
 
   <Stats
     stats={[
-      { title: 'Weeks of Training', amount: '4' },
-      { title: 'Grant (RMB)', amount: '100K' },
-      { title: 'Days Immersive', amount: '5' },
-      { title: 'Months Mentorship', amount: '6' },
+      { title: 'GitHub Stars', amount: '15,000+' },
+      { title: 'Community Forks', amount: '1,200+' },
+      { title: 'Total Commits', amount: '12,000+' },
+      { title: 'Countries', amount: '30+' },
     ]}
   >
     <Fragment slot="bg">
@@ -173,7 +171,7 @@ const metadata = {
         icon: 'tabler:chart-line',
       },
     ]}
-    image={valuesImage}
+    image={valuesSvgEn}
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 section-bg-azure-glow"></div>
@@ -218,14 +216,34 @@ const metadata = {
   <!-- Features Widget *************** -->
 
   <FeaturesCards
-    title="Our Events"
-    tagline="Programs"
-    columns={2}
+    title="Global Ecosystem Presence"
+    tagline="Events & Programs"
+    subtitle="Year-round presence at the top open-source venues worldwide."
+    columns={3}
     items={[
       {
-        title: 'Upstream 源起之道',
-        description:
-          'Our flagship training program combining online learning with immersive bootcamps. Participants learn open-source principles, AI tools, and sustainable business models while working on real projects.',
+        title: 'GOSIM',
+        description: 'Global Open-Source Innovation Meetup — our flagship developer conference series.',
+        icon: 'tabler:world',
+      },
+      {
+        title: 'GSoC Mentor',
+        description: 'Official Google Summer of Code mentor organization, guiding student contributors worldwide.',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'FOSDEM',
+        description: 'Presenting at the largest open-source conference in Europe, held in Brussels.',
+        icon: 'tabler:microphone',
+      },
+      {
+        title: 'RustWeek',
+        description: 'Sponsor of the premier Rust community event in Utrecht.',
+        icon: 'tabler:heart',
+      },
+      {
+        title: 'Upstream Training Camp',
+        description: 'Our 3-stage developer program: Base Camp → Ascend Camp → Summit Camp.',
         icon: 'tabler:school',
         callToAction: {
           text: 'Learn More',
@@ -234,8 +252,7 @@ const metadata = {
       },
       {
         title: 'GOBI Conference',
-        description:
-          'Global Open Source Business Innovation Conference. Connecting developers, businesses, and policy partners to explore sustainable paths from source to industry.',
+        description: 'Global Open Source Business Innovation — connecting developers, businesses, and policy partners.',
         icon: 'tabler:speakerphone',
         callToAction: {
           text: 'Learn More',
@@ -266,7 +283,8 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Reach out to discuss partnership opportunities, program applications, mentorship, or general inquiries about Upstream Labs.<br class="hidden md:inline" />
+      Reach out to discuss partnership opportunities, program applications, mentorship, or general inquiries about
+      Upstream Labs.<br class="hidden md:inline" />
       Together, we can build sustainable open-source ecosystems that serve as digital public infrastructure.
     </Fragment>
 

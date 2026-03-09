@@ -10,11 +10,7 @@ export const defaultLang = 'en';
 
 // Initialize i18next
 i18next
-  .use(
-    resourcesToBackend((language: string, namespace: string) =>
-      import(`./locales/${language}/${namespace}.json`)
-    )
-  )
+  .use(resourcesToBackend((language: string, namespace: string) => import(`./locales/${language}/${namespace}.json`)))
   .init({
     lng: defaultLang,
     fallbackLng: defaultLang,
@@ -30,7 +26,7 @@ export async function useTranslations(lang: string = defaultLang) {
   await i18n.changeLanguage(lang);
 
   return {
-    t: (key: string, options?: object) => i18n.t(key, options),
+    t: (key: string, options?: Record<string, unknown>) => i18n.t(key, options as never),
     lang,
   };
 }

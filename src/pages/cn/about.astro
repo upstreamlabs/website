@@ -1,13 +1,11 @@
 ---
 import HeroSplash from '~/components/widgets/HeroSplash.astro';
 import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
-import Content from '~/components/widgets/Content.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Layout from '~/layouts/PageLayout.astro';
-import heroImage from '~/assets/images/hero-image-2.jpg';
-import valuesImage from '~/assets/images/hero-v.jpg';
+import { valuesSvgCn } from '~/data/homeIllustrations';
 
 const metadata = {
   title: '关于我们',
@@ -17,17 +15,15 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <HeroSplash
-    tagline="关于 Upstream Labs"
-    image={heroImage}
-  >
+  <HeroSplash tagline="关于 Upstream Labs">
     <Fragment slot="title">
       <span class="block">构建可持续的</span>
       <span class="text-gradient">开源生态系统</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Upstream Labs 致力于构建可持续的开源生态系统。自成立以来，我们一直立足于技术、政策与公共利益的交汇点——培养生态系统建设者，召集跨界合作伙伴，支持作为数字公共基础设施的项目。
+      Upstream Labs
+      致力于构建可持续的开源生态系统。自成立以来，我们一直立足于技术、政策与公共利益的交汇点——培养生态系统建设者，召集跨界合作伙伴，支持作为数字公共基础设施的项目。
       <br /><br />
       我们相信开源不仅是一种技术路径——它是一种协作文明，培育信任、共享价值和长期可持续性，让集体创新推动共同的未来。
     </Fragment>
@@ -88,38 +84,32 @@ const metadata = {
     items={[
       {
         title: 'AI 与机器学习',
-        description:
-          '支持开放 AI 基础设施，从异构推理引擎到边缘计算语音 AI 和 AI 原生开发工具。',
+        description: '支持开放 AI 基础设施，从异构推理引擎到边缘计算语音 AI 和 AI 原生开发工具。',
         icon: 'tabler:robot',
       },
       {
         title: '机器人与具身智能',
-        description:
-          '构建开放机器人操作系统、数据流框架，以及面向教育和产业的经济实惠的硬件套件。',
+        description: '构建开放机器人操作系统、数据流框架，以及面向教育和产业的经济实惠的硬件套件。',
         icon: 'tabler:cpu',
       },
       {
         title: '协议与身份',
-        description:
-          '为代理网络、去中心化身份和主权通信基础设施开发开放标准。',
+        description: '为代理网络、去中心化身份和主权通信基础设施开发开放标准。',
         icon: 'tabler:network',
       },
       {
         title: '开发者工具',
-        description:
-          '创建 Rust 原生框架、GPU 加速 UI 引擎，以及面向 AI 原生应用的全栈工具包。',
+        description: '创建 Rust 原生框架、GPU 加速 UI 引擎，以及面向 AI 原生应用的全栈工具包。',
         icon: 'tabler:code',
       },
       {
         title: '社区建设',
-        description:
-          '培育独立创客社群、创作者社区，以及维持开放协作的治理模式。',
+        description: '培育独立创客社群、创作者社区，以及维持开放协作的治理模式。',
         icon: 'tabler:users-group',
       },
       {
         title: '公民基础设施',
-        description:
-          '支持为公共机构、教育和社区提供开放数字基础设施的项目。',
+        description: '支持为公共机构、教育和社区提供开放数字基础设施的项目。',
         icon: 'tabler:building-community',
       },
     ]}
@@ -133,10 +123,10 @@ const metadata = {
 
   <Stats
     stats={[
-      { title: '培训周数', amount: '4' },
-      { title: '资助金额（人民币）', amount: '100K' },
-      { title: '沉浸式天数', amount: '5' },
-      { title: '指导月数', amount: '6' },
+      { title: 'GitHub Stars', amount: '15,000+' },
+      { title: '社区 Forks', amount: '1,200+' },
+      { title: '总提交数', amount: '12,000+' },
+      { title: '覆盖国家', amount: '30+' },
     ]}
   >
     <Fragment slot="bg">
@@ -153,24 +143,21 @@ const metadata = {
     items={[
       {
         title: '开放协作',
-        description:
-          '我们相信开放工作的力量——分享知识、代码和资源比囤积它们创造更多价值。',
+        description: '我们相信开放工作的力量——分享知识、代码和资源比囤积它们创造更多价值。',
         icon: 'tabler:share',
       },
       {
         title: '公共产品优先',
-        description:
-          '我们的重点是服务于公共利益的项目。技术应该惠及所有人，而不仅仅是那些能够付费的人。',
+        description: '我们的重点是服务于公共利益的项目。技术应该惠及所有人，而不仅仅是那些能够付费的人。',
         icon: 'tabler:world',
       },
       {
         title: '可持续增长',
-        description:
-          '我们帮助项目找到能够放大而非损害其使命的商业模式。长期影响优于短期收益。',
+        description: '我们帮助项目找到能够放大而非损害其使命的商业模式。长期影响优于短期收益。',
         icon: 'tabler:chart-line',
       },
     ]}
-    image={valuesImage}
+    image={valuesSvgCn}
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 section-bg-azure-glow"></div>
@@ -215,14 +202,34 @@ const metadata = {
   <!-- Features Widget *************** -->
 
   <FeaturesCards
-    title="我们的活动"
-    tagline="项目"
-    columns={2}
+    title="全球生态系统布局"
+    tagline="活动与项目"
+    subtitle="全年活跃于世界顶级开源活动。"
+    columns={3}
     items={[
       {
-        title: 'Upstream 源起之道',
-        description:
-          '我们的旗舰培训项目，结合在线学习与沉浸式训练营。参与者在真实项目中学习开源原则、AI 工具和可持续商业模式。',
+        title: 'GOSIM',
+        description: '全球开源创新大会——我们的旗舰开发者大会系列。',
+        icon: 'tabler:world',
+      },
+      {
+        title: 'GSoC 导师',
+        description: '谷歌编程之夏官方导师组织，指导全球学生贡献者。',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'FOSDEM',
+        description: '在布鲁塞尔欧洲最大的开源大会上发表演讲。',
+        icon: 'tabler:microphone',
+      },
+      {
+        title: 'RustWeek',
+        description: '赞助 Rust 社区在乌特勒支举办的年度旗舰活动。',
+        icon: 'tabler:heart',
+      },
+      {
+        title: 'Upstream 训练营',
+        description: '三阶段开发者培养项目：基础营 → 攀登营 → 登顶营。',
         icon: 'tabler:school',
         callToAction: {
           text: '了解更多',
@@ -231,8 +238,7 @@ const metadata = {
       },
       {
         title: 'GOBI 大会',
-        description:
-          '全球开源商业创新大会。连接开发者、企业和政策伙伴，探索从源头到产业的可持续路径。',
+        description: '全球开源商业创新大会——连接开发者、企业和政策伙伴。',
         icon: 'tabler:speakerphone',
         callToAction: {
           text: '了解更多',

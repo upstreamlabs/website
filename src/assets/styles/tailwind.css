@@ -29,43 +29,37 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 100% 60% at 50% -15%, rgba(43, 116, 255, 0.18), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 90% 30%, rgba(255, 198, 64, 0.14), transparent 55%),
-      radial-gradient(ellipse 60% 40% at 10% 60%, rgba(0, 200, 150, 0.12), transparent 50%),
-      radial-gradient(ellipse 50% 35% at 70% 80%, rgba(139, 210, 255, 0.10), transparent 45%);
+      radial-gradient(ellipse 100% 60% at 50% -15%, rgba(37, 99, 235, 0.18), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 30%, rgba(255, 138, 76, 0.14), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 10% 60%, rgba(15, 183, 154, 0.12), transparent 50%),
+      radial-gradient(ellipse 50% 35% at 70% 80%, rgba(96, 165, 250, 0.1), transparent 45%);
     pointer-events: none;
     z-index: 0;
   }
 
   .dark .hero-gradient::before {
     background:
-      radial-gradient(ellipse 100% 60% at 50% -15%, rgba(77, 142, 255, 0.28), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 90% 30%, rgba(255, 210, 90, 0.18), transparent 55%),
-      radial-gradient(ellipse 60% 40% at 10% 60%, rgba(0, 220, 170, 0.16), transparent 50%),
-      radial-gradient(ellipse 50% 35% at 70% 80%, rgba(139, 210, 255, 0.12), transparent 45%);
+      radial-gradient(ellipse 100% 60% at 50% -15%, rgba(96, 165, 250, 0.28), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 30%, rgba(253, 186, 116, 0.18), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 10% 60%, rgba(52, 211, 153, 0.16), transparent 50%),
+      radial-gradient(ellipse 50% 35% at 70% 80%, rgba(125, 211, 252, 0.12), transparent 45%);
   }
 
   /* CTA section gradient */
   .cta-gradient {
     background:
-      linear-gradient(135deg,
-        rgba(43, 116, 255, 0.08) 0%,
-        rgba(0, 200, 150, 0.06) 50%,
-        rgba(255, 198, 64, 0.08) 100%),
-      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(43, 116, 255, 0.10), transparent 50%),
-      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(255, 198, 64, 0.08), transparent 45%),
-      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0, 200, 150, 0.06), transparent 40%);
+      linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(15, 183, 154, 0.06) 50%, rgba(255, 138, 76, 0.08) 100%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(37, 99, 235, 0.1), transparent 50%),
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(255, 138, 76, 0.08), transparent 45%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(15, 183, 154, 0.06), transparent 40%);
   }
 
   .dark .cta-gradient {
     background:
-      linear-gradient(135deg,
-        rgba(77, 142, 255, 0.15) 0%,
-        rgba(0, 220, 170, 0.10) 50%,
-        rgba(255, 210, 90, 0.12) 100%),
-      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(77, 142, 255, 0.14), transparent 50%),
-      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(255, 210, 90, 0.10), transparent 45%),
-      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0, 220, 170, 0.08), transparent 40%);
+      linear-gradient(135deg, rgba(96, 165, 250, 0.15) 0%, rgba(52, 211, 153, 0.1) 50%, rgba(253, 186, 116, 0.12) 100%),
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(96, 165, 250, 0.14), transparent 50%),
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(253, 186, 116, 0.1), transparent 45%),
+      radial-gradient(ellipse 50% 40% at 50% 50%, rgba(52, 211, 153, 0.08), transparent 40%);
   }
 
   /* Text gradient utility */
@@ -84,10 +78,10 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 120% 80% at 10% -10%, rgba(43, 116, 255, 0.22), transparent 55%),
-      radial-gradient(ellipse 80% 60% at 95% 20%, rgba(100, 180, 255, 0.15), transparent 50%),
-      radial-gradient(ellipse 70% 50% at 80% 90%, rgba(0, 200, 150, 0.12), transparent 50%),
-      radial-gradient(ellipse 50% 40% at 5% 70%, rgba(139, 210, 255, 0.14), transparent 45%);
+      radial-gradient(ellipse 120% 80% at 10% -10%, rgba(37, 99, 235, 0.22), transparent 55%),
+      radial-gradient(ellipse 80% 60% at 95% 20%, rgba(96, 165, 250, 0.15), transparent 50%),
+      radial-gradient(ellipse 70% 50% at 80% 90%, rgba(15, 183, 154, 0.12), transparent 50%),
+      radial-gradient(ellipse 50% 40% at 5% 70%, rgba(147, 197, 253, 0.14), transparent 45%);
     pointer-events: none;
     z-index: 0;
   }
@@ -95,7 +89,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800' preserveAspectRatio='none'%3E%3Cpath d='M-50 150 Q300 50 600 200 T1250 120' fill='none' stroke='rgba(43,116,255,0.12)' stroke-width='1.5'/%3E%3Cpath d='M-50 350 Q400 250 700 400 T1250 300' fill='none' stroke='rgba(80,160,255,0.10)' stroke-width='1'/%3E%3Cpath d='M-50 550 Q350 450 650 570 T1250 500' fill='none' stroke='rgba(0,180,140,0.09)' stroke-width='1'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800' preserveAspectRatio='none'%3E%3Cpath d='M-50 150 Q300 50 600 200 T1250 120' fill='none' stroke='rgba(37,99,235,0.12)' stroke-width='1.5'/%3E%3Cpath d='M-50 350 Q400 250 700 400 T1250 300' fill='none' stroke='rgba(96,165,250,0.10)' stroke-width='1'/%3E%3Cpath d='M-50 550 Q350 450 650 570 T1250 500' fill='none' stroke='rgba(15,183,154,0.09)' stroke-width='1'/%3E%3C/svg%3E");
     background-size: 100% 100%;
     pointer-events: none;
     z-index: 1;
@@ -103,13 +97,13 @@
   }
   .dark .section-bg-azure-glow::before {
     background:
-      radial-gradient(ellipse 120% 80% at 10% -10%, rgba(77, 142, 255, 0.28), transparent 55%),
-      radial-gradient(ellipse 80% 60% at 95% 20%, rgba(100, 180, 255, 0.18), transparent 50%),
-      radial-gradient(ellipse 70% 50% at 80% 90%, rgba(0, 220, 170, 0.16), transparent 50%),
-      radial-gradient(ellipse 50% 40% at 5% 70%, rgba(139, 210, 255, 0.14), transparent 45%);
+      radial-gradient(ellipse 120% 80% at 10% -10%, rgba(96, 165, 250, 0.28), transparent 55%),
+      radial-gradient(ellipse 80% 60% at 95% 20%, rgba(125, 211, 252, 0.18), transparent 50%),
+      radial-gradient(ellipse 70% 50% at 80% 90%, rgba(52, 211, 153, 0.16), transparent 50%),
+      radial-gradient(ellipse 50% 40% at 5% 70%, rgba(147, 197, 253, 0.14), transparent 45%);
   }
   .dark .section-bg-azure-glow::after {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800' preserveAspectRatio='none'%3E%3Cpath d='M-50 150 Q300 50 600 200 T1250 120' fill='none' stroke='rgba(100,160,255,0.18)' stroke-width='1.5'/%3E%3Cpath d='M-50 350 Q400 250 700 400 T1250 300' fill='none' stroke='rgba(140,200,255,0.14)' stroke-width='1'/%3E%3Cpath d='M-50 550 Q350 450 650 570 T1250 500' fill='none' stroke='rgba(0,200,160,0.12)' stroke-width='1'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800' preserveAspectRatio='none'%3E%3Cpath d='M-50 150 Q300 50 600 200 T1250 120' fill='none' stroke='rgba(96,165,250,0.18)' stroke-width='1.5'/%3E%3Cpath d='M-50 350 Q400 250 700 400 T1250 300' fill='none' stroke='rgba(125,211,252,0.14)' stroke-width='1'/%3E%3Cpath d='M-50 550 Q350 450 650 570 T1250 500' fill='none' stroke='rgba(52,211,153,0.12)' stroke-width='1'/%3E%3C/svg%3E");
   }
 
   /* Section Background Style 2: Gold Accent - with arc patterns */
@@ -120,10 +114,10 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 100% 80% at 80% 0%, rgba(255, 198, 64, 0.25), transparent 55%),
-      radial-gradient(ellipse 80% 60% at 10% 90%, rgba(255, 180, 80, 0.18), transparent 50%),
-      radial-gradient(ellipse 60% 40% at 90% 70%, rgba(255, 220, 140, 0.15), transparent 45%),
-      radial-gradient(ellipse 50% 35% at 20% 30%, rgba(255, 160, 60, 0.12), transparent 40%);
+      radial-gradient(ellipse 100% 80% at 80% 0%, rgba(255, 138, 76, 0.25), transparent 55%),
+      radial-gradient(ellipse 80% 60% at 10% 90%, rgba(255, 176, 120, 0.18), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 90% 70%, rgba(253, 186, 116, 0.15), transparent 45%),
+      radial-gradient(ellipse 50% 35% at 20% 30%, rgba(255, 154, 90, 0.12), transparent 40%);
     pointer-events: none;
     z-index: 0;
   }
@@ -131,7 +125,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800' preserveAspectRatio='none'%3E%3Ccircle cx='100' cy='100' r='180' fill='none' stroke='rgba(255,180,60,0.12)' stroke-width='1.5'/%3E%3Ccircle cx='1100' cy='700' r='220' fill='none' stroke='rgba(255,160,40,0.10)' stroke-width='1'/%3E%3Ccircle cx='600' cy='400' r='150' fill='none' stroke='rgba(255,190,80,0.08)' stroke-width='1'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800' preserveAspectRatio='none'%3E%3Ccircle cx='100' cy='100' r='180' fill='none' stroke='rgba(255,138,76,0.12)' stroke-width='1.5'/%3E%3Ccircle cx='1100' cy='700' r='220' fill='none' stroke='rgba(249,115,22,0.10)' stroke-width='1'/%3E%3Ccircle cx='600' cy='400' r='150' fill='none' stroke='rgba(253,186,116,0.08)' stroke-width='1'/%3E%3C/svg%3E");
     background-size: 100% 100%;
     pointer-events: none;
     z-index: 1;
@@ -139,13 +133,13 @@
   }
   .dark .section-bg-gold-accent::before {
     background:
-      radial-gradient(ellipse 100% 80% at 80% 0%, rgba(255, 210, 90, 0.28), transparent 55%),
-      radial-gradient(ellipse 80% 60% at 10% 90%, rgba(255, 190, 100, 0.20), transparent 50%),
-      radial-gradient(ellipse 60% 40% at 90% 70%, rgba(255, 220, 140, 0.16), transparent 45%),
-      radial-gradient(ellipse 50% 35% at 20% 30%, rgba(255, 180, 80, 0.14), transparent 40%);
+      radial-gradient(ellipse 100% 80% at 80% 0%, rgba(253, 186, 116, 0.28), transparent 55%),
+      radial-gradient(ellipse 80% 60% at 10% 90%, rgba(255, 176, 120, 0.2), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 90% 70%, rgba(255, 221, 181, 0.16), transparent 45%),
+      radial-gradient(ellipse 50% 35% at 20% 30%, rgba(255, 154, 90, 0.14), transparent 40%);
   }
   .dark .section-bg-gold-accent::after {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800' preserveAspectRatio='none'%3E%3Ccircle cx='100' cy='100' r='180' fill='none' stroke='rgba(255,200,100,0.18)' stroke-width='1.5'/%3E%3Ccircle cx='1100' cy='700' r='220' fill='none' stroke='rgba(255,180,80,0.14)' stroke-width='1'/%3E%3Ccircle cx='600' cy='400' r='150' fill='none' stroke='rgba(255,210,120,0.12)' stroke-width='1'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800' preserveAspectRatio='none'%3E%3Ccircle cx='100' cy='100' r='180' fill='none' stroke='rgba(253,186,116,0.18)' stroke-width='1.5'/%3E%3Ccircle cx='1100' cy='700' r='220' fill='none' stroke='rgba(255,154,90,0.14)' stroke-width='1'/%3E%3Ccircle cx='600' cy='400' r='150' fill='none' stroke='rgba(255,221,181,0.12)' stroke-width='1'/%3E%3C/svg%3E");
   }
 
   /* Section Background Style 3: Aqua Flow (for Content #2) */
@@ -157,19 +151,19 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 100% 60% at 50% 100%, rgba(0, 200, 150, 0.18), transparent 55%),
-      radial-gradient(ellipse 60% 50% at 0% 20%, rgba(43, 116, 255, 0.14), transparent 50%),
-      radial-gradient(ellipse 50% 40% at 100% 40%, rgba(255, 198, 64, 0.10), transparent 45%),
-      radial-gradient(ellipse 80% 30% at 60% 0%, rgba(139, 210, 255, 0.12), transparent 40%);
+      radial-gradient(ellipse 100% 60% at 50% 100%, rgba(15, 183, 154, 0.18), transparent 55%),
+      radial-gradient(ellipse 60% 50% at 0% 20%, rgba(37, 99, 235, 0.14), transparent 50%),
+      radial-gradient(ellipse 50% 40% at 100% 40%, rgba(255, 138, 76, 0.1), transparent 45%),
+      radial-gradient(ellipse 80% 30% at 60% 0%, rgba(147, 197, 253, 0.12), transparent 40%);
     pointer-events: none;
     z-index: 0;
   }
   .dark .section-bg-aqua-flow::before {
     background:
-      radial-gradient(ellipse 100% 60% at 50% 100%, rgba(0, 220, 170, 0.22), transparent 55%),
-      radial-gradient(ellipse 60% 50% at 0% 20%, rgba(77, 142, 255, 0.18), transparent 50%),
-      radial-gradient(ellipse 50% 40% at 100% 40%, rgba(255, 210, 90, 0.12), transparent 45%),
-      radial-gradient(ellipse 80% 30% at 60% 0%, rgba(139, 210, 255, 0.14), transparent 40%);
+      radial-gradient(ellipse 100% 60% at 50% 100%, rgba(52, 211, 153, 0.22), transparent 55%),
+      radial-gradient(ellipse 60% 50% at 0% 20%, rgba(96, 165, 250, 0.18), transparent 50%),
+      radial-gradient(ellipse 50% 40% at 100% 40%, rgba(253, 186, 116, 0.12), transparent 45%),
+      radial-gradient(ellipse 80% 30% at 60% 0%, rgba(125, 211, 252, 0.14), transparent 40%);
   }
 
   /* Section Background Style 4: Tri-Color Convergence (for Stats) */
@@ -181,33 +175,29 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 60% 60% at 5% 50%, rgba(43, 116, 255, 0.16), transparent 50%),
-      radial-gradient(ellipse 50% 50% at 50% 30%, rgba(255, 198, 64, 0.14), transparent 45%),
-      radial-gradient(ellipse 60% 60% at 95% 50%, rgba(0, 200, 150, 0.16), transparent 50%),
-      radial-gradient(ellipse 40% 40% at 30% 80%, rgba(139, 210, 255, 0.10), transparent 40%),
-      radial-gradient(ellipse 40% 40% at 70% 80%, rgba(255, 150, 50, 0.08), transparent 40%);
+      radial-gradient(ellipse 60% 60% at 5% 50%, rgba(37, 99, 235, 0.16), transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 30%, rgba(255, 138, 76, 0.14), transparent 45%),
+      radial-gradient(ellipse 60% 60% at 95% 50%, rgba(15, 183, 154, 0.16), transparent 50%),
+      radial-gradient(ellipse 40% 40% at 30% 80%, rgba(147, 197, 253, 0.1), transparent 40%),
+      radial-gradient(ellipse 40% 40% at 70% 80%, rgba(255, 176, 120, 0.08), transparent 40%);
     pointer-events: none;
     z-index: 0;
   }
   .dark .section-bg-tri-color::before {
     background:
-      radial-gradient(ellipse 60% 60% at 5% 50%, rgba(77, 142, 255, 0.22), transparent 50%),
-      radial-gradient(ellipse 50% 50% at 50% 30%, rgba(255, 210, 90, 0.16), transparent 45%),
-      radial-gradient(ellipse 60% 60% at 95% 50%, rgba(0, 220, 170, 0.22), transparent 50%),
-      radial-gradient(ellipse 40% 40% at 30% 80%, rgba(139, 210, 255, 0.12), transparent 40%),
-      radial-gradient(ellipse 40% 40% at 70% 80%, rgba(255, 180, 80, 0.10), transparent 40%);
+      radial-gradient(ellipse 60% 60% at 5% 50%, rgba(96, 165, 250, 0.22), transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 30%, rgba(253, 186, 116, 0.16), transparent 45%),
+      radial-gradient(ellipse 60% 60% at 95% 50%, rgba(52, 211, 153, 0.22), transparent 50%),
+      radial-gradient(ellipse 40% 40% at 30% 80%, rgba(125, 211, 252, 0.12), transparent 40%),
+      radial-gradient(ellipse 40% 40% at 70% 80%, rgba(255, 176, 120, 0.1), transparent 40%);
   }
 
   /* Timeline gradient connector */
   .timeline-connector {
-    background: linear-gradient(180deg,
-      rgba(43, 116, 255, 0.4) 0%,
-      rgba(0, 200, 150, 0.4) 100%);
+    background: linear-gradient(180deg, rgba(37, 99, 235, 0.4) 0%, rgba(15, 183, 154, 0.4) 100%);
   }
   .dark .timeline-connector {
-    background: linear-gradient(180deg,
-      rgba(77, 142, 255, 0.5) 0%,
-      rgba(0, 220, 170, 0.5) 100%);
+    background: linear-gradient(180deg, rgba(96, 165, 250, 0.5) 0%, rgba(52, 211, 153, 0.5) 100%);
   }
 
   /* Timeline marker pulsing effect */
@@ -219,14 +209,15 @@
     position: absolute;
     inset: -4px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(43, 116, 255, 0.3), rgba(0, 200, 150, 0.3));
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(15, 183, 154, 0.3));
     opacity: 0;
     animation: pulse-ring 2s ease-in-out infinite;
     z-index: -1;
   }
 
   @keyframes pulse-ring {
-    0%, 100% {
+    0%,
+    100% {
       transform: scale(1);
       opacity: 0;
     }
@@ -240,38 +231,40 @@
 @layer components {
   .btn {
     @apply inline-flex items-center justify-center rounded-full
-           border border-gray-300 bg-transparent font-semibold
+           border border-white/70 bg-white/75 font-semibold backdrop-blur-sm
            text-center text-base leading-snug transition-all
            py-3.5 px-6 md:px-8 ease-out duration-300
            focus:ring-2 focus:ring-offset-2
-           hover:bg-gray-100 hover:border-gray-400
-           dark:text-slate-300 dark:border-slate-600
-           dark:hover:bg-slate-800 dark:hover:border-slate-500
+           hover:-translate-y-0.5 hover:bg-white hover:border-azure-200
+           dark:text-slate-200 dark:border-white/10 dark:bg-white/5
+           dark:hover:bg-white/10 dark:hover:border-azure-400/25
            cursor-pointer;
-    --tw-ring-color: rgba(43, 116, 255, 0.5);
+    --tw-ring-color: rgba(37, 99, 235, 0.5);
   }
 
   .btn-primary {
     @apply btn font-semibold text-white border-transparent
            bg-gradient-to-r from-primary to-secondary
-           hover:from-primary hover:to-primary
+           hover:from-primary hover:to-secondary
            hover:-translate-y-0.5
            dark:text-white;
-    --btn-shadow-color: rgba(43, 116, 255, 0.25);
+    --btn-shadow-color: rgba(37, 99, 235, 0.24);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 10px 15px -3px var(--btn-shadow-color), 0 4px 6px -4px var(--btn-shadow-color);
+    box-shadow:
+      0 10px 15px -3px var(--btn-shadow-color),
+      0 4px 6px -4px var(--btn-shadow-color);
   }
 
   .dark .btn-primary:hover {
-    --btn-shadow-color: rgba(77, 142, 255, 0.2);
+    --btn-shadow-color: rgba(96, 165, 250, 0.22);
   }
 
   .btn-secondary {
-    @apply btn border-primary text-primary
+    @apply btn border-azure-200/80 text-ink-700
            hover:bg-primary hover:text-white hover:border-primary
-           dark:border-primary dark:text-primary
+           dark:border-azure-400/20 dark:text-white
            dark:hover:bg-primary dark:hover:text-white;
   }
 
@@ -283,24 +276,26 @@
 
   .btn-accent {
     @apply btn font-semibold text-ink border-transparent
-           bg-gradient-to-r from-accent to-amber-400
+           bg-gradient-to-r from-accent to-orange-300
            hover:from-accent hover:to-accent
            hover:-translate-y-0.5;
-    --btn-shadow-color: rgba(255, 198, 64, 0.25);
+    --btn-shadow-color: rgba(255, 138, 76, 0.25);
   }
 
   .btn-accent:hover {
-    box-shadow: 0 10px 15px -3px var(--btn-shadow-color), 0 4px 6px -4px var(--btn-shadow-color);
+    box-shadow:
+      0 10px 15px -3px var(--btn-shadow-color),
+      0 4px 6px -4px var(--btn-shadow-color);
   }
 }
 
 #header.scroll > div:first-child {
-  @apply bg-page md:bg-white/90 md:backdrop-blur-md;
-  box-shadow: 0 4px 20px rgba(43, 116, 255, 0.08);
+  @apply bg-page md:bg-white/80 md:backdrop-blur-xl;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
 }
 .dark #header.scroll > div:first-child,
 #header.scroll.dark > div:first-child {
-  @apply bg-page md:bg-ink/90 md:backdrop-blur-md border-b border-white/10;
+  @apply bg-page md:bg-ink/85 md:backdrop-blur-xl border-b border-white/10;
   box-shadow: none;
 }
 /* #header.scroll > div:last-child {

@@ -16,6 +16,13 @@ const {
   id,
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+const imageSource =
+  image && typeof image !== 'string'
+    ? 'format' in image
+      ? (image as import('astro').ImageMetadata)
+      : image.src
+    : image;
 ---
 
 <section class="relative md:-mt-[76px] not-prose overflow-hidden z-0" {...id ? { id } : {}}>
@@ -102,7 +109,13 @@ const {
             )
           }
         </div>
-        {content && <div class="mt-8"><Fragment set:html={content} /></div>}
+        {
+          content && (
+            <div class="mt-8">
+              <Fragment set:html={content} />
+            </div>
+          )
+        }
       </div>
 
       <!-- Hero image with glow effect -->
@@ -110,7 +123,7 @@ const {
         image && (
           <div class="intersect-once intersect-no-queue intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
             <div class="relative m-auto max-w-5xl">
-              <div class="hero-image-glow"></div>
+              <div class="hero-image-glow" />
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
               ) : (
@@ -121,7 +134,7 @@ const {
                   loading="eager"
                   width={image.width || 1792}
                   height={image.height || 1024}
-                  src={image}
+                  src={imageSource}
                   alt={image.alt || 'Hero image'}
                 />
               )}
@@ -150,7 +163,7 @@ const {
     left: -8rem;
     width: 24rem;
     height: 24rem;
-    background: linear-gradient(to bottom right, rgba(43, 116, 255, 0.35), rgba(0, 200, 150, 0.25));
+    background: linear-gradient(to bottom right, rgba(37, 99, 235, 0.35), rgba(15, 183, 154, 0.25));
   }
 
   .hero-orb-2 {
@@ -158,7 +171,7 @@ const {
     right: -5rem;
     width: 18rem;
     height: 18rem;
-    background: linear-gradient(to bottom left, rgba(255, 198, 64, 0.30), rgba(43, 116, 255, 0.20));
+    background: linear-gradient(to bottom left, rgba(255, 138, 76, 0.3), rgba(37, 99, 235, 0.2));
     animation-delay: -2s;
   }
 
@@ -167,7 +180,7 @@ const {
     left: 25%;
     width: 12rem;
     height: 12rem;
-    background: linear-gradient(to top right, rgba(0, 200, 150, 0.25), rgba(43, 116, 255, 0.20));
+    background: linear-gradient(to top right, rgba(15, 183, 154, 0.25), rgba(37, 99, 235, 0.2));
     filter: blur(32px);
     animation-delay: -4s;
   }
@@ -177,7 +190,7 @@ const {
     right: 25%;
     width: 16rem;
     height: 16rem;
-    background: linear-gradient(to top left, rgba(255, 198, 64, 0.25), rgba(0, 200, 150, 0.20));
+    background: linear-gradient(to top left, rgba(255, 138, 76, 0.25), rgba(15, 183, 154, 0.2));
     animation-delay: -3s;
   }
 
@@ -187,30 +200,30 @@ const {
     transform: translate(-50%, -50%);
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(43, 116, 255, 0.15), transparent 70%);
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent 70%);
     filter: blur(32px);
     animation: none;
   }
 
   /* Dark mode orbs */
   :global(.dark) .hero-orb-1 {
-    background: linear-gradient(to bottom right, rgba(77, 142, 255, 0.45), rgba(0, 220, 170, 0.35));
+    background: linear-gradient(to bottom right, rgba(96, 165, 250, 0.45), rgba(52, 211, 153, 0.35));
   }
 
   :global(.dark) .hero-orb-2 {
-    background: linear-gradient(to bottom left, rgba(255, 210, 90, 0.35), rgba(77, 142, 255, 0.25));
+    background: linear-gradient(to bottom left, rgba(253, 186, 116, 0.35), rgba(96, 165, 250, 0.25));
   }
 
   :global(.dark) .hero-orb-3 {
-    background: linear-gradient(to top right, rgba(0, 220, 170, 0.30), rgba(77, 142, 255, 0.25));
+    background: linear-gradient(to top right, rgba(52, 211, 153, 0.3), rgba(96, 165, 250, 0.25));
   }
 
   :global(.dark) .hero-orb-4 {
-    background: linear-gradient(to top left, rgba(255, 210, 90, 0.30), rgba(0, 220, 170, 0.25));
+    background: linear-gradient(to top left, rgba(253, 186, 116, 0.3), rgba(52, 211, 153, 0.25));
   }
 
   :global(.dark) .hero-orb-center {
-    background: radial-gradient(circle, rgba(77, 142, 255, 0.20), transparent 70%);
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.2), transparent 70%);
   }
 
   /* Grid pattern */
@@ -260,8 +273,10 @@ const {
     width: min(600px, 70vw);
     height: min(600px, 70vw);
     border-radius: 50%;
-    border: 2px solid rgba(43, 116, 255, 0.4);
-    box-shadow: 0 0 20px rgba(43, 116, 255, 0.2), inset 0 0 20px rgba(43, 116, 255, 0.1);
+    border: 2px solid rgba(37, 99, 235, 0.4);
+    box-shadow:
+      0 0 20px rgba(37, 99, 235, 0.2),
+      inset 0 0 20px rgba(37, 99, 235, 0.1);
     animation: ripple-expand 6s ease-out infinite;
   }
 
@@ -271,26 +286,44 @@ const {
 
   .hero-ripple-b {
     animation-delay: 3s;
-    border-color: rgba(0, 200, 150, 0.35);
-    box-shadow: 0 0 20px rgba(0, 200, 150, 0.2), inset 0 0 20px rgba(0, 200, 150, 0.1);
+    border-color: rgba(15, 183, 154, 0.35);
+    box-shadow:
+      0 0 20px rgba(15, 183, 154, 0.2),
+      inset 0 0 20px rgba(15, 183, 154, 0.1);
   }
 
   /* Stagger each origin's ripples differently */
-  .ripple-origin-1 .hero-ripple-a { animation-delay: 0s; }
-  .ripple-origin-1 .hero-ripple-b { animation-delay: 3s; }
-  .ripple-origin-2 .hero-ripple-a { animation-delay: 2s; }
-  .ripple-origin-2 .hero-ripple-b { animation-delay: 5s; }
-  .ripple-origin-3 .hero-ripple-a { animation-delay: 4s; }
-  .ripple-origin-3 .hero-ripple-b { animation-delay: 1s; }
+  .ripple-origin-1 .hero-ripple-a {
+    animation-delay: 0s;
+  }
+  .ripple-origin-1 .hero-ripple-b {
+    animation-delay: 3s;
+  }
+  .ripple-origin-2 .hero-ripple-a {
+    animation-delay: 2s;
+  }
+  .ripple-origin-2 .hero-ripple-b {
+    animation-delay: 5s;
+  }
+  .ripple-origin-3 .hero-ripple-a {
+    animation-delay: 4s;
+  }
+  .ripple-origin-3 .hero-ripple-b {
+    animation-delay: 1s;
+  }
 
   :global(.dark) .hero-ripple {
-    border-color: rgba(77, 142, 255, 0.5);
-    box-shadow: 0 0 25px rgba(77, 142, 255, 0.3), inset 0 0 25px rgba(77, 142, 255, 0.15);
+    border-color: rgba(96, 165, 250, 0.5);
+    box-shadow:
+      0 0 25px rgba(96, 165, 250, 0.3),
+      inset 0 0 25px rgba(96, 165, 250, 0.15);
   }
 
   :global(.dark) .hero-ripple-b {
-    border-color: rgba(0, 220, 170, 0.45);
-    box-shadow: 0 0 25px rgba(0, 220, 170, 0.3), inset 0 0 25px rgba(0, 220, 170, 0.15);
+    border-color: rgba(52, 211, 153, 0.45);
+    box-shadow:
+      0 0 25px rgba(52, 211, 153, 0.3),
+      inset 0 0 25px rgba(52, 211, 153, 0.15);
   }
 
   @keyframes ripple-expand {
@@ -305,7 +338,8 @@ const {
   }
 
   @keyframes origin-fade {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
@@ -323,16 +357,16 @@ const {
     letter-spacing: 0.05em;
     text-transform: uppercase;
     border-radius: 9999px;
-    background: rgba(43, 116, 255, 0.1);
-    color: rgb(43, 116, 255);
+    background: rgba(37, 99, 235, 0.1);
+    color: rgb(37, 99, 235);
     backdrop-filter: blur(4px);
-    border: 1px solid rgba(43, 116, 255, 0.2);
+    border: 1px solid rgba(37, 99, 235, 0.2);
   }
 
   :global(.dark) .hero-tagline {
-    background: rgba(77, 142, 255, 0.15);
-    color: rgb(139, 210, 255);
-    border-color: rgba(77, 142, 255, 0.3);
+    background: rgba(96, 165, 250, 0.15);
+    color: rgb(191, 219, 254);
+    border-color: rgba(96, 165, 250, 0.3);
   }
 
   /* Hero title */
@@ -346,7 +380,7 @@ const {
   }
 
   :global(.dark) .hero-title {
-    color: rgb(229, 236, 246);
+    color: rgb(241, 245, 249);
   }
 
   /* Hero subtitle */
@@ -358,7 +392,7 @@ const {
   }
 
   :global(.dark) .hero-subtitle {
-    color: rgb(148, 163, 184);
+    color: rgb(203, 213, 225);
   }
 
   /* Hero actions */
@@ -383,7 +417,7 @@ const {
     margin-right: auto;
     border-radius: 1rem;
     width: 100%;
-    box-shadow: 0 25px 50px -12px rgba(43, 116, 255, 0.15);
+    box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
@@ -395,7 +429,7 @@ const {
   .hero-image-glow {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(43, 116, 255, 0.25), rgba(0, 200, 150, 0.20), rgba(255, 198, 64, 0.25));
+    background: linear-gradient(to right, rgba(37, 99, 235, 0.25), rgba(15, 183, 154, 0.2), rgba(255, 138, 76, 0.25));
     filter: blur(48px);
     transform: scale(1.1);
     opacity: 0.6;
@@ -413,12 +447,13 @@ const {
   }
 
   :global(.dark) .hero-bottom-fade {
-    background: linear-gradient(to top, rgb(28, 29, 36), transparent);
+    background: linear-gradient(to top, rgb(7, 17, 31), transparent);
   }
 
   /* Float animation */
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0) rotate(0deg);
     }
     33% {

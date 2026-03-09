@@ -4,7 +4,8 @@ import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
-import ItemGrid from '~/components/ui/ItemGrid.astro';
+import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
 
 const {
   title = await Astro.slots.render('title'),
@@ -13,7 +14,7 @@ const {
   content = await Astro.slots.render('content'),
   callToAction,
   items = [],
-  columns,
+  defaultIcon = 'tabler:check',
   image = await Astro.slots.render('image'),
   isReversed = false,
   isAfterContent = false,
@@ -23,6 +24,29 @@ const {
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+const visualChipOffsets = [
+  'left-4 top-4 md:-left-4 md:top-10',
+  'right-4 top-4 md:-right-5 md:top-14',
+  'left-4 bottom-5 md:left-8 md:bottom-8',
+  'right-4 bottom-5 md:right-2 md:bottom-14',
+];
+
+const visualChips = items
+  .slice(0, 4)
+  .map(({ title }, index) => ({ title, positionClass: visualChipOffsets[index] ?? visualChipOffsets[0] }));
+
+const {
+  container: itemsContainerClass = '',
+  panel: panelClass = '',
+  title: titleClass = '',
+  description: descriptionClass = '',
+  icon: iconClass = '',
+  iconGlow: iconGlowClass = '',
+  iconGlyph: iconGlyphClass = '',
+  iconDot: iconDotClass = '',
+  action: actionClass = '',
+} = (classes?.items as Record<string, string>) ?? {};
 ---
 
 <WidgetWrapper
@@ -48,43 +72,141 @@ const {
 
         {
           callToAction && (
-            <div class="mt-[-40px] mb-8 text-primary">
+            <div class="mb-8 mt-8 text-primary">
               <Button variant="link" {...callToAction} />
             </div>
           )
         }
 
-        <ItemGrid
-          items={items}
-          columns={columns}
-          defaultIcon="tabler:check"
-          classes={{
-            container: `gap-y-4 md:gap-y-8`,
-            panel: 'max-w-none',
-            title: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
-            description: 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
-            icon: 'flex h-7 w-7 items-center justify-center rounded-full bg-green-600 dark:bg-green-700 text-gray-50 p-1',
-            action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
-          }}
-        />
+        {
+          items && items.length > 0 && (
+            <div class={twMerge('grid gap-y-4 md:gap-y-8', itemsContainerClass)}>
+              {items.map(({ title, description, icon, image: itemImage, callToAction: itemCallToAction, classes: itemClasses = {} }) => {
+                const hasLogo = Boolean(itemImage);
+
+                return (
+                  <div
+                  class={twMerge(
+                    'group/item flex max-w-none items-start gap-3 rounded-[1.25rem] border border-white/70 bg-white/75 p-4 shadow-[0_14px_32px_rgba(15,23,42,0.06)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-azure-200 dark:border-white/10 dark:bg-white/5 dark:shadow-[0_16px_36px_rgba(0,0,0,0.22)] dark:hover:border-azure-400/20',
+                    panelClass,
+                    itemClasses?.panel
+                  )}
+                >
+                  {(itemImage || icon || defaultIcon) && (
+                    <div class="relative mt-0.5 shrink-0">
+                      <div
+                        class={twMerge(
+                          hasLogo
+                            ? 'pointer-events-none absolute inset-0 rounded-full blur-lg opacity-55 transition duration-300 group-hover/item:scale-110'
+                            : 'pointer-events-none absolute inset-0 rounded-[1.1rem] bg-gradient-to-br from-azure-500/30 via-aqua-400/18 to-gold-300/18 blur-lg transition duration-300 group-hover/item:scale-110',
+                          iconGlowClass,
+                          itemClasses?.iconGlow
+                        )}
+                      />
+                      <div
+                        class={twMerge(
+                          hasLogo
+                            ? 'relative flex h-10 w-12 items-center justify-center overflow-visible rounded-none border-transparent bg-transparent text-white shadow-none transition duration-300 group-hover/item:-translate-y-0.5 group-hover/item:scale-105'
+                            : 'relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-[1.1rem] border border-white/65 bg-gradient-to-br from-azure-500 via-aqua-500 to-gold-400 text-white shadow-[0_10px_28px_rgba(37,99,235,0.18)] transition duration-300 group-hover/item:-translate-y-0.5 group-hover/item:scale-105',
+                          iconClass,
+                          !hasLogo && itemClasses?.icon
+                        )}
+                      >
+                        {!hasLogo && <span class="pointer-events-none absolute inset-[1px] rounded-[1rem] bg-white/10 dark:bg-white/5" />}
+                        {itemImage ? (
+                          <img
+                            src={itemImage.src}
+                            alt={itemImage.alt ?? `${title ?? 'Project'} logo`}
+                            class={twMerge(
+                              hasLogo
+                                ? 'relative z-[1] max-h-7 w-auto max-w-10 object-contain drop-shadow-[0_8px_18px_rgba(15,23,42,0.12)]'
+                                : 'relative z-[1] max-h-6 w-auto max-w-7 object-contain',
+                              iconGlyphClass,
+                              itemClasses?.iconGlyph
+                            )}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : (
+                          <Icon
+                            name={icon || defaultIcon}
+                            class={twMerge('relative z-[1] h-5 w-5', iconGlyphClass, itemClasses?.iconGlyph)}
+                          />
+                        )}
+                      </div>
+                      {!hasLogo && (
+                        <span
+                          class={twMerge(
+                            'pointer-events-none absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full border border-white/70 bg-white/80 shadow-[0_6px_12px_rgba(15,23,42,0.1)] dark:border-white/10 dark:bg-white/15',
+                            iconDotClass,
+                            itemClasses?.iconDot
+                          )}
+                        />
+                      )}
+                    </div>
+                  )}
+                  <div class="min-w-0 flex-1">
+                    <div
+                      class={twMerge(
+                        'text-lg font-semibold leading-6 text-ink-700 dark:text-white',
+                        titleClass,
+                        itemClasses?.title
+                      )}
+                    >
+                      {title}
+                    </div>
+                    {description && (
+                      <p
+                        class={twMerge('text-muted dark:text-slate-400', descriptionClass, itemClasses?.description)}
+                        set:html={description}
+                      />
+                    )}
+                    {itemCallToAction && (
+                      <div class="mt-3">
+                        <a
+                          href={itemCallToAction.href}
+                          class={twMerge(
+                            'inline-flex items-center gap-1 font-medium text-azure-600 transition-all hover:gap-2 hover:text-azure-700 dark:text-azure-300 dark:hover:text-azure-200',
+                            actionClass,
+                            itemClasses?.action
+                          )}
+                        >
+                          {itemCallToAction.text || 'Learn More'}
+                          <Icon name="tabler:arrow-right" class="h-4 w-4" />
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                  </div>
+                );
+              })}
+            </div>
+          )
+        }
       </div>
       <div aria-hidden="true" class="mt-10 md:mt-0 md:basis-1/2">
         {
           image && (
-            <div class="relative m-auto max-w-4xl">
-              {typeof image === 'string' ? (
-                <Fragment set:html={image} />
-              ) : (
-                <Image
-                  class="mx-auto w-full rounded-2xl bg-gray-500 shadow-lg"
-                  width={500}
-                  height={500}
-                  widths={[400, 768]}
-                  sizes="(max-width: 768px) 100vw, 432px"
-                  layout="responsive"
-                  {...image}
-                />
-              )}
+            <div class="content-visual-shell group/visual relative m-auto max-w-4xl">
+              <div class="content-visual-glow" />
+              <div class="content-visual-art">
+                {typeof image === 'string' ? (
+                  <Fragment set:html={image} />
+                ) : (
+                  <Image
+                    class="mx-auto w-full rounded-[1.75rem] bg-gray-500 shadow-lg"
+                    width={500}
+                    height={500}
+                    widths={[400, 768]}
+                    sizes="(max-width: 768px) 100vw, 432px"
+                    layout="responsive"
+                    {...image}
+                  />
+                )}
+              </div>
+              {visualChips.map(({ title, positionClass }) => (
+                <span class={`content-visual-chip ${positionClass}`}>{title}</span>
+              ))}
             </div>
           )
         }
@@ -92,3 +214,143 @@ const {
     </div>
   </div>
 </WidgetWrapper>
+
+<style>
+  .content-visual-shell {
+    border-radius: 2rem;
+    padding: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(248, 250, 255, 0.72)),
+      radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 35%);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.1);
+    backdrop-filter: blur(18px);
+    transition:
+      transform 500ms ease,
+      box-shadow 500ms ease,
+      border-color 500ms ease;
+  }
+
+  .content-visual-shell:hover {
+    transform: translateY(-6px);
+    border-color: rgba(37, 99, 235, 0.18);
+    box-shadow: 0 32px 90px rgba(37, 99, 235, 0.16);
+  }
+
+  .content-visual-shell::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at top left, rgba(15, 183, 154, 0.12), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(255, 138, 76, 0.12), transparent 28%);
+    pointer-events: none;
+  }
+
+  .content-visual-glow {
+    position: absolute;
+    inset: 8% 10%;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(15, 183, 154, 0.14), rgba(255, 138, 76, 0.18));
+    filter: blur(46px);
+    opacity: 0.75;
+    transition:
+      opacity 500ms ease,
+      transform 500ms ease;
+  }
+
+  .content-visual-shell:hover .content-visual-glow {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+
+  .content-visual-art {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 1.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 247, 255, 0.92));
+  }
+
+  .content-visual-art :global(svg),
+  .content-visual-art :global(img),
+  .content-visual-art :global(picture img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition:
+      transform 700ms ease,
+      filter 700ms ease;
+  }
+
+  .content-visual-shell:hover .content-visual-art :global(svg),
+  .content-visual-shell:hover .content-visual-art :global(img),
+  .content-visual-shell:hover .content-visual-art :global(picture img) {
+    transform: scale(1.02);
+    filter: saturate(1.06);
+  }
+
+  .content-visual-chip {
+    position: absolute;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.78);
+    padding: 0.5rem 0.85rem;
+    color: rgba(15, 23, 42, 0.82);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.1);
+    backdrop-filter: blur(12px);
+    transition:
+      transform 400ms ease,
+      background 400ms ease,
+      color 400ms ease;
+  }
+
+  .content-visual-shell:hover .content-visual-chip {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.92);
+  }
+
+  :global(.dark) .content-visual-shell {
+    border-color: rgba(255, 255, 255, 0.1);
+    background:
+      linear-gradient(180deg, rgba(7, 17, 31, 0.84), rgba(11, 21, 39, 0.78)),
+      radial-gradient(circle at top right, rgba(96, 165, 250, 0.16), transparent 35%);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+  }
+
+  :global(.dark) .content-visual-shell:hover {
+    border-color: rgba(96, 165, 250, 0.24);
+    box-shadow: 0 34px 96px rgba(0, 0, 0, 0.42);
+  }
+
+  :global(.dark) .content-visual-art {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(10, 19, 34, 0.94), rgba(7, 17, 31, 0.98));
+  }
+
+  :global(.dark) .content-visual-chip {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(10, 19, 34, 0.82);
+    color: rgba(226, 232, 240, 0.9);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+  }
+
+  :global(.dark) .content-visual-shell:hover .content-visual-chip {
+    background: rgba(15, 23, 42, 0.96);
+  }
+
+  @media (max-width: 767px) {
+    .content-visual-chip {
+      font-size: 0.65rem;
+      padding: 0.45rem 0.75rem;
+    }
+  }
+</style>

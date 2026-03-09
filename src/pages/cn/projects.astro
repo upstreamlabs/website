@@ -1,0 +1,232 @@
+---
+import HeroText from '~/components/widgets/HeroText.astro';
+import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
+import ProjectShowcase from '~/components/widgets/ProjectShowcase.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { infraSvg } from '~/data/homeIllustrations';
+import { projectIconThemes, projectLogos } from '~/data/projectIconThemes';
+import Layout from '~/layouts/PageLayout.astro';
+const metadata = {
+  title: '项目',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="开源项目组合"
+  >
+    <Fragment slot="title">
+      <span class="block">基础设施与</span>
+      <span class="text-gradient">应用项目</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Upstream Labs 孵化和支持 Rust、AI 和系统基础设施领域的世界级开源项目。我们的项目组合涵盖跨平台框架、机器人中间件、AI 工具包和联邦通信。
+    </Fragment>
+  </HeroText>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: 'GitHub Stars', amount: '15,000+' },
+      { title: '社区 Forks', amount: '1,200+' },
+      { title: '总提交数', amount: '12,000+' },
+      { title: '覆盖国家', amount: '30+' },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </Stats>
+
+  <!-- Infrastructure Projects ******* -->
+
+  <FeaturesCards
+    title="基础设施项目"
+    tagline="核心技术"
+    subtitle="驱动下一代应用的基础开源项目。"
+    columns={3}
+    items={[
+      {
+        title: 'Makepad',
+        description:
+          '跨平台 Rust UI 框架，支持 GPU 渲染和实时设计。6.2k GitHub stars。',
+        icon: 'tabler:layout',
+        image: projectLogos.makepad,
+        classes: projectIconThemes.makepad,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/makepad/makepad',
+        },
+      },
+      {
+        title: 'Project Robius',
+        description:
+          '多平台应用开发生态系统，拥有 45 个代码仓库。501 关注者。',
+        icon: 'tabler:apps',
+        image: projectLogos.robius,
+        classes: projectIconThemes.robius,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/project-robius',
+        },
+      },
+      {
+        title: 'Dora',
+        description:
+          '机器人数据流中间件，比 ROS2 快 10–17 倍。3k stars。',
+        icon: 'tabler:robot',
+        image: projectLogos.dora,
+        classes: projectIconThemes.dora,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/dora-rs/dora',
+        },
+      },
+      {
+        title: 'Rapier',
+        description:
+          'Dimforge 开发的 2D/3D 物理引擎，服务于仿真和游戏。5.2k stars。',
+        icon: 'tabler:3d-cube-sphere',
+        classes: projectIconThemes.rapier,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/dimforge/rapier',
+        },
+      },
+      {
+        title: 'OminiX-ai',
+        description:
+          '面向 Apple Silicon 的端侧 AI，纯 Rust MLX 实现。20+ crates。',
+        icon: 'tabler:cpu',
+        classes: projectIconThemes.ominix,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/OminiX-ai',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="visual">
+      <ProjectShowcase
+        eyebrow="开源底座"
+        title="从图形引擎、机器人运行时到端侧 AI 的基础设施版图"
+        description="我们把跨平台 UI、原生应用生态、机器人数据流、物理仿真和端侧 AI 连接成一层可复用的 Rust 基础设施，让更多上层产品建立在同一套开放能力之上。"
+        image={infraSvg}
+        stats={[
+          { value: '5', label: '重点基础设施项目', tone: 'azure' },
+          { value: '15k+', label: '累计 GitHub stars', tone: 'aqua' },
+          { value: 'Rust', label: '统一技术方向', tone: 'gold' },
+        ]}
+        chips={['Makepad', 'Project Robius', 'Dora', 'Rapier', 'OminiX-ai']}
+      />
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </FeaturesCards>
+
+  <!-- Application Projects ********** -->
+
+  <FeaturesCards
+    title="应用项目"
+    tagline="面向用户的产品"
+    subtitle="基于我们基础设施栈构建的开源应用，服务于各平台真实用户。"
+    columns={3}
+    items={[
+      {
+        title: 'Moly',
+        description:
+          'AI LLM 客户端，6 平台原生 GUI，多模型提供商支持。403 stars。',
+        icon: 'tabler:message-chatbot',
+        image: projectLogos.moly,
+        classes: projectIconThemes.moly,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/moly-mofa/moly',
+        },
+      },
+      {
+        title: 'Moxin LLM',
+        description:
+          '开源可复现 LLM 系列，支持 VLM 和 TTS。610 stars。',
+        icon: 'tabler:brain',
+        image: projectLogos.moxin,
+        classes: projectIconThemes.moxin,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/moxin-org/moxin',
+        },
+      },
+      {
+        title: 'Robrix',
+        description:
+          'Matrix 聊天客户端，端到端加密，支持 6 个平台。413 stars。',
+        icon: 'tabler:message-circle',
+        image: projectLogos.robrix,
+        classes: projectIconThemes.robrix,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/project-robius/robrix',
+        },
+      },
+      {
+        title: 'Palpo',
+        description:
+          'Matrix 服务器，联邦架构，Rust + PostgreSQL 构建。506 commits。',
+        icon: 'tabler:server',
+        image: projectLogos.palpo,
+        classes: projectIconThemes.palpo,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/palpo-matrix-server/palpo',
+        },
+      },
+      {
+        title: 'MoFA',
+        description:
+          '模块化 AI Agent 框架，微内核架构。195 stars。',
+        icon: 'tabler:atom',
+        image: projectLogos.mofa,
+        classes: projectIconThemes.mofa,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/moly-mofa/mofa',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </FeaturesCards>
+
+  <!-- CTA *************************** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: '与我们合作',
+        href: '/cn/contact/',
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="font-display">与我们共建</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      有兴趣贡献、赞助或孵化项目吗？<br class="hidden md:inline" />
+      联系我们，探索如何共同壮大开源生态系统。
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

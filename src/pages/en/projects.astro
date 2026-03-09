@@ -1,0 +1,232 @@
+---
+import HeroText from '~/components/widgets/HeroText.astro';
+import FeaturesCards from '~/components/widgets/FeaturesCards.astro';
+import ProjectShowcase from '~/components/widgets/ProjectShowcase.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { infraSvg } from '~/data/homeIllustrations';
+import { projectIconThemes, projectLogos } from '~/data/projectIconThemes';
+import Layout from '~/layouts/PageLayout.astro';
+const metadata = {
+  title: 'Projects',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Open-Source Portfolio"
+  >
+    <Fragment slot="title">
+      <span class="block">Infrastructure &</span>
+      <span class="text-gradient">Application Projects</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Upstream Labs incubates and supports world-class open-source projects in Rust, AI, and systems infrastructure. Our portfolio spans cross-platform frameworks, robotics middleware, AI toolkits, and federated communication.
+    </Fragment>
+  </HeroText>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: 'GitHub Stars', amount: '15,000+' },
+      { title: 'Community Forks', amount: '1,200+' },
+      { title: 'Total Commits', amount: '12,000+' },
+      { title: 'Countries', amount: '30+' },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </Stats>
+
+  <!-- Infrastructure Projects ******* -->
+
+  <FeaturesCards
+    title="Infrastructure Projects"
+    tagline="Core Technology"
+    subtitle="Foundational open-source projects that power the next generation of applications."
+    columns={3}
+    items={[
+      {
+        title: 'Makepad',
+        description:
+          'Cross-platform Rust UI framework with GPU rendering and live design. 6.2k GitHub stars.',
+        icon: 'tabler:layout',
+        image: projectLogos.makepad,
+        classes: projectIconThemes.makepad,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/makepad/makepad',
+        },
+      },
+      {
+        title: 'Project Robius',
+        description:
+          'Multi-platform app development ecosystem with 45 repositories. 501 followers.',
+        icon: 'tabler:apps',
+        image: projectLogos.robius,
+        classes: projectIconThemes.robius,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/project-robius',
+        },
+      },
+      {
+        title: 'Dora',
+        description:
+          'Robotic dataflow middleware, 10–17× faster than ROS2 for real-time applications. 3k stars.',
+        icon: 'tabler:robot',
+        image: projectLogos.dora,
+        classes: projectIconThemes.dora,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/dora-rs/dora',
+        },
+      },
+      {
+        title: 'Rapier',
+        description:
+          '2D/3D physics engine by Dimforge, powering simulations and games. 5.2k stars.',
+        icon: 'tabler:3d-cube-sphere',
+        classes: projectIconThemes.rapier,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/dimforge/rapier',
+        },
+      },
+      {
+        title: 'OminiX-ai',
+        description:
+          'On-device AI for Apple Silicon, pure Rust MLX implementation. 20+ crates.',
+        icon: 'tabler:cpu',
+        classes: projectIconThemes.ominix,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/OminiX-ai',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="visual">
+      <ProjectShowcase
+        eyebrow="Open-source base layer"
+        title="A shared infrastructure map across UI, robotics, simulation, and on-device AI"
+        description="Upstream connects cross-platform UI, native app tooling, robotics dataflow, physics simulation, and edge AI into a reusable Rust foundation so the next wave of products can build on one open stack."
+        image={infraSvg}
+        stats={[
+          { value: '5', label: 'Flagship infrastructure projects', tone: 'azure' },
+          { value: '15k+', label: 'Combined GitHub stars', tone: 'aqua' },
+          { value: 'Rust', label: 'Shared technical direction', tone: 'gold' },
+        ]}
+        chips={['Makepad', 'Project Robius', 'Dora', 'Rapier', 'OminiX-ai']}
+      />
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-azure-glow"></div>
+    </Fragment>
+  </FeaturesCards>
+
+  <!-- Application Projects ********** -->
+
+  <FeaturesCards
+    title="Application Projects"
+    tagline="User-Facing Products"
+    subtitle="Open-source applications built on our infrastructure stack, serving real users across platforms."
+    columns={3}
+    items={[
+      {
+        title: 'Moly',
+        description:
+          'AI LLM client with 6-platform native GUI and multi-provider support. 403 stars.',
+        icon: 'tabler:message-chatbot',
+        image: projectLogos.moly,
+        classes: projectIconThemes.moly,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/moly-mofa/moly',
+        },
+      },
+      {
+        title: 'Moxin LLM',
+        description:
+          'Open-source reproducible LLM family with VLM and TTS capabilities. 610 stars.',
+        icon: 'tabler:brain',
+        image: projectLogos.moxin,
+        classes: projectIconThemes.moxin,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/moxin-org/moxin',
+        },
+      },
+      {
+        title: 'Robrix',
+        description:
+          'Matrix chat client with E2E encryption across 6 platforms. 413 stars.',
+        icon: 'tabler:message-circle',
+        image: projectLogos.robrix,
+        classes: projectIconThemes.robrix,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/project-robius/robrix',
+        },
+      },
+      {
+        title: 'Palpo',
+        description:
+          'Matrix homeserver — federated, built with Rust + PostgreSQL. 506 commits.',
+        icon: 'tabler:server',
+        image: projectLogos.palpo,
+        classes: projectIconThemes.palpo,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/palpo-matrix-server/palpo',
+        },
+      },
+      {
+        title: 'MoFA',
+        description:
+          'Modular AI Agent framework with microkernel architecture. 195 stars.',
+        icon: 'tabler:atom',
+        image: projectLogos.mofa,
+        classes: projectIconThemes.mofa,
+        callToAction: {
+          text: 'GitHub',
+          href: 'https://github.com/moly-mofa/mofa',
+        },
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 section-bg-gold-accent"></div>
+    </Fragment>
+  </FeaturesCards>
+
+  <!-- CTA *************************** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Partner With Us',
+        href: '/en/contact/',
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="font-display">Build With Us</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Interested in contributing, sponsoring, or incubating a project?<br class="hidden md:inline" />
+      Reach out to explore how we can grow the open-source ecosystem together.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 cta-gradient"></div>
+    </Fragment>
+  </CallToAction>
+</Layout>

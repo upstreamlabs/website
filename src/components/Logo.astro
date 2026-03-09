@@ -6,11 +6,22 @@ export interface Props {
 const { class: className = '' } = Astro.props;
 ---
 
-<span class:list={['flex items-center', className]}>
-  <!-- Logo with golden color matching favicon (#EFBF04) -->
-  <img
-    src="/images/upstream/upstream-golden-logo.svg"
-    alt="Upstream Labs"
-    class="h-10 w-auto"
-  />
+<span class:list={['flex items-center', className]} role="img" aria-label="Upstream Labs">
+  <span class="brand-logo" aria-hidden="true"></span>
 </span>
+
+<style>
+  .brand-logo {
+    display: block;
+    width: 10rem;
+    height: 2.5rem;
+    background-color: rgb(15, 23, 42);
+    -webkit-mask: url('/images/upstream/upstream-white-logo.svg') center / contain no-repeat;
+    mask: url('/images/upstream/upstream-white-logo.svg') center / contain no-repeat;
+  }
+
+  :global(.dark) .brand-logo {
+    background-color: transparent;
+    background-image: linear-gradient(90deg, #fbb040 0%, #f9ed32 100%);
+  }
+</style>
